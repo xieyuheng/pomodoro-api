@@ -1,5 +1,4 @@
 - set up tailwind
-- set up prettier
 
 # learn nuxt
 
