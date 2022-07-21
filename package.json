@@ -6,14 +6,17 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "watch": "tsc --noEmit --watch",
+    "test": "vitest --run",
     "format": "prettier src --write"
   },
   "devDependencies": {
     "@nuxtjs/tailwindcss": "^5.3.0",
     "nuxt": "3.0.0-rc.6",
-    "prettier": "^2.7.1"
+    "prettier": "^2.7.1",
+    "vitest": "^0.18.1"
   },
   "dependencies": {
+    "@xieyuheng/ty": "^0.1.13",
     "tailwindcss": "^3.1.6"
   }
 }

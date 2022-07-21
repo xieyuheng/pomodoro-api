@@ -1,7 +1,5 @@
 # learn nuxt
 
-- Nitro Server
-
 - Setting up the Frontend
 - Setting up the Backend
 - Communication with Backend
