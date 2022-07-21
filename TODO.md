@@ -1,6 +1,5 @@
 # learn nuxt
 
-- Data Fetching
 - Nitro Server
 
 - Setting up the Frontend
