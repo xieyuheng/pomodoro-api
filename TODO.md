@@ -1,5 +1,3 @@
-- set up tailwind
-
 # learn nuxt
 
 - Data Fetching
