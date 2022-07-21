@@ -14,8 +14,6 @@
 # questions about nuxt
 
 - how to include css? -- I need to include my fonts
-- fix "/service-worker.js"
-- fix "/favicon.ico"
 - where to put js module? -- like the config of mobx
 
 # migration
