@@ -1,42 +1,16 @@
-# Nuxt 3 Minimal Starter
+# Pomodoro
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+[ [VISIT](https://next.pomodoro.xieyuheng.com)
+| [DICTIONARY](https://en.wiktionary.org/wiki/pomodoro)
+| [WIKIPEDIA](https://en.wikipedia.org/wiki/Pomodoro_Technique) ]
 
-## Setup
+🍅 A Pomodoro timer.
 
-Make sure to install the dependencies:
+## Contributions
 
-```bash
-# yarn
-yarn install
+> Be polite, do not bring negative emotion to others.
 
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/guide/deploy/presets) for more information.
+- [TODO.md](TODO.md)
+- [STYLE-GUIDE.md](STYLE-GUIDE.md)
+- [CODE-OF-CONDUCT.md](CODE-OF-CONDUCT.md)
+- When contributing, add yourself to [AUTHORS](AUTHORS)

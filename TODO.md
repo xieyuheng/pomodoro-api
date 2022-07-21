@@ -1,0 +1,3 @@
+- set up tailwind
+- set up prettier
+- migrate `pomodoro-nextjs`
