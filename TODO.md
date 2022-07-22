@@ -1,3 +1,9 @@
+- migrate `utils/`
+
+- `assets/styles/index.css` -- to include my fonts
+
+- include lib and css in `layouts/default.vue`
+
 # learn nuxt
 
 - Setting up the Frontend
@@ -7,11 +13,6 @@
 - Middleware
 - Authorization
 - The Deployment Process
-
-# questions about nuxt
-
-- how to include css? -- I need to include my fonts
-- where to put js module? -- like the config of mobx
 
 # migration
 
