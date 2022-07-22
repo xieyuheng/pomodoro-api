@@ -1,4 +1,14 @@
-- `layouts/page-layout/PageLayout.vue`
+- `composables/useLang.ts`
+- `composables/useTheme.ts`
+
+- `PageLayoutState.ts`
+- `PageLayout.vue`
+- `PageLayoutHeader.vue`
+- `PageLayoutLang.vue`
+- `PageLayoutLogo.vue`
+- `PageLayoutLure.vue`
+- `PageLayoutMenu.vue`
+- `PageLayoutMenuMobile.vue`
 
 - `layouts/default.vue` use `PageLayout`
 
