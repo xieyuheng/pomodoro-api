@@ -1,6 +1,6 @@
 <script setup>
 import "../assets/styles/index.css"
-import "../lib/service-worker"
+import "../lib/register-service-worker"
 </script>
 
 <template>
