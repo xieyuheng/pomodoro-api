@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import { tailwindConfig } from "../lib/tailwind"
+import colors from "tailwindcss/colors"
 
 export class Theme {
   constructor(public name: string = "red") {
@@ -7,6 +7,6 @@ export class Theme {
   }
 
   get color(): string {
-    return tailwindConfig.theme.colors[this.name][400]
+    return (colors as any)[this.name][400]
   }
 }

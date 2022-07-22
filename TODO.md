@@ -1,4 +1,3 @@
-- `PageLayoutState.ts`
 - `PageLayout.vue`
 - `PageLayoutHeader.vue`
 - `PageLayoutLang.vue`

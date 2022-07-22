@@ -1,14 +1,30 @@
 <script setup lang="ts">
 import { PageLayoutState as State } from "./PageLayoutState"
+
+const state = new State()
 </script>
 
 <template>
-  <div>
-    <Lang>
-      <template #zh> 中文 </template>
-      <template #en> PageLayout </template>
-    </Lang>
+  <Observer>
+    <div>
+      <Head>
+        <Title v-if="state.formatTitle()">{{ state.formatTitle() }}</Title>
+        <Meta name="theme-color" content="{state.theme.color}" />
+      </Head>
 
-    <slot />
-  </div>
+      <div
+        class="flex min-h-screen flex-col items-center"
+        :class="[
+          state.classes.transition,
+          `bg-${state.theme.name}-400 text-${state.theme.name}-100`,
+        ]"
+      >
+
+
+        <div class="mt-6 h-full w-full space-y-2 px-4 md:max-w-2xl">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </Observer>
 </template>
