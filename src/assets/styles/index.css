@@ -1,0 +1,5 @@
+@import "./fonts.css";
+
+input {
+  font-family: inherit;
+}
