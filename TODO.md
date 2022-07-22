@@ -1,3 +1,5 @@
+- use vite instead of nuxtjs -- we do not need SSR
+
 - `PageLayout.vue`
 - `PageLayoutHeader.vue`
 - `PageLayoutLang.vue`

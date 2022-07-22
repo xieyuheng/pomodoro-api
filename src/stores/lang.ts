@@ -6,6 +6,6 @@ function createLang() {
   return new Lang("en")
 }
 
-export const lang = createLang()
+export const lang = new Lang("en")
 
 // autorun(() => localStorage.setItem("Lang", lang.tag))

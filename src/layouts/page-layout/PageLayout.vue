@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { PageLayoutState as State } from "./PageLayoutState"
 
+import PageLayoutHeader from "./PageLayoutHeader.vue"
+
 const state = new State()
 </script>
 
@@ -19,7 +21,7 @@ const state = new State()
           `bg-${state.theme.name}-400 text-${state.theme.name}-100`,
         ]"
       >
-
+        <PageLayoutHeader :state="state" />
 
         <div class="mt-6 h-full w-full space-y-2 px-4 md:max-w-2xl">
           <slot />

@@ -3,13 +3,15 @@ import { lang } from "../stores/lang"
 </script>
 
 <template>
-  <div>
-    <div v-show="lang.zh">
-      <slot name="zh"></slot>
-    </div>
+  <Observer>
+    <div>
+      <div v-show="lang.zh">
+        <slot name="zh"></slot>
+      </div>
 
-    <div v-show="lang.en">
-      <slot name="en"></slot>
+      <div v-show="lang.en">
+        <slot name="en"></slot>
+      </div>
     </div>
-  </div>
+  </Observer>
 </template>
