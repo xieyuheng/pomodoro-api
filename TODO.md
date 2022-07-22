@@ -1,6 +1,3 @@
-- `composables/useLang.ts`
-- `composables/useTheme.ts`
-
 - `PageLayoutState.ts`
 - `PageLayout.vue`
 - `PageLayoutHeader.vue`
