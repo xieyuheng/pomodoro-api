@@ -1,5 +1,3 @@
-- migrate `utils/`
-
 - `assets/styles/index.css` -- to include my fonts
 
 - include lib and css in `layouts/default.vue`
