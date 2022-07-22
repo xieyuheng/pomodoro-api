@@ -1,15 +1,22 @@
-<script setup>
+<script setup lang="ts">
 import "../assets/styles/index.css"
-import "../lib/register-service-worker"
+import "../scripts/config-mobx"
+import "../scripts/register-service-worker"
+
+import PageLayout from "./page-layout/PageLayout.vue"
 </script>
 
 <template>
-  <div class="min-h-screen">
-    <Head>
-      <Meta name="description" content="🍅 A Pomodoro timer." />
-      <Link rel="shortcut icon" href="/favicon.ico" />
-    </Head>
+  <Observer>
+    <div class="min-h-screen">
+      <Head>
+        <Meta name="description" content="🍅 A Pomodoro timer." />
+        <Link rel="shortcut icon" href="/favicon.ico" />
+      </Head>
 
-    <slot />
-  </div>
+      <PageLayout>
+        <slot />
+      </PageLayout>
+    </div>
+  </Observer>
 </template>

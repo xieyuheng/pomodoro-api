@@ -1,7 +1,11 @@
+import { makeAutoObservable } from "mobx"
+
 export class Lang {
   tags = ["zh", "en"]
 
-  constructor(public tag: string) {}
+  constructor(public tag: string) {
+    makeAutoObservable(this)
+  }
 
   get zh(): boolean {
     return this.tag.startsWith("zh")

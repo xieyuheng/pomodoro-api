@@ -19,6 +19,8 @@
   "dependencies": {
     "@xieyuheng/ty": "^0.1.13",
     "howler": "^2.2.3",
+    "mobx": "^6.6.1",
+    "mobx-vue-lite": "^0.3.1",
     "redis-om": "^0.3.6",
     "tailwindcss": "^3.1.6"
   }
