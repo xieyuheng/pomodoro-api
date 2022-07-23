@@ -1,4 +1,4 @@
-- use vite instead of nuxtjs -- we do not need SSR
+- remove mobx, use global objects to manage global states
 
 - `PageLayout.vue`
 - `PageLayoutHeader.vue`
