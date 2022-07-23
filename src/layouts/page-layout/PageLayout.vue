@@ -9,7 +9,7 @@ const state = new State()
   <div>
     <Head>
       <Title v-if="state.formatTitle()">{{ state.formatTitle() }}</Title>
-      <Meta name="theme-color" content="{state.theme.color}" />
+      <Meta name="theme-color" :content="state.theme.color" />
     </Head>
 
     <div
