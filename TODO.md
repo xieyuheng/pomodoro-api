@@ -1,16 +1,18 @@
 - `components/pomodoro/Pomodoro.vue`
 
+- `components/pomodoro/PomodoroTimer.vue`
+- `components/pomodoro/PomodoroTimerButton.vue`
+- `components/pomodoro/PomodoroTimerControl.vue`
+
 - `components/pomodoro/PomodoroModeButton.vue`
 - `components/pomodoro/PomodoroModebar.vue`
+
+- `components/pomodoro/PomodoroTasks.vue`
 - `components/pomodoro/PomodoroTaskCurrent.vue`
 - `components/pomodoro/PomodoroTaskForm.vue`
 - `components/pomodoro/PomodoroTaskInput.vue`
 - `components/pomodoro/PomodoroTaskItem.vue`
 - `components/pomodoro/PomodoroTaskItemCount.vue`
-- `components/pomodoro/PomodoroTasks.vue`
-- `components/pomodoro/PomodoroTimer.vue`
-- `components/pomodoro/PomodoroTimerButton.vue`
-- `components/pomodoro/PomodoroTimerControl.vue`
 
 - `components/FormButton.vue`
 - `components/FormInput.vue`
