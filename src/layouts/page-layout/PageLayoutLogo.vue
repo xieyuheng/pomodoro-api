@@ -6,9 +6,6 @@ defineProps<{ state: State }>()
 
 <template>
   <NuxtLink to="/" class="font-logo text-3xl font-bold hover:underline">
-    <Lang>
-      <template #zh> 番茄钟 </template>
-      <template #en> Pomodoro </template>
-    </Lang>
+    {{ state.appName }}
   </NuxtLink>
 </template>
