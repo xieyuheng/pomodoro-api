@@ -1,26 +1,28 @@
 - `components/pomodoro/PomodoroState.ts`
 
-- `components/pomodoro/models/`
-- `components/pomodoro/hooks/`
-
 - `components/pomodoro/Pomodoro.vue`
 
-- `PomodoroModeButton.vue`
-- `PomodoroModebar.vue`
-- `PomodoroTaskCurrent.vue`
-- `PomodoroTaskForm.vue`
-- `PomodoroTaskInput.vue`
-- `PomodoroTaskItem.vue`
-- `PomodoroTaskItemCount.vue`
-- `PomodoroTasks.vue`
-- `PomodoroTimer.vue`
-- `PomodoroTimerButton.vue`
-- `PomodoroTimerControl.vue`
+- `components/pomodoro/PomodoroModeButton.vue`
+- `components/pomodoro/PomodoroModebar.vue`
+- `components/pomodoro/PomodoroTaskCurrent.vue`
+- `components/pomodoro/PomodoroTaskForm.vue`
+- `components/pomodoro/PomodoroTaskInput.vue`
+- `components/pomodoro/PomodoroTaskItem.vue`
+- `components/pomodoro/PomodoroTaskItemCount.vue`
+- `components/pomodoro/PomodoroTasks.vue`
+- `components/pomodoro/PomodoroTimer.vue`
+- `components/pomodoro/PomodoroTimerButton.vue`
+- `components/pomodoro/PomodoroTimerControl.vue`
 
 - `components/FormButton.vue`
 - `components/FormInput.vue`
 
-- `controllers/*`
+- `components/register/Register.vue`
+- `components/login/Login.vue`
 
-- replace domain name `pomodoro.xieyuheng.com`
+- `controllers/EmailRegisterController.ts`
+- `controllers/UserController.ts`
+
+- change domain name to `pomodoro.xieyuheng.com`
+
   - move old project to `pomodoro-nextjs.xieyuheng.com`
