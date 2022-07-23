@@ -1,5 +1,3 @@
-- `components/pomodoro/PomodoroState.ts`
-
 - `components/pomodoro/Pomodoro.vue`
 
 - `components/pomodoro/PomodoroModeButton.vue`
