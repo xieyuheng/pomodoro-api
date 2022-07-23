@@ -3,8 +3,8 @@ import { PageLayoutState as State } from "./PageLayoutState"
 import PageLayoutLogo from "./PageLayoutLogo.vue"
 import PageLayoutLang from "./PageLayoutLang.vue"
 import PageLayoutLure from "./PageLayoutLure.vue"
-// import PageLayoutMenu from "./PageLayoutMenu.vue"
-// import PageLayoutMenuMobile from "./PageLayoutMenuMobile.vue"
+import PageLayoutMenu from "./PageLayoutMenu.vue"
+import PageLayoutMenuMobile from "./PageLayoutMenuMobile.vue"
 
 defineProps<{ state: State }>()
 
@@ -28,11 +28,11 @@ const user = false
       <PageLayoutLang :state="state" />
       <div class="hidden md:block">
         <PageLayoutLure v-if="!user" :state="state" />
-        <!-- <PageLayoutMenu v-if="user" :state="state" /> -->
+        <PageLayoutMenu v-if="user" :state="state" />
       </div>
 
       <div class="block md:hidden">
-        <!-- <PageLayoutMenuMobile :state="state" /> -->
+        <PageLayoutMenuMobile :state="state" />
       </div>
     </div>
   </div>
