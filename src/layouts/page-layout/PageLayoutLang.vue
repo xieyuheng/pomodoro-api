@@ -8,7 +8,7 @@ import {
   ListboxOption,
   Transition,
 } from "@headlessui/vue"
-import { TranslateIcon, CheckIcon, SelectorIcon } from "@heroicons/vue/outline.js"
+import { TranslateIcon, CheckIcon, SelectorIcon } from "@heroicons/vue/outline"
 
 defineProps<{ state: State }>()
 </script>
