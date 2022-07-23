@@ -1,9 +1,9 @@
-import { lang } from "../../stores/lang"
-import { theme } from "../../stores/theme"
+import { useLang } from "../../composables/useLang"
+import { useTheme } from "../../composables/useTheme"
 
 export class PageLayoutState {
-  lang = lang
-  theme = theme
+  lang = useLang()
+  theme = useTheme()
 
   classes = {
     transition: "transition delay-0 duration-500 ease-out",

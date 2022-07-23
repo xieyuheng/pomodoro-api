@@ -13,22 +13,21 @@ const user = false
 </script>
 
 <template>
-  
-    <div
-      class="flex w-full items-center border-b px-4 pt-3 pb-2 md:py-4"
-      :class="[
-        'justify-between',
-        state.classes.transition,
-        `border-${state.theme.name}-500`,
-      ]"
-    >
-      <div class="mr-3">
-        <PageLayoutLogo :state="state" />
-      </div>
+  <div
+    class="flex w-full items-center border-b px-4 pt-3 pb-2 md:py-4"
+    :class="[
+      'justify-between',
+      state.classes.transition,
+      `border-${state.theme.name}-500`,
+    ]"
+  >
+    <div class="mr-3">
+      <PageLayoutLogo :state="state" />
+    </div>
 
-      <div class="flex items-center space-x-2">
-        <PageLayoutLang :state="state" />
-        <!-- <div class="hidden md:block">
+    <div class="flex items-center space-x-2">
+      <PageLayoutLang :state="state" />
+      <!-- <div class="hidden md:block">
              <PageLayoutLure v-if="!user" :state="state" />
              <PageLayoutMenu v-if="user" :state="state" />
              </div>
@@ -36,7 +35,6 @@ const user = false
              <div class="block md:hidden">
              <PageLayoutMenuMobile :state="state" />
              </div> -->
-      </div>
     </div>
-  
+  </div>
 </template>
