@@ -3,7 +3,7 @@ import { lang } from "../stores/lang"
 </script>
 
 <template>
-  <Observer>
+  
     <div>
       <div v-show="lang.zh">
         <slot name="zh"></slot>
@@ -13,5 +13,5 @@ import { lang } from "../stores/lang"
         <slot name="en"></slot>
       </div>
     </div>
-  </Observer>
+  
 </template>

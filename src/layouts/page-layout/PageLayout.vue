@@ -7,7 +7,7 @@ const state = new State()
 </script>
 
 <template>
-  <Observer>
+  
     <div>
       <Head>
         <Title v-if="state.formatTitle()">{{ state.formatTitle() }}</Title>
@@ -28,5 +28,5 @@ const state = new State()
         </div>
       </div>
     </div>
-  </Observer>
+  
 </template>

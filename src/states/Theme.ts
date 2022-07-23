@@ -1,10 +1,7 @@
-import { makeAutoObservable } from "mobx"
 import colors from "tailwindcss/colors.js"
 
 export class Theme {
-  constructor(public name: string = "red") {
-    makeAutoObservable(this)
-  }
+  constructor(public name: string = "red") {}
 
   get color(): string {
     return (colors as any)[this.name][400]

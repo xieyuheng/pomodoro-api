@@ -1,5 +1,3 @@
-- remove mobx, use global objects to manage global states
-
 - `PageLayout.vue`
 - `PageLayoutHeader.vue`
 - `PageLayoutLang.vue`

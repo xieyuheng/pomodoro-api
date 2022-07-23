@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import "../assets/styles/index.css"
-import "../scripts/config-mobx"
 import "../scripts/register-service-worker"
 
 import PageLayout from "./page-layout/PageLayout.vue"
