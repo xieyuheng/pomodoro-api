@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { PageLayoutState as State } from "./PageLayoutState"
-
 import PageLayoutHeader from "./PageLayoutHeader.vue"
 
 const state = new State()

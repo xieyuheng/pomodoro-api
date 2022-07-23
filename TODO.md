@@ -1,7 +1,6 @@
 - `PageLayout.vue`
 - `PageLayoutHeader.vue`
 - `PageLayoutLang.vue`
-- `PageLayoutLure.vue`
 - `PageLayoutMenu.vue`
 - `PageLayoutMenuMobile.vue`
 
