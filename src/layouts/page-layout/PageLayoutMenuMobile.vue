@@ -1,12 +1,6 @@
 <script setup lang="ts">
 import { PageLayoutState as State } from "./PageLayoutState"
-import {
-  Menu,
-  MenuButton,
-  MenuItems,
-  MenuItem,
-  Transition,
-} from "@headlessui/vue"
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue"
 import { XIcon, MenuIcon } from "@heroicons/vue/outline/index.js"
 
 defineProps<{ state: State }>()
@@ -19,12 +13,12 @@ defineProps<{ state: State }>()
     </MenuButton>
 
     <Transition
-      enter="transition duration-300"
-      enterFrom="transform opacity-0 translate-x-6 rotate-45"
-      enterTo="transform opacity-100 rotate-0"
-      leave="transition duration-300"
-      leaveFrom="transform opacity-100"
-      leaveTo="transform opacity-0 translate-x-6"
+      enter-active-class="transition duration-300"
+      enter-from-class="transform opacity-0 translate-x-6 rotate-45"
+      enter-to-class="transform opacity-100 rotate-0"
+      leave-active-class="transition duration-300"
+      leave-from-class="transform opacity-100"
+      leave-to-class="transform opacity-0 translate-x-6"
     >
       <MenuItems
         class="fixed top-0 right-0 h-screen w-screen border-4 p-4"

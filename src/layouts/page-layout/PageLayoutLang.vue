@@ -5,7 +5,6 @@ import {
   ListboxButton,
   ListboxOptions,
   ListboxOption,
-  Transition,
 } from "@headlessui/vue"
 import {
   TranslateIcon,
@@ -28,12 +27,12 @@ defineProps<{ state: State }>()
     </ListboxButton>
 
     <Transition
-      enter="transition duration-100 ease-out"
-      enterFrom="transform scale-95 opacity-0"
-      enterTo="transform scale-100 opacity-100"
-      leave="transition duration-75 ease-out"
-      leaveFrom="transform scale-100 opacity-100"
-      leaveTo="transform scale-95 opacity-0"
+      enter-active-class="transition duration-100 ease-out"
+      enter-from-class="transform scale-95 opacity-0"
+      enter-to-class="transform scale-100 opacity-100"
+      leave-active-class="transition duration-75 ease-out"
+      leave-from-class="transform scale-100 opacity-100"
+      leave-to-class="transform scale-95 opacity-0"
     >
       <ListboxOptions
         class="absolute top-8 right-0 min-w-max border-2"

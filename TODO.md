@@ -1,11 +1,3 @@
-- `PageLayout.vue`
-- `PageLayoutHeader.vue`
-- `PageLayoutLang.vue`
-- `PageLayoutMenu.vue`
-- `PageLayoutMenuMobile.vue`
-
-- `layouts/default.vue` use `PageLayout`
-
 - `components/pomodoro/Pomodoro.vue`
 
 - `pages/index.vue` use `Pomodoro`
