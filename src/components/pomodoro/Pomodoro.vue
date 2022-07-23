@@ -5,5 +5,5 @@ const state = new State()
 </script>
 
 <template>
-  <div>{{ state.json() }}</div>
+  <pre>{{ state.json() }}</pre>
 </template>
