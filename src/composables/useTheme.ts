@@ -1,14 +1,4 @@
-import { reactive } from "vue"
 import { Theme } from "../states/Theme"
+import { defineState } from "../utils/defineState"
 
-let theme = new Theme()
-let initialized = false
-
-export function useTheme() {
-  if (initialized) return theme
-  if (typeof window === "undefined") return theme
-
-  theme = reactive(theme)
-
-  return theme
-}
+export const { use: useTheme } = defineState(new Theme())

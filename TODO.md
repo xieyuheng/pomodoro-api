@@ -1,3 +1,5 @@
+- `isServer()`
+
 - `PageLayout.vue`
 - `PageLayoutHeader.vue`
 - `PageLayoutLang.vue`
