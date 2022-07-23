@@ -1,5 +1,3 @@
-- `pages/index.vue` use `Pomodoro`
-
 - `components/pomodoro/PomodoroState.ts`
 
 - `components/pomodoro/models/`
