@@ -1,4 +1,5 @@
 - `components/pomodoro/PomodoroTaskForm.vue` -- emit events instead of using props
+- `components/pomodoro/PomodoroTaskForm.vue` -- fix the use of `@keydown`
 - `components/pomodoro/PomodoroTaskItemCount.vue`
 
 - `components/register/Register.vue`

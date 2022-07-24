@@ -23,8 +23,7 @@ defineProps<{
       ]"
       type="text"
       :placeholder="placeholder"
-      :onChange="onChange"
-      :onKeyDown="
+      @keydown="
         (event) => {
           if (event.key === 'Enter') {
             if (onSave) onSave()
@@ -41,7 +40,7 @@ defineProps<{
           state.classes.transition,
           `border-${state.theme.name}-300 bg-${state.theme.name}-200 text-${state.theme.name}-600`,
         ]"
-        :onClick="onDelete"
+        @click="onDelete"
       >
         {{ state.lang.zh ? "删除" : "DELETE" }}
       </button>
@@ -53,7 +52,7 @@ defineProps<{
           state.classes.transition,
           `border-${state.theme.name}-300 bg-${state.theme.name}-200 text-${state.theme.name}-600`,
         ]"
-        :onClick="onCancel"
+        @click="onCancel"
       >
         {{ state.lang.zh ? "取消" : "CANCEL" }}
       </button>
@@ -65,7 +64,7 @@ defineProps<{
           state.classes.transition,
           `border-${state.theme.name}-300 bg-${state.theme.name}-200 text-${state.theme.name}-600`,
         ]"
-        :onClick="onSave"
+        @click="onSave"
       >
         {{ state.lang.zh ? "保存" : "SAVE" }}
       </button>
