@@ -1,11 +1,11 @@
-import { removeFirst } from "../../utils/removeFirst"
-import { emptySoundLoop } from "../../lib/howler"
-import { Mode, ModeKind } from "./models/Mode"
-import { Task } from "./models/Task"
-import { Settings, defaultSettings, testingSettings } from "./models/Settings"
-import { Timer, TimerJson } from "./models/Timer"
 import { useLang } from "../../composables/useLang"
 import { useTheme } from "../../composables/useTheme"
+import { emptySoundLoop } from "../../lib/howler"
+import { removeFirst } from "../../utils/removeFirst"
+import { Mode, ModeKind } from "./models/Mode"
+import { Settings, testingSettings } from "./models/Settings"
+import { Task } from "./models/Task"
+import { Timer, TimerJson } from "./models/Timer"
 
 export type PomodoroStateJson = {
   mode: Mode

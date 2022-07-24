@@ -1,8 +1,7 @@
-- `components/pomodoro/PomodoroTasks.vue`
 - `components/pomodoro/PomodoroTaskCurrent.vue`
-- `components/pomodoro/PomodoroTaskForm.vue`
-- `components/pomodoro/PomodoroTaskInput.vue`
 - `components/pomodoro/PomodoroTaskItem.vue`
+- `components/pomodoro/PomodoroTaskInput.vue`
+- `components/pomodoro/PomodoroTaskForm.vue`
 - `components/pomodoro/PomodoroTaskItemCount.vue`
 
 - `components/FormButton.vue`
