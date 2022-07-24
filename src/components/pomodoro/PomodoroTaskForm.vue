@@ -2,9 +2,9 @@
 import { PomodoroState as State } from "./PomodoroState"
 
 defineProps<{
+  modelValue?: string
   state: State
   placeholder?: string
-  onChange: (event: any) => void
   onDelete?: () => void
   onCancel?: () => void
   onSave?: () => void
@@ -22,6 +22,8 @@ defineProps<{
         `placeholder-${state.theme.name}-400`,
       ]"
       type="text"
+      :modelValue="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
       :placeholder="placeholder"
       @keydown="
         (event) => {

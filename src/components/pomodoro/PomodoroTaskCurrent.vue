@@ -63,7 +63,6 @@ const inputTitle = ref(props.task.title)
         <DotsVerticalIcon class="h-6 w-6" />
       </button>
     </div>
-    )}
 
     <PomodoroTaskItemCount :state="state" :task="task" />
   </div>

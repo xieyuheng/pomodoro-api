@@ -5,5 +5,5 @@ defineProps<{ state: State }>()
 </script>
 
 <template>
-  <div>TODO</div>
+  <div>PomodoroTaskItemCount</div>
 </template>
