@@ -1,4 +1,3 @@
-- `components/pomodoro/PomodoroTaskCurrent.vue`
 - `components/pomodoro/PomodoroTaskItem.vue`
 - `components/pomodoro/PomodoroTaskInput.vue`
 - `components/pomodoro/PomodoroTaskForm.vue`
