@@ -25,11 +25,9 @@ defineProps<{
       :modelValue="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       :placeholder="placeholder"
-      @keydown="
-        (event) => {
-          if (event.key === 'Enter') {
-            if (onSave) onSave()
-          }
+      @keydown.enter="
+        () => {
+          if (onSave) onSave()
         }
       "
     />
