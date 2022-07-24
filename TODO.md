@@ -1,6 +1,5 @@
-- `components/pomodoro/PomodoroTimer.vue`
-- `components/pomodoro/PomodoroTimerButton.vue`
 - `components/pomodoro/PomodoroTimerControl.vue`
+- `components/pomodoro/PomodoroTimerButton.vue`
 
 - `components/pomodoro/PomodoroModeButton.vue`
 - `components/pomodoro/PomodoroModebar.vue`
