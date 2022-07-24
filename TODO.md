@@ -1,11 +1,11 @@
-- `components/pomodoro/PomodoroTaskItem.vue`
 - `components/pomodoro/PomodoroTaskForm.vue`
 - `components/pomodoro/PomodoroTaskItemCount.vue`
+
+- `components/register/Register.vue`
 
 - `components/FormButton.vue`
 - `components/FormInput.vue`
 
-- `components/register/Register.vue`
 - `components/login/Login.vue`
 
 - `controllers/EmailRegisterController.ts`

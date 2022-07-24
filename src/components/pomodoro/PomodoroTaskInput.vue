@@ -13,7 +13,7 @@ defineProps<{ state: State }>()
       class="flex w-full flex-col border-2 p-3 md:py-4 text-xl font-semibold"
       :class="[
         state.classes.transition,
-        `border-${state.theme.name}-200 bg-${state.theme.name}-100  text-${state.theme.name}-900`,
+        `border-${state.theme.name}-200 bg-${state.theme.name}-100 text-${state.theme.name}-900`,
       ]"
     >
       <PomodoroTaskForm
