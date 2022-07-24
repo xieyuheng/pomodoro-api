@@ -3,7 +3,7 @@ import { PomodoroState as State } from "./PomodoroState"
 import PomodoroTimer from "./PomodoroTimer.vue"
 import PomodoroTasks from "./PomodoroTasks.vue"
 
-const state = new State()
+const state = reactive(new State())
 
 onMounted(() => state.setupNotification())
 </script>
