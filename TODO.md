@@ -1,4 +1,4 @@
-- `components/pomodoro/PomodoroTaskForm.vue`
+- `components/pomodoro/PomodoroTaskForm.vue` -- emit events instead of using props
 - `components/pomodoro/PomodoroTaskItemCount.vue`
 
 - `components/register/Register.vue`

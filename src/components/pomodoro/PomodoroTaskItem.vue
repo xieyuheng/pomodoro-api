@@ -53,13 +53,13 @@ const inputTitle = ref(props.task.title)
         class="text-xl font-semibold"
         @mouseleave="
           () => {
-            setActive(false)
+            active.value = false
           }
         "
         @click="
           () => {
             if (!active) {
-              setActive(true)
+              active.value = true
             } else {
               state.selectTask(task.id)
             }
