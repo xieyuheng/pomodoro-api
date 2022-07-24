@@ -1,3 +1,5 @@
+- `PomodoroTaskForm` fix `editing` init state
+
 - `components/register/Register.vue`
 
 - `components/FormButton.vue`

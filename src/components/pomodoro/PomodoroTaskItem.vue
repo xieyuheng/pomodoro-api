@@ -25,28 +25,24 @@ const locals = reactive({ inputTitle: props.task.title, active: false })
       v-if="task.editing"
       :state="state"
       v-model="locals.inputTitle"
-      :onDelete="
-        () => {
+      :options="{
+        onDelete: () => {
           state.deleteTask(task.id)
           task.editing = false
-        }
-      "
-      :onCancel="
-        () => {
+        },
+        onCancel: () => {
           locals.InputTitle = task.title
           task.editing = false
-        }
-      "
-      :onSave="
-        () => {
+        },
+        onSave: () => {
           if (!locals.inputTitle) {
             return alert(state.lang.zh ? '输入不能为空' : 'Input required')
           }
 
           task.title = locals.inputTitle
           task.editing = false
-        }
-      "
+        },
+      }"
     />
 
     <div v-else class="flex items-start justify-between">

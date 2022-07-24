@@ -17,25 +17,23 @@ defineProps<{ state: State }>()
       ]"
     >
       <PomodoroTaskForm
-        v-model="state.inputTaskTitle"
         :state="state"
-        :placeholder="state.lang.zh ? '新的任务' : 'Create a new task'"
-        :onCancel="
-          () => {
+        v-model="state.inputTaskTitle"
+        :options="{
+          placeholder: state.lang.zh ? '新的任务' : 'Create a new task',
+          onCancel: () => {
             state.inputTaskTitle = null
             state.editing = false
-          }
-        "
-        :onSave="
-          () => {
+          },
+          onSave: () => {
             if (!state.inputTaskTitle) {
               state.editing = false
             } else {
               state.createTask()
               state.editing = false
             }
-          }
-        "
+          },
+        }"
       />
     </div>
     <button
