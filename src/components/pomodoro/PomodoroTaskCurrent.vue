@@ -7,7 +7,7 @@ import PomodoroTaskForm from "./PomodoroTaskForm.vue"
 
 const props = defineProps<{ state: State; task: Task }>()
 
-const inputTitle = ref(props.task.title)
+const locals = reactive({ inputTitle: props.task.title })
 </script>
 
 <template>
@@ -21,29 +21,29 @@ const inputTitle = ref(props.task.title)
     <PomodoroTaskForm
       v-if="task.editing"
       :state="state"
-      v-model="inputTitle"
+      v-model="locals.inputTitle"
       :onDelete="
         () => {
           state.deleteTask(task.id)
           if (state.currentTesk) {
-            setInputTitle(state.currentTesk.title)
+            locals.inputTitle = state.currentTesk.title
           }
           task.editing = false
         }
       "
       :onCancel="
         () => {
-          setInputTitle(task.title)
+          locals.inputTitle = task.title
           task.editing = false
         }
       "
       :onSave="
         () => {
-          if (!inputTitle) {
+          if (!locals.inputTitle) {
             return alert(state.lang.zh ? '输入不能为空' : 'Input required')
           }
 
-          task.title = inputTitle
+          task.title = locals.inputTitle
           task.editing = false
         }
       "

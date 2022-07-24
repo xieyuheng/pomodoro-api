@@ -2,8 +2,8 @@
 import { PomodoroState as State } from "./PomodoroState"
 
 defineProps<{
-  modelValue?: string
   state: State
+  modelValue?: string
   placeholder?: string
   onDelete?: () => void
   onCancel?: () => void

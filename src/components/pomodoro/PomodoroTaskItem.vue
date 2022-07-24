@@ -7,8 +7,7 @@ import PomodoroTaskForm from "./PomodoroTaskForm.vue"
 
 const props = defineProps<{ state: State; task: Task }>()
 
-const active = ref(false)
-const inputTitle = ref(props.task.title)
+const locals = reactive({ inputTitle: props.task.title, active: false })
 </script>
 
 <template>
@@ -17,13 +16,15 @@ const inputTitle = ref(props.task.title)
     :class="[
       state.classes.transition,
       `border-${state.theme.name}-200 bg-${state.theme.name}-100`,
-      active ? `text-${state.theme.name}-500` : `text-${state.theme.name}-900`,
+      locals.active
+        ? `text-${state.theme.name}-500`
+        : `text-${state.theme.name}-900`,
     ]"
   >
     <PomodoroTaskForm
       v-if="task.editing"
       :state="state"
-      v-model="inputTitle"
+      v-model="locals.inputTitle"
       :onDelete="
         () => {
           state.deleteTask(task.id)
@@ -32,34 +33,34 @@ const inputTitle = ref(props.task.title)
       "
       :onCancel="
         () => {
-          setInputTitle(task.title)
+          locals.InputTitle = task.title
           task.editing = false
         }
       "
       :onSave="
         () => {
-          if (!inputTitle) {
+          if (!locals.inputTitle) {
             return alert(state.lang.zh ? '输入不能为空' : 'Input required')
           }
 
-          task.title = inputTitle
+          task.title = locals.inputTitle
           task.editing = false
         }
       "
     />
-    ) : (
-    <div class="flex items-start justify-between">
+
+    <div v-else class="flex items-start justify-between">
       <div
         class="text-xl font-semibold"
         @mouseleave="
           () => {
-            active.value = false
+            locals.active = false
           }
         "
         @click="
           () => {
-            if (!active) {
-              active.value = true
+            if (!locals.active) {
+              locals.active = true
             } else {
               state.selectTask(task.id)
             }
@@ -80,7 +81,6 @@ const inputTitle = ref(props.task.title)
         <DotsVerticalIcon class="h-6 w-6" />
       </button>
     </div>
-    )}
 
     <PomodoroTaskItemCount :state="state" :task="task" />
   </div>

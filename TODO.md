@@ -1,5 +1,3 @@
-- `components/pomodoro/PomodoroTaskItemCount.vue`
-
 - `components/register/Register.vue`
 
 - `components/FormButton.vue`
