@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PomodoroState as State } from "./PomodoroState"
-// import PomodoroTimer from "./PomodoroTimer.vue"
-// import PomodoroTasks from "./PomodoroTasks.vue"
+import PomodoroTimer from "./PomodoroTimer.vue"
+import PomodoroTasks from "./PomodoroTasks.vue"
 
 const state = new State()
 
@@ -15,7 +15,7 @@ onMounted(() => state.setupNotification())
       <Meta name="theme-color" :content="state.theme.color" />
     </Head>
 
-    <!-- <PomodoroTimer :state="state" /> -->
-    <!-- <PomodoroTasks :state="state" /> -->
+    <PomodoroTimer :state="state" />
+    <PomodoroTasks :state="state" />
   </div>
 </template>
