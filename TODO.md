@@ -1,6 +1,3 @@
-- `components/pomodoro/PomodoroModeButton.vue`
-- `components/pomodoro/PomodoroModebar.vue`
-
 - `components/pomodoro/PomodoroTasks.vue`
 - `components/pomodoro/PomodoroTaskCurrent.vue`
 - `components/pomodoro/PomodoroTaskForm.vue`
