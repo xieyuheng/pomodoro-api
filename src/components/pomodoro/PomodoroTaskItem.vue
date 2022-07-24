@@ -22,7 +22,7 @@ const locals = reactive({ inputTitle: props.task.title, active: false })
     ]"
   >
     <PomodoroTaskForm
-      v-if="task.editing"
+      v-show="task.editing"
       :state="state"
       v-model="locals.inputTitle"
       :options="{
@@ -45,7 +45,7 @@ const locals = reactive({ inputTitle: props.task.title, active: false })
       }"
     />
 
-    <div v-else class="flex items-start justify-between">
+    <div v-show="!task.editing" class="flex items-start justify-between">
       <div
         class="text-xl font-semibold"
         @mouseleave="
