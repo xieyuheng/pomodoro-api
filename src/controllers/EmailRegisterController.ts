@@ -1,4 +1,4 @@
-import ty from "@xieyuheng/ty"
+import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { CompatibilityEvent, useBody } from "h3"
 import { EmailRegister } from "../models/EmailRegister"
@@ -25,7 +25,6 @@ export class EmailRegisterController {
 
     const json = {
       ...scheme.validate(body),
-      // ...body,
       verification_token: crypto.randomBytes(32).toString("hex"),
       confirmation_token: crypto.randomBytes(32).toString("hex"),
       confirmation_code: crypto.randomBytes(3).toString("hex"),

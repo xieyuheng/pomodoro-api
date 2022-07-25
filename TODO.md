@@ -1,2 +1,3 @@
+- use vite instead of nuxt
 - `EmailRegisterController` -- fix the use of `ty`
 - `components/login/Login.vue`
