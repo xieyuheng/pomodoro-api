@@ -1,12 +1,15 @@
 <script setup lang="ts">
+import { useLang } from "../composables/useLang"
+import { useTheme } from "../composables/useTheme"
+
+const lang = useLang()
+const theme = useTheme()
+
 defineProps<{
   name: string
   type?: string
   required?: boolean
 }>()
-
-const lang = useLang()
-const theme = useTheme()
 </script>
 
 <template>

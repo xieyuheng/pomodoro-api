@@ -1,4 +1,3 @@
-- `RegisterStart.vue`
 - `RegisterVerifyings.vue`
 
 - `components/login/Login.vue`
