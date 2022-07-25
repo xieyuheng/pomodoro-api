@@ -1,4 +1,3 @@
-- `Register.vue`
 - `RegisterStart.vue`
 - `RegisterVerifyings.vue`
 
