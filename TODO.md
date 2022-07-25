@@ -1,5 +1,11 @@
 # register process
 
+- double token login without email
+
+- `api/register/[token]/confirm.ts`
+- `api/register/[token]/verify.ts`
+- `api/register/[token]/revoke.ts`
+
 - `PageLayoutHeader` show `PageLayoutMenu` if there is `user`
 - be able to send email to users
   - https://nodemailer.com/about
