@@ -1,12 +1,4 @@
-# register & login process
-
-- `models/User`
-
-- `models/EmailLogin`
-
-- `components/login/LoginStart`
-
-- `components/login/Login.vue`
+# register process
 
 - `PageLayoutHeader` show `PageLayoutMenu` if there is `user`
 
@@ -15,6 +7,11 @@
   - https://nodemailer.com/about
 
 - be able to config `settings.modes`
+
+# login process
+
+- `components/login/LoginStart`
+- `components/login/Login.vue`
 
 # refactor
 
