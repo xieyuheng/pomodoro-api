@@ -1,6 +1,3 @@
-- `components/FormButton.vue`
-- `components/FormInput.vue`
-
 - `RegisterStart.vue`
 - `RegisterVerifyings.vue`
 
