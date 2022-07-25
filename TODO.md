@@ -10,7 +10,3 @@
 
 - `controllers/EmailRegisterController.ts`
 - `controllers/UserController.ts`
-
-- change domain name to `pomodoro.xieyuheng.com`
-
-  - move old project to `pomodoro-nextjs.xieyuheng.com`
