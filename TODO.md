@@ -1,6 +1,22 @@
 # register & login process
 
+- `views/register/RegisterEmailConfirmationSuccess` -- static page to show success email Confirmation
+
+- `models/User`
+
+- `models/EmailLogin`
+
+- `components/login/LoginStart`
+
 - `components/login/Login.vue`
+
+- `PageLayoutHeader` show `PageLayoutMenu` if there is `user`
+
+- be able to send email to users
+
+  - https://nodemailer.com/about
+
+- be able to config `settings.modes`
 
 # refactor
 
