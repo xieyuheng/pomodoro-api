@@ -1,2 +1,2 @@
-- `RegisterStart.vue` -- `handleSubmit` -- `fetch`
+- `EmailRegisterController` -- fix the use of `ty`
 - `components/login/Login.vue`

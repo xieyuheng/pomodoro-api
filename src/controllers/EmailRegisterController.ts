@@ -15,17 +15,17 @@ export class EmailRegisterController {
   }
 
   async store(): Promise<Record<string, any>> {
-    // const scheme = ty.object({
-    //   username: ty.string(),
-    //   name: ty.string(),
-    //   email: ty.string(),
-    // })
+    const scheme = ty.object({
+      username: ty.string(),
+      name: ty.string(),
+      email: ty.string(),
+    })
 
     const body = await useBody(this.req)
 
     const json = {
-      // ...scheme.validate(body),
-      ...body,
+      ...scheme.validate(body),
+      // ...body,
       verification_token: crypto.randomBytes(32).toString("hex"),
       confirmation_token: crypto.randomBytes(32).toString("hex"),
       confirmation_code: crypto.randomBytes(3).toString("hex"),
