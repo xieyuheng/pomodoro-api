@@ -3,9 +3,10 @@ import { useTheme } from "../../composables/useTheme"
 import { emptySoundLoop } from "../../lib/howler"
 import { removeFirst } from "../../utils/removeFirst"
 import { Mode, ModeKind } from "./models/Mode"
-import { Settings, testingSettings } from "./models/Settings"
+import { Settings, testingSettings, defaultSettings } from "./models/Settings"
 import { Task } from "./models/Task"
 import { Timer, TimerJson } from "./models/Timer"
+import { config } from "../../config"
 
 export type PomodoroStateJson = {
   mode: Mode
@@ -26,8 +27,7 @@ export class PomodoroState {
   currentTesk: Task | null = null
   tasks: Array<Task> = []
   inputTaskTitle: string | null = null
-  // settings: Settings = next.dev ? testingSettings : defaultSettings
-  settings: Settings = testingSettings
+  settings: Settings = config.isDev ? testingSettings : defaultSettings
 
   lang = useLang()
   theme = useTheme()
