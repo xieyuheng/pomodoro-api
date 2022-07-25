@@ -14,14 +14,12 @@ async function handleSubmit(event: Event, state: State) {
   const name = target.name.value
   const email = target.email.value
 
-  console.log({ username, name, email })
+  const response = await fetch("/api/register", {
+    method: "POST",
+    body: JSON.stringify({ username, name, email }),
+  })
 
-  // const response = await fetch("/api/register", {
-  //   method: "POST",
-  //   body: JSON.stringify({ username, name, email }),
-  // })
-
-  // state.verifying = await response.json()
+  state.verifying = await response.json()
 }
 </script>
 

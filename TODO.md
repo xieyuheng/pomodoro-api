@@ -1,3 +1,2 @@
-- `api/register`
 - `RegisterStart.vue` -- `handleSubmit` -- `fetch`
 - `components/login/Login.vue`
