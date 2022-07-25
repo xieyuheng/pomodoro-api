@@ -32,6 +32,7 @@ export class EmailRegisterController {
 
     const emailRegister = await EmailRegister.create(json)
 
+    // TODO Should only return `VerifyingJson`
     return emailRegister.toJSON()
   }
 

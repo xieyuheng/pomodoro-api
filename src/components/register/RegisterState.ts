@@ -11,4 +11,6 @@ export class RegisterState {
   verify(json: VerifyingJson) {
     this.verifying = new Verifying(json)
   }
+
+  // `/api/register/[token]/verify`
 }

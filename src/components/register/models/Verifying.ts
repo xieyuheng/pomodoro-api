@@ -1,4 +1,5 @@
 export interface VerifyingJson {
+  username: string
   email: string
   confirmation_code: string
   verification_token: string
@@ -13,8 +14,8 @@ export class Verifying {
 
   get links() {
     return {
-      verify: `/register/${this.verification_token}/verify`,
-      revoke: `/register/${this.verification_token}/revoke`,
+      verify: `/api/register/${this.verification_token}/verify`,
+      revoke: `/api/register/${this.verification_token}/revoke`,
     }
   }
 }

@@ -1,8 +1,19 @@
 <script setup lang="ts">
 import { RegisterState as State } from "./RegisterState"
 import { Verifying } from "./models/Verifying"
+import { poll } from "../../utils/poll"
 
-defineProps<{ state: State; verifying: Verifying }>()
+const { verifying } = defineProps<{ state: State; verifying: Verifying }>()
+
+const router = useRouter()
+
+poll({
+  target: () => $fetch(verifying.links.verify),
+  check: ({ username }) =>
+    username ? { done: true, data: username } : { done: false },
+  then: ({ username }) => router.replace({ path: "/" }),
+  interval: 1000,
+})
 </script>
 
 <template>

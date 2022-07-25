@@ -1,10 +1,10 @@
 # register process
 
-- double token login without email
-
-- `api/register/[token]/confirm.ts`
-- `api/register/[token]/verify.ts`
-- `api/register/[token]/revoke.ts`
+- `/api/register/[token]/verify` -- return verifying by query the token
+- `/api/register/[token]/verify` -- create user token
+- `RegisterVerifying` -- save user token to `localStorage`
+- `/api/register/[token]/confirm`
+- `/api/register/[token]/revoke`
 
 - `PageLayoutHeader` show `PageLayoutMenu` if there is `user`
 - be able to send email to users
