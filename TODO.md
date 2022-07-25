@@ -1,7 +1,5 @@
 # register & login process
 
-- `views/register/RegisterEmailConfirmationSuccess` -- static page to show success email Confirmation
-
 - `models/User`
 
 - `models/EmailLogin`
