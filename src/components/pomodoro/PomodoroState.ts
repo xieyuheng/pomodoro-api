@@ -1,12 +1,12 @@
 import { useLang } from "../../composables/useLang"
 import { useTheme } from "../../composables/useTheme"
+import { config } from "../../config"
 import { emptySoundLoop } from "../../lib/howler"
 import { removeFirst } from "../../utils/removeFirst"
 import { Mode, ModeKind } from "./models/Mode"
-import { Settings, testingSettings, defaultSettings } from "./models/Settings"
+import { defaultSettings, Settings, testingSettings } from "./models/Settings"
 import { Task } from "./models/Task"
 import { Timer, TimerJson } from "./models/Timer"
-import { config } from "../../config"
 
 export type PomodoroStateJson = {
   mode: Mode
