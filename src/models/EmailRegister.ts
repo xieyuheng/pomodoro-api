@@ -13,14 +13,20 @@ export type EmailRegisterJson = {
 export interface EmailRegister extends EmailRegisterJson {}
 
 export class EmailRegister extends Entity {
-  static schema = new Schema(EmailRegister, {
-    username: { type: "string" },
-    name: { type: "string" },
-    email: { type: "string" },
-    verification_token: { type: "string" },
-    confirmation_token: { type: "string" },
-    confirmation_code: { type: "string" },
-  })
+  static schema = new Schema(
+    EmailRegister,
+    {
+      username: { type: "string" },
+      name: { type: "string" },
+      email: { type: "string" },
+      verification_token: { type: "string" },
+      confirmation_token: { type: "string" },
+      confirmation_code: { type: "string" },
+    },
+    {
+      prefix: "EmailRegister",
+    }
+  )
 
   static async create(json: EmailRegisterJson): Promise<EmailRegister> {
     await connect()

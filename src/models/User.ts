@@ -10,11 +10,17 @@ export type UserJson = {
 export interface User extends UserJson {}
 
 export class User extends Entity {
-  static schema = new Schema(User, {
-    username: { type: "string" },
-    name: { type: "string" },
-    email: { type: "string" },
-  })
+  static schema = new Schema(
+    User,
+    {
+      username: { type: "string" },
+      name: { type: "string" },
+      email: { type: "string" },
+    },
+    {
+      prefix: "User",
+    }
+  )
 
   static async create(json: UserJson): Promise<User> {
     await connect()
