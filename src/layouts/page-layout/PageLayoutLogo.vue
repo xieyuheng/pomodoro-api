@@ -5,7 +5,7 @@ defineProps<{ state: State }>()
 </script>
 
 <template>
-  <NuxtLink to="/" class="font-logo text-3xl font-bold hover:underline">
+  <Link href="/" class="font-logo text-3xl font-bold hover:underline">
     {{ state.appName }}
-  </NuxtLink>
+  </Link>
 </template>

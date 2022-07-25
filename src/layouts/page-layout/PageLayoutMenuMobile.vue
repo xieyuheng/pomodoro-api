@@ -38,8 +38,8 @@ defineProps<{ state: State }>()
 
         <div class="py-10">
           <MenuItem v-slot="{ active }">
-            <NuxtLink
-              to="/register"
+            <Link
+              href="/register"
               class="flex justify-center p-2 font-semibold"
               :class="[
                 active && 'underline decoration-6',
@@ -50,12 +50,12 @@ defineProps<{ state: State }>()
                 <template #zh>注册</template>
                 <template #en>Register</template>
               </Lang>
-            </NuxtLink>
+            </Link>
           </MenuItem>
 
           <MenuItem v-slot="{ active }">
-            <NuxtLink
-              to="/login"
+            <Link
+              href="/login"
               class="flex justify-center p-2 font-semibold"
               :class="[
                 active && 'underline decoration-6',
@@ -66,7 +66,7 @@ defineProps<{ state: State }>()
                 <template #zh>登录</template>
                 <template #en>Login</template>
               </Lang>
-            </NuxtLink>
+            </Link>
           </MenuItem>
         </div>
       </MenuItems>

@@ -12,19 +12,19 @@ defineProps<{ state: State }>()
 
 <template>
   <div class="flex space-x-1 text-xl font-semibold">
-    <NuxtLink to="/register" class="hover:underline">
+    <Link href="/register" class="hover:underline">
       <Lang>
         <template #zh>注册</template>
         <template #en>Register</template>
       </Lang>
-    </NuxtLink>
+    </Link>
     <div>/</div>
 
-    <NuxtLink to="/login" class="hover:underline">
+    <Link href="/login" class="hover:underline">
       <Lang>
         <template #zh>登录</template>
         <template #en>Login</template>
       </Lang>
-    </NuxtLink>
+    </Link>
   </div>
 </template>
