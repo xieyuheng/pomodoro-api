@@ -1,8 +1,8 @@
-- `RegisterStart.vue`
-- `RegisterVerifyings.vue`
-
 - `components/FormButton.vue`
 - `components/FormInput.vue`
+
+- `RegisterStart.vue`
+- `RegisterVerifyings.vue`
 
 - `components/login/Login.vue`
 
