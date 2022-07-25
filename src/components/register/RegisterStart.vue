@@ -1,10 +1,33 @@
 <script setup lang="ts">
 import { RegisterState as State } from "./RegisterState"
+
+defineProps<{ state: State }>()
+
+async function handleSubmit(event: Event, state: State) {
+  const target = event.target as typeof event.target & {
+    username: { value: string }
+    name: { value: string }
+    email: { value: string }
+  }
+
+  const username = target.username.value
+  const name = target.name.value
+  const email = target.email.value
+
+  console.log({ username, name, email })
+
+  // const response = await fetch("/api/register", {
+  //   method: "POST",
+  //   body: JSON.stringify({ username, name, email }),
+  // })
+
+  // state.verifying = await response.json()
+}
 </script>
 
 <template>
   <form
-    @submit="(event) => handleSubmit(event, state)"
+    @submit.prevent="(event) => handleSubmit(event, state)"
     class="flex w-full flex-col space-y-2 text-xl sm:w-auto"
   >
     <Lang class="font-logo text-3xl font-semibold">
