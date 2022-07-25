@@ -14,9 +14,9 @@ defineProps<{ state: State; verifying: Verifying }>()
       </Lang>
 
       <Lang class="py-1 text-lg">
-        <template #zh> 已向 <b>{verifying.email}</b> 发送了邮件 </template>
+        <template #zh> 已向 <b>{{ verifying.email }}</b> 发送了邮件 </template>
         <template #en>
-          We just sent an email to <b>{verifying.email}</b>
+          We just sent an email to <b>{{ verifying.email }}</b>
         </template>
       </Lang>
 

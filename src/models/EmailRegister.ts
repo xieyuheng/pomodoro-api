@@ -8,6 +8,9 @@ export type EmailRegisterJson = {
   verification_token: string
   confirmation_token: string
   confirmation_code: string
+  confirmed_at?: number
+  verified_at?: number
+  revoked_at?: number
 }
 
 export interface EmailRegister extends EmailRegisterJson {}
@@ -22,6 +25,9 @@ export class EmailRegister extends Entity {
       verification_token: { type: "string" },
       confirmation_token: { type: "string" },
       confirmation_code: { type: "string" },
+      confirmed_at: { type: "number" },
+      verified_at: { type: "number" },
+      revoked_at: { type: "number" },
     },
     {
       prefix: "EmailRegister",
