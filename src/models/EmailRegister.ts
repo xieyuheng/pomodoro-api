@@ -37,6 +37,40 @@ export class EmailRegister extends Entity {
   static async create(json: EmailRegisterJson): Promise<EmailRegister> {
     await connect()
     const repository = client.fetchRepository(EmailRegister.schema)
-    return await repository.createAndSave(json)
+    const entity = await repository.createEntity(json)
+    await repository.save(entity)
+    return entity
+  }
+
+  static async put(entity: EmailRegister): Promise<string> {
+    await connect()
+    const repository = client.fetchRepository(EmailRegister.schema)
+    const id = await repository.save(entity)
+    return id
+  }
+
+  static async get(id: string): Promise<EmailRegister> {
+    await connect()
+    const repository = client.fetchRepository(EmailRegister.schema)
+    const entity = await repository.fetch(id)
+    return entity
+  }
+
+  static async has(id: string): Promise<boolean> {
+    await connect()
+    const flag = await client.execute(["EXISTS", `${this.schema.prefix}:${id}`])
+    return Boolean(flag)
+  }
+
+  static async delete(id: string): Promise<void> {
+    await connect()
+    const repository = client.fetchRepository(EmailRegister.schema)
+    await repository.remove(id)
+  }
+
+  static async expireInSeconds(id: string, s: number): Promise<void> {
+    await connect()
+    const repository = client.fetchRepository(EmailRegister.schema)
+    await repository.expire(id, s)
   }
 }
