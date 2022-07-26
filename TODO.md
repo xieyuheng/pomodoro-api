@@ -1,7 +1,5 @@
 # register process
 
-- `EmailRegisterController.create` limit return value
-
 - `/api/register/[token]/verify` -- create user token
 - `RegisterVerifying` -- save user token to `localStorage`
 - `PageLayoutHeader` show `PageLayoutMenu` if there is `user`

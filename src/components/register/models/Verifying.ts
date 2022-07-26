@@ -1,12 +1,6 @@
-export interface VerifyingJson {
-  username: string
-  email: string
-  confirmation_code: string
-  verification_token: string
-}
+import { VerifyingJson } from "@/types/VerifyingJson"
 
 export interface Verifying extends VerifyingJson {}
-
 export class Verifying {
   constructor(json: VerifyingJson) {
     Object.assign(this, json)

@@ -3,9 +3,10 @@ import crypto from "crypto"
 import { Mailer } from "../../infra/mailer"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
+import { VerifyingJson } from "@/types/VerifyingJson"
 
 export class EmailRegisterController extends Controller {
-  async create() {
+  async create(): Promise<VerifyingJson> {
     const scheme = ty.object({
       username: ty.string(),
       name: ty.string(),
@@ -32,11 +33,12 @@ export class EmailRegisterController extends Controller {
       text: `Confirmation link: ${confirmation_link}`,
     })
 
-    console.log("EmailRegister:", entity.toJSON())
-
-    // TODO Should only return `VerifyingJson`
-
-    return entity.toJSON()
+    return {
+      username: entity.username,
+      email: entity.email,
+      confirmation_code: entity.confirmation_code,
+      verification_token: entity.verification_token,
+    }
   }
 
   async verify(token: string): Promise<
