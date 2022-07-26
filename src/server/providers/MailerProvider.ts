@@ -18,9 +18,9 @@ export class MailerProvider extends Provider {
           },
         },
         sender: {
-          username: assert(process.env.MAIL_SENDER_USERNAME),
-          address: assert(process.env.MAIL_SENDER_ADDRESS),
-          password: assert(process.env.MAIL_SENDER_PASSWORD),
+          username: assert(process.env.MAIL_USERNAME),
+          address: assert(process.env.MAIL_ADDRESS),
+          password: assert(process.env.MAIL_PASSWORD),
         },
       })
     })

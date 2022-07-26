@@ -1,5 +1,7 @@
 # register process
 
+- try to use `config`
+
 - setup env on vercel
 
 - `RegisterStart` -- disable button on click
