@@ -14,7 +14,7 @@ export class EmailRegisterController {
     return this.event.res
   }
 
-  async store(): Promise<Record<string, any>> {
+  async store() {
     const scheme = ty.object({
       username: ty.string(),
       name: ty.string(),
@@ -30,15 +30,32 @@ export class EmailRegisterController {
       confirmation_code: crypto.randomBytes(3).toString("hex"),
     }
 
-    const emailRegister = await EmailRegister.create(json)
+    const entity = await EmailRegister.create(json)
 
     // TODO Should only return `VerifyingJson`
-    return emailRegister.toJSON()
+    return entity.toJSON()
   }
 
-  confirm() {}
+  async verify(
+    token: string
+  ): Promise<{ confirmed: true; username: string } | { confirmed: false }> {
+    const entity = await EmailRegister.getByToken(token)
 
-  verify() {}
+    if (entity === null) {
+      return { confirmed: false }
+    }
 
-  revoke() {}
+    if (entity.revoked_at || entity.verified_at || !entity.confirmed_at) {
+      return { confirmed: false }
+    }
+
+    entity.verified_at = Date.now()
+    await entity.save()
+
+    return { confirmed: true, username: entity.username }
+  }
+
+  async confirm(token: string) {}
+
+  async revoke(token: string) {}
 }

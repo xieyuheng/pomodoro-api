@@ -1,7 +1,9 @@
 # register process
 
+- `EmailRegisterController.confirm`
+- `EmailRegisterController.revoke`
+
 - `/api/register/[token]/verify` -- return verifying by query the token
-  - learn redis-om 's API -- https://github.com/redis/redis-om-node
 - `/api/register/[token]/verify` -- create user token
 - `RegisterVerifying` -- save user token to `localStorage`
 - `/api/register/[token]/confirm`

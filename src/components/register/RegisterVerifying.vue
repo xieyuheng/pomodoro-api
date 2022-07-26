@@ -9,10 +9,9 @@ const router = useRouter()
 
 poll({
   target: () => $fetch(verifying.links.verify),
-  check: ({ username }) =>
-    username ? { done: true, data: username } : { done: false },
-  then: ({ username }) => router.replace({ path: "/" }),
-  interval: 1000,
+  check: ({ confirmed, username }) => ({ done: confirmed, data: username }),
+  then: ({ username }) => router.replace({ path: `/${username}` }),
+  interval: 3000,
 })
 </script>
 
