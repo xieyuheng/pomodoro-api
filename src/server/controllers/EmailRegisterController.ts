@@ -1,8 +1,8 @@
 import { VerifyingJson } from "@/types/VerifyingJson"
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
-import { Mailer } from "../../infra/mailer"
 import { config } from "../../config"
+import { Mailer } from "../../infra/mailer"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
 

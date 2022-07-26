@@ -3,7 +3,11 @@ import { RegisterState as State } from "./RegisterState"
 
 defineProps<{ state: State }>()
 
+const processing = ref(false)
+
 async function handleSubmit(event: Event, state: State) {
+  processing.value = true
+
   const target = event.target as typeof event.target & {
     username: { value: string }
     name: { value: string }
@@ -20,6 +24,8 @@ async function handleSubmit(event: Event, state: State) {
       body: { username, name, email },
     })
   )
+
+  processing.value = false
 }
 </script>
 
@@ -71,7 +77,7 @@ async function handleSubmit(event: Event, state: State) {
       <hr class="border-t border-white" />
     </div>
 
-    <FormButton>
+    <FormButton :disabled="processing">
       <Lang>
         <template #zh>注册</template>
         <template #en>Register</template>
