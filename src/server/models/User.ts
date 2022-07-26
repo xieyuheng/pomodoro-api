@@ -8,7 +8,6 @@ export type UserJson = {
 }
 
 export interface User extends UserJson {}
-
 export class User extends Entity {
   static schema = new Schema(
     User,

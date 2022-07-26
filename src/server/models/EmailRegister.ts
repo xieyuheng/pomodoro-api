@@ -14,7 +14,6 @@ export type EmailRegisterJson = {
 }
 
 export interface EmailRegister extends EmailRegisterJson {}
-
 export class EmailRegister extends Entity {
   static schema = new Schema(
     EmailRegister,

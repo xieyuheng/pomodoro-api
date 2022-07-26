@@ -1,10 +1,10 @@
 # register process
 
+- extract `server/Model.ts`
+-  `server/Model.ts` repository should not be async
 - `server/migrations` -- for redis index
 
-- `server/models/` repository should not be async
-- extract `server/Model.ts`
-
+- `MailerProvider`
 - `Mailer` be able to send email to users
 
 - `/api/register/[token]/verify` -- create user token
