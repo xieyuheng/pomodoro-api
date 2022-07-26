@@ -1,8 +1,14 @@
 # register process
 
-- `/api/register/[token]/verify` -- create user token
-- `RegisterVerifying` -- save user token to `localStorage`
-- `PageLayoutHeader` show `PageLayoutMenu` if there is `user`
+- `/api/register/[token]/verify` -- create and return `AccessToken`
+- `/api/register/[token]/verify` -- create `User`
+
+- `RegisterVerifying` -- save `AccessToken` to `localStorage`
+- `RegisterVerifying` -- save current user to `localStorage`
+
+- auth header by `AccessToken`
+
+- `PageLayoutHeader` show `PageLayoutMenu` if there is current user
 
 - `components/login/LoginStart`
 - `components/login/Login.vue`

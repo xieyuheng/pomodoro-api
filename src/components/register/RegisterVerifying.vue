@@ -16,7 +16,7 @@ const { stop } = poll({
     return $fetch(verifying.links.verify)
   },
   check: ({ confirmed, username }) => ({ done: confirmed, data: username }),
-  then: (username) => router.replace({ path: `/endeavors/${username}` }),
+  then: (username) => router.replace({ path: "/" }),
   interval: 3000,
 })
 
