@@ -1,5 +1,3 @@
-# register process
-
 - try to use `config` again
 
 - `RegisterStart` -- disable button on click
