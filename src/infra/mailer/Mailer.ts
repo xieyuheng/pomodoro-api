@@ -4,6 +4,7 @@ type ServerOptions = {
   smtp: {
     host: string
     port: number
+    encryption: string
   }
 }
 
@@ -26,8 +27,9 @@ export class Mailer {
     this.transporter = nodemailer.createTransport({
       host: this.server.smtp.host,
       port: this.server.smtp.port,
+      secure: this.server.smtp.encryption === "tls",
       auth: {
-        user: this.sender.address,
+        user: this.sender.username,
         pass: this.sender.password,
       },
     })
@@ -35,13 +37,12 @@ export class Mailer {
 
   async send(options: {
     to: string
+    from: string
     subject: string
     text?: string
     html?: string
     logger?: (info: any) => Promise<void>
   }): Promise<void> {
-    const from = `${this.sender.username} <${this.sender.address}>`
-    const { to, subject, text, html } = options
     const logger = options.logger || ((info) => {})
     const info = await this.transporter.sendMail(options)
     await logger(info)

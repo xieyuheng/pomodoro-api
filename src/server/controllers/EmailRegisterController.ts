@@ -1,8 +1,8 @@
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
+import { Mailer } from "../../infra/mailer"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
-import { Mailer } from "../../infra/mailer"
 
 export class EmailRegisterController extends Controller {
   async create() {
@@ -23,13 +23,16 @@ export class EmailRegisterController extends Controller {
 
     const mailer = this.app.create(Mailer)
 
+    const confirmation_link = `${process.env.BASE_URL}/api/register/${entity.confirmation_token}/confirm`
+
     await mailer.send({
       to: entity.email,
-      subject: "string",
-      text: "string",
+      from: `"Pomodoro" <support@readonly.link>`,
+      subject: "Pomodoro | Register Confirmation",
+      text: `Confirmation link: ${confirmation_link}`,
     })
 
-    console.log("EmailRegister:", entity)
+    console.log("EmailRegister:", entity.toJSON())
 
     // TODO Should only return `VerifyingJson`
 

@@ -1,6 +1,6 @@
 # register process
 
-- be able to send email to users
+- `EmailRegisterController.create` limit return value
 
 - `/api/register/[token]/verify` -- create user token
 - `RegisterVerifying` -- save user token to `localStorage`

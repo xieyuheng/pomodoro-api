@@ -14,6 +14,7 @@ export class MailerProvider extends Provider {
           smtp: {
             host: assert(process.env.MAIL_HOST),
             port: Number.parseInt(assert(process.env.MAIL_PORT)),
+            encryption: assert(process.env.MAIL_ENCRYPTION),
           },
         },
         sender: {
