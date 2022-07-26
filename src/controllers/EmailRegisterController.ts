@@ -74,7 +74,7 @@ export class EmailRegisterController {
     entity.confirmed_at = Date.now()
     await entity.save()
 
-    sendRedirect(
+    await sendRedirect(
       this.event,
       "/notifications/register-email-confirmation-success"
     )

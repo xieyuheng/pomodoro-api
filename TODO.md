@@ -1,9 +1,5 @@
 # register process
 
-- `/api/register/[token]/confirm`
-
-  - `EmailRegisterController.confirm`
-
 - `/api/register/[token]/verify` -- create user token
 - `RegisterVerifying` -- save user token to `localStorage`
 
