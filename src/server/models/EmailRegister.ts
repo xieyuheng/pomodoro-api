@@ -39,27 +39,23 @@ export class EmailRegister extends Entity {
 
   // repository
 
-  static async repository() {
-    const repository = client.fetchRepository(EmailRegister.schema)
-    return repository
+  static get repository() {
+    return client.fetchRepository(EmailRegister.schema)
   }
 
   static async create(json: EmailRegisterJson): Promise<EmailRegister> {
-    const repository = await this.repository()
-    const entity = await repository.createEntity(json)
-    await repository.save(entity)
+    const entity = await this.repository.createEntity(json)
+    await this.repository.save(entity)
     return entity
   }
 
   static async put(entity: EmailRegister): Promise<string> {
-    const repository = await this.repository()
-    const id = await repository.save(entity)
+    const id = await this.repository.save(entity)
     return id
   }
 
   static async get(id: string): Promise<EmailRegister | null> {
-    const repository = await this.repository()
-    const entity = await repository.fetch(id)
+    const entity = await this.repository.fetch(id)
     return entity
   }
 
@@ -69,20 +65,17 @@ export class EmailRegister extends Entity {
   }
 
   static async delete(id: string): Promise<void> {
-    const repository = await this.repository()
-    await repository.remove(id)
+    await this.repository.remove(id)
   }
 
   static async expireInSeconds(id: string, s: number): Promise<void> {
-    const repository = await this.repository()
-    await repository.expire(id, s)
+    await this.repository.expire(id, s)
   }
 
   // domain as repository
 
   static async getByToken(token: string): Promise<EmailRegister | null> {
-    const repository = await this.repository()
-    return repository
+    return this.repository
       .search()
       .where("confirmation_token")
       .equals(token)
@@ -93,25 +86,20 @@ export class EmailRegister extends Entity {
 
   // active record
 
-  async repository() {
-    const repository = client.fetchRepository(EmailRegister.schema)
-    await repository.createIndex()
-    return repository
+  get repository() {
+    return client.fetchRepository(EmailRegister.schema)
   }
 
   async save(): Promise<string> {
-    const repository = await this.repository()
-    const id = await repository.save(this)
+    const id = await this.repository.save(this)
     return id
   }
 
   async delete(): Promise<void> {
-    const repository = await this.repository()
-    await repository.remove(this.id)
+    await this.repository.remove(this.id)
   }
 
   async expireInSeconds(s: number): Promise<void> {
-    const repository = await this.repository()
-    await repository.expire(this.id, s)
+    await this.repository.expire(this.id, s)
   }
 }
