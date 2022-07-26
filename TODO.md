@@ -1,6 +1,5 @@
 # register process
 
-- change domain name to pomodoro.readonly.link
 - setup env on vercel
 
 - `RegisterStart` -- disable button on click
