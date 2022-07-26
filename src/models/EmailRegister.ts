@@ -1,5 +1,5 @@
 import { Entity, Schema } from "redis-om"
-import { client, connect } from "../lib/redis"
+import { client } from "../lib/redis"
 
 export type EmailRegisterJson = {
   username: string
@@ -41,7 +41,6 @@ export class EmailRegister extends Entity {
   // repository
 
   static async repository() {
-    await connect()
     const repository = client.fetchRepository(EmailRegister.schema)
     await repository.createIndex()
     return repository
@@ -67,7 +66,6 @@ export class EmailRegister extends Entity {
   }
 
   static async has(id: string): Promise<boolean> {
-    await connect()
     const flag = await client.execute(["EXISTS", `${this.schema.prefix}:${id}`])
     return Boolean(flag)
   }
@@ -98,7 +96,6 @@ export class EmailRegister extends Entity {
   // active record
 
   async repository() {
-    await connect()
     const repository = client.fetchRepository(EmailRegister.schema)
     await repository.createIndex()
     return repository

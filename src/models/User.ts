@@ -1,5 +1,5 @@
 import { Entity, Schema } from "redis-om"
-import { client, connect } from "../lib/redis"
+import { client } from "../lib/redis"
 
 export type UserJson = {
   username: string
@@ -23,7 +23,6 @@ export class User extends Entity {
   )
 
   static async create(json: UserJson): Promise<User> {
-    await connect()
     const repository = client.fetchRepository(User.schema)
     return await repository.createAndSave(json)
   }

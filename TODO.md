@@ -1,6 +1,13 @@
 # register process
 
-- use `@xieyuheng/coupler`
+- extract `server/Controller.ts`
+- move `controllers` to `server/controllers`
+- move `models/` to `server/models`
+- `server/migrations` -- for redis index
+
+- `server/models/` repository should not be async
+- extract `server/Model.ts`
+
 - `Mailer` be able to send email to users
 
 - `/api/register/[token]/verify` -- create user token
