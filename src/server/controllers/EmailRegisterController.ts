@@ -1,19 +1,11 @@
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { CompatibilityEvent, sendRedirect, useBody } from "h3"
-import { EmailRegister } from "../models/EmailRegister"
 import { App } from "../App"
+import { EmailRegister } from "../models/EmailRegister"
 
 export class EmailRegisterController {
   constructor(public app: App, public event: CompatibilityEvent) {}
-
-  static async create(
-    event: CompatibilityEvent
-  ): Promise<EmailRegisterController> {
-    const app = await App.create()
-    const controller = new EmailRegisterController(app, event)
-    return controller
-  }
 
   get req() {
     return this.event.req
