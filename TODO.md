@@ -1,6 +1,6 @@
 # register process
 
-- try to use `config`
+- try to use `config` again
 
 - `RegisterStart` -- disable button on click
 
@@ -19,10 +19,6 @@
 
 - be able to config `settings.modes`
 
-- [refactor] base `Controller` class for `h3`
-  - https://github.com/unjs/h3
-  - a way to handle dependency injection
-    - redis client should be injected here
-      - need to `await` async functions
+- be able to save `tasks`
 
-- [refactor] `active-record-and-redis` -- well typed
+- [refactor] `Model` -- well typed active record and redis
