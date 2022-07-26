@@ -3,13 +3,16 @@ import { RegisterState as State } from "./RegisterState"
 import { Verifying } from "./models/Verifying"
 import { poll } from "../../utils/poll"
 
-const {state, verifying } = defineProps<{ state: State; verifying: Verifying }>()
+const { state, verifying } = defineProps<{
+  state: State
+  verifying: Verifying
+}>()
 
 const router = useRouter()
 
-const {stop} = poll({
+const { stop } = poll({
   target: () => {
-    console.log({ message: "Verifying", link: verifying.links.verify })
+    console.log({ message: "RegisterVerifying" })
     return $fetch(verifying.links.verify)
   },
   check: ({ confirmed, username }) => ({ done: confirmed, data: username }),

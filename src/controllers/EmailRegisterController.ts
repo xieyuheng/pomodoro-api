@@ -1,6 +1,6 @@
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
-import { CompatibilityEvent, useBody } from "h3"
+import { CompatibilityEvent, sendRedirect, useBody } from "h3"
 import { EmailRegister } from "../models/EmailRegister"
 
 export class EmailRegisterController {
@@ -33,21 +33,29 @@ export class EmailRegisterController {
     const entity = await EmailRegister.create(json)
 
     // TODO Should only return `VerifyingJson`
+
+    console.log("EmailRegister:", entity.toJSON())
+
     return entity.toJSON()
   }
 
-  async verify(
-    token: string
-  ): Promise<{ confirmed: true; username: string } | { confirmed: false }> {
+  async verify(token: string): Promise<
+    | {
+        confirmed: true
+        username: string
+      }
+    | {
+        confirmed: false
+      }
+    | undefined
+  > {
     const entity = await EmailRegister.getByToken(token)
 
-    if (entity === null) {
-      return { confirmed: false }
-    }
+    if (entity === null) return undefined
+    if (entity.revoked_at) return undefined
+    if (entity.verified_at) return undefined
 
-    if (entity.revoked_at || entity.verified_at || !entity.confirmed_at) {
-      return { confirmed: false }
-    }
+    if (!entity.confirmed_at) return { confirmed: false }
 
     entity.verified_at = Date.now()
     await entity.save()
@@ -55,29 +63,32 @@ export class EmailRegisterController {
     return { confirmed: true, username: entity.username }
   }
 
-  async confirm(
-    token: string
-  ): Promise<{ confirmed: true; username: string } | { confirmed: false }> {
-    // TODO
-
+  async confirm(token: string): Promise<undefined> {
     const entity = await EmailRegister.getByToken(token)
 
-    if (entity === null) {
-      return { confirmed: false }
-    }
+    if (entity === null) return undefined
+    if (entity.revoked_at) return undefined
+    if (entity.verified_at) return undefined
+    if (entity.confirmed_at) return undefined
 
-    if (entity.revoked_at || entity.verified_at || !entity.confirmed_at) {
-      return { confirmed: false }
-    }
-
-    entity.verified_at = Date.now()
+    entity.confirmed_at = Date.now()
     await entity.save()
 
-    return { confirmed: true, username: entity.username }
+    sendRedirect(
+      this.event,
+      "/notifications/register-email-confirmation-success"
+    )
   }
 
+  async revoke(token: string): Promise<undefined> {
+    const entity = await EmailRegister.getByToken(token)
 
-  async revoke(token: string) {
-    return "TODO"
+    if (entity === null) return undefined
+    if (entity.revoked_at) return undefined
+    if (entity.verified_at) return undefined
+    if (entity.confirmed_at) return undefined
+
+    entity.revoked_at = Date.now()
+    await entity.save()
   }
 }
