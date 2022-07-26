@@ -2,7 +2,7 @@ import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { CompatibilityEvent, sendRedirect, useBody } from "h3"
 import { EmailRegister } from "../models/EmailRegister"
-import { App } from "../server/App"
+import { App } from "../App"
 
 export class EmailRegisterController {
   constructor(public app: App, public event: CompatibilityEvent) {}

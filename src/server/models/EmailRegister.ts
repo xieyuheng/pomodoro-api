@@ -1,5 +1,5 @@
 import { Entity, Schema } from "redis-om"
-import { client } from "../lib/redis"
+import { client } from "../../lib/redis"
 
 export type EmailRegisterJson = {
   username: string
