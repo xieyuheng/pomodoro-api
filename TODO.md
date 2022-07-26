@@ -2,8 +2,6 @@
 
 - try to use `config`
 
-- setup env on vercel
-
 - `RegisterStart` -- disable button on click
 
 - `/api/register/[token]/verify` -- create and return `AccessToken`
