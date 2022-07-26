@@ -1,17 +1,19 @@
 # register process
 
-- `EmailRegisterController.confirm`
-- `EmailRegisterController.revoke`
+- `/api/register/[token]/confirm`
+  - `EmailRegisterController.confirm`
 
-- `/api/register/[token]/verify` -- return verifying by query the token
+- `/api/register/[token]/revoke`
+  - `EmailRegisterController.revoke`
+
 - `/api/register/[token]/verify` -- create user token
 - `RegisterVerifying` -- save user token to `localStorage`
-- `/api/register/[token]/confirm`
-- `/api/register/[token]/revoke`
+
 - `PageLayoutHeader` show `PageLayoutMenu` if there is `user`
 - unit test with mock `Mailer`
 
 - be able to send email to users
+
   - https://nodemailer.com/about
 
 - base `Controller` class for `h3`

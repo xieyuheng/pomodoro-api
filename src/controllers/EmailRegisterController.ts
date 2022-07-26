@@ -55,7 +55,29 @@ export class EmailRegisterController {
     return { confirmed: true, username: entity.username }
   }
 
-  async confirm(token: string) {}
+  async confirm(
+    token: string
+  ): Promise<{ confirmed: true; username: string } | { confirmed: false }> {
+    // TODO
 
-  async revoke(token: string) {}
+    const entity = await EmailRegister.getByToken(token)
+
+    if (entity === null) {
+      return { confirmed: false }
+    }
+
+    if (entity.revoked_at || entity.verified_at || !entity.confirmed_at) {
+      return { confirmed: false }
+    }
+
+    entity.verified_at = Date.now()
+    await entity.save()
+
+    return { confirmed: true, username: entity.username }
+  }
+
+
+  async revoke(token: string) {
+    return "TODO"
+  }
 }

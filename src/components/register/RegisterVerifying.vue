@@ -3,16 +3,25 @@ import { RegisterState as State } from "./RegisterState"
 import { Verifying } from "./models/Verifying"
 import { poll } from "../../utils/poll"
 
-const { verifying } = defineProps<{ state: State; verifying: Verifying }>()
+const {state, verifying } = defineProps<{ state: State; verifying: Verifying }>()
 
 const router = useRouter()
 
-poll({
-  target: () => $fetch(verifying.links.verify),
+const {stop} = poll({
+  target: () => {
+    console.log({ message: "Verifying", link: verifying.links.verify })
+    return $fetch(verifying.links.verify)
+  },
   check: ({ confirmed, username }) => ({ done: confirmed, data: username }),
-  then: ({ username }) => router.replace({ path: `/${username}` }),
+  then: (username) => router.replace({ path: `/endeavors/${username}` }),
   interval: 3000,
 })
+
+async function revoke() {
+  stop()
+  state.verifying = null
+  await $fetch(verifying.links.revoke)
+}
 </script>
 
 <template>
@@ -53,6 +62,7 @@ poll({
         :class="[
           `text-${state.theme.name}-50 hover:text-${state.theme.name}-200`,
         ]"
+        @click="revoke()"
       >
         <Lang class="py-1 text-lg">
           <template #zh> 撤销 </template>

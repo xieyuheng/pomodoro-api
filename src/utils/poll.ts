@@ -9,10 +9,11 @@ export function poll<A, B>(options: {
   ) => MaybePromise<{ done: false; data?: undefined } | { done: true; data: B }>
   then: (data: B) => MaybePromise<void>
   interval: number
-}): void {
+}): { stop: () => void } {
   const { target, check, then, interval } = options
 
   let polling: TimerId | null = null
+
   const stop = () => polling && clearInterval(polling)
 
   polling = setInterval(async () => {
@@ -23,4 +24,6 @@ export function poll<A, B>(options: {
       stop()
     }
   }, interval)
+
+  return { stop }
 }
