@@ -2,6 +2,7 @@ import { VerifyingJson } from "@/types/VerifyingJson"
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { Mailer } from "../../infra/mailer"
+import { config } from "../../config"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
 
@@ -22,14 +23,14 @@ export class EmailRegisterController extends Controller {
 
     const entity = await EmailRegister.create(json)
 
-    const mailer = this.app.create(Mailer)
+    const confirmation_link = `${config.base_url}/api/register/${entity.confirmation_token}/confirm`
 
-    const confirmation_link = `${process.env.BASE_URL}/api/register/${entity.confirmation_token}/confirm`
+    const mailer = this.app.create(Mailer)
 
     await mailer.send({
       to: entity.email,
       from: `"Pomodoro" <support@readonly.link>`,
-      subject: "Pomodoro | Register Confirmation",
+      subject: `Pomodoro | Register Confirmation | ${entity.confirmation_code}`,
       text: `Confirmation link: ${confirmation_link}`,
     })
 

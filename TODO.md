@@ -1,5 +1,3 @@
-- try to use `config` again
-
 - `RegisterStart` -- disable button on click
 
 - `/api/register/[token]/verify` -- create and return `AccessToken`
