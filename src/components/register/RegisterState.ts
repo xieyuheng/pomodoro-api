@@ -1,7 +1,7 @@
+import { VerifyingJson } from "@/types/VerifyingJson"
 import { useLang } from "../../composables/useLang"
 import { useTheme } from "../../composables/useTheme"
 import { Verifying } from "./models/Verifying"
-import { VerifyingJson } from "@/types/VerifyingJson"
 
 export class RegisterState {
   lang = useLang()

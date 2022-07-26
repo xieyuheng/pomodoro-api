@@ -1,9 +1,9 @@
+import { VerifyingJson } from "@/types/VerifyingJson"
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { Mailer } from "../../infra/mailer"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
-import { VerifyingJson } from "@/types/VerifyingJson"
 
 export class EmailRegisterController extends Controller {
   async create(): Promise<VerifyingJson> {
