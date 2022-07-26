@@ -2,9 +2,10 @@ import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
+import { Mailer } from "../../infra/mailer"
 
 export class EmailRegisterController extends Controller {
-  async store() {
+  async create() {
     const scheme = ty.object({
       username: ty.string(),
       name: ty.string(),
@@ -20,9 +21,17 @@ export class EmailRegisterController extends Controller {
 
     const entity = await EmailRegister.create(json)
 
-    // TODO Should only return `VerifyingJson`
+    const mailer = this.app.create(Mailer)
 
-    console.log("EmailRegister:", entity.toJSON())
+    await mailer.send({
+      to: entity.email,
+      subject: "string",
+      text: "string",
+    })
+
+    console.log("EmailRegister:", entity)
+
+    // TODO Should only return `VerifyingJson`
 
     return entity.toJSON()
   }

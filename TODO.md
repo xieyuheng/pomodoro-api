@@ -1,7 +1,6 @@
 # register process
 
 - be able to send email to users
-- `MailerProvider`
 
 - `/api/register/[token]/verify` -- create user token
 - `RegisterVerifying` -- save user token to `localStorage`
