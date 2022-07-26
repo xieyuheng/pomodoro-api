@@ -1,7 +1,6 @@
 # register process
 
 - use `@xieyuheng/coupler`
-- refactor `config`
 - `Mailer` be able to send email to users
 
 - `/api/register/[token]/verify` -- create user token

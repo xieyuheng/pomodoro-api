@@ -1,6 +1,5 @@
 import { useLang } from "../../composables/useLang"
 import { useTheme } from "../../composables/useTheme"
-import { config } from "../../config"
 import { emptySoundLoop } from "../../lib/howler"
 import { removeFirst } from "../../utils/removeFirst"
 import { Mode, ModeKind } from "./models/Mode"
@@ -27,7 +26,8 @@ export class PomodoroState {
   currentTesk: Task | null = null
   tasks: Array<Task> = []
   inputTaskTitle: string | null = null
-  settings: Settings = config.isDev ? testingSettings : defaultSettings
+  settings: Settings =
+    process.env.NODE_ENV === "development" ? testingSettings : defaultSettings
 
   lang = useLang()
   theme = useTheme()
