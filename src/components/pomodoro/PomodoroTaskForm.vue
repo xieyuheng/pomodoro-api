@@ -24,8 +24,8 @@ defineProps<{
         `placeholder-${state.theme.name}-400`,
       ]"
       type="text"
-      :modelValue="modelValue"
       :value="modelValue"
+      :modelValue="modelValue"
       @input="$emit('update:modelValue', $event.target.value)"
       :placeholder="options.placeholder"
       @keydown.enter="
