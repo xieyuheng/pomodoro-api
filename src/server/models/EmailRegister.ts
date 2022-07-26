@@ -41,7 +41,6 @@ export class EmailRegister extends Entity {
 
   static async repository() {
     const repository = client.fetchRepository(EmailRegister.schema)
-    await repository.createIndex()
     return repository
   }
 

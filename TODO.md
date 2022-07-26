@@ -1,9 +1,5 @@
 # register process
 
-- extract `server/Model.ts`
--  `server/Model.ts` repository should not be async
-- `server/migrations` -- for redis index
-
 - `MailerProvider`
 - `Mailer` be able to send email to users
 
