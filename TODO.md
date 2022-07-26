@@ -2,8 +2,6 @@
 
 - `Mailer` be able to send email to users
 
-  - https://nodemailer.com/about
-
 - `/api/register/[token]/verify` -- create user token
 - `RegisterVerifying` -- save user token to `localStorage`
 - `PageLayoutHeader` show `PageLayoutMenu` if there is `user`
