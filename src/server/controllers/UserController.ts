@@ -1,5 +1,5 @@
-import { CompatibilityEvent } from "h3"
+import { Controller } from "../Controller"
 
-export class UserController {
-  constructor(public event: CompatibilityEvent) {}
+export class UserController extends Controller {
+  //
 }

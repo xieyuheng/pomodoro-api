@@ -1,6 +1,5 @@
 # register process
 
-- extract `server/Controller.ts`
 - `server/migrations` -- for redis index
 
 - `server/models/` repository should not be async

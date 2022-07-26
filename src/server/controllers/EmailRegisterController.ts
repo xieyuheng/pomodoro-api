@@ -1,20 +1,9 @@
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
-import { CompatibilityEvent, sendRedirect, useBody } from "h3"
-import { App } from "../App"
+import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
 
-export class EmailRegisterController {
-  constructor(public app: App, public event: CompatibilityEvent) {}
-
-  get req() {
-    return this.event.req
-  }
-
-  get res() {
-    return this.event.res
-  }
-
+export class EmailRegisterController extends Controller {
   async store() {
     const scheme = ty.object({
       username: ty.string(),
@@ -22,10 +11,8 @@ export class EmailRegisterController {
       email: ty.string(),
     })
 
-    const body = await useBody(this.req)
-
     const json = {
-      ...scheme.validate(body),
+      ...scheme.validate(await this.useBody()),
       verification_token: crypto.randomBytes(32).toString("hex"),
       confirmation_token: crypto.randomBytes(32).toString("hex"),
       confirmation_code: crypto.randomBytes(3).toString("hex"),
@@ -75,8 +62,7 @@ export class EmailRegisterController {
     entity.confirmed_at = Date.now()
     await entity.save()
 
-    await sendRedirect(
-      this.event,
+    await this.sendRedirect(
       "/notifications/register-email-confirmation-success"
     )
   }
