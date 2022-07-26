@@ -1,5 +1,10 @@
 # register process
 
+- change domain name to pomodoro.readonly.link
+- setup env on vercel
+
+- `RegisterStart` -- disable button on click
+
 - `/api/register/[token]/verify` -- create and return `AccessToken`
 - `/api/register/[token]/verify` -- create `User`
 
