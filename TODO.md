@@ -4,7 +4,9 @@
 - [play] redis list
 - [play] redis set
 
-- `Repository` -- `put(id, json)`
+- extract `flattenJson`
+- extract `RecursivePartial`
+- `Repository` -- `has(id)`
 - `Repository` -- `delete(id)`
 
 - `Model` -- `expire`

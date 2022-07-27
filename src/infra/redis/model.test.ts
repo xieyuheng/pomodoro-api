@@ -7,7 +7,10 @@ export type UserJson = {
   username: string
   name: string
   email: string
-  address?: string
+  address?: {
+    country: string
+    city: string
+  }
 }
 
 export interface User extends UserJson {}
@@ -17,7 +20,12 @@ export class User extends Model<UserJson> {
     username: ty.string(),
     name: ty.string(),
     email: ty.string(),
-    address: ty.optional(ty.string()),
+    address: ty.optional(
+      ty.object({
+        country: ty.string(),
+        city: ty.string(),
+      })
+    ),
   })
 
   sayHi() {
@@ -48,21 +56,41 @@ describe("redis model", async () => {
     })
 
     user.email = "hello@xieyuheng.com"
-    user.address = "nowhere"
+    user.address = {
+      country: "China",
+      city: "Shenzhen",
+    }
 
     expect(user.json()).toEqual({
       username: "xieyuheng",
       name: "Xie Yuheng",
       email: "hello@xieyuheng.com",
-      address: "nowhere",
+      address: {
+        country: "China",
+        city: "Shenzhen",
+      },
     })
 
     await user.save()
 
-    await redis.client.EXPIRE(user._key, 10)
+    {
+      const found = await redis.repository(User).get(user.id)
+      expect(found).toBeInstanceOf(User)
+      expect(found.json()).toEqual(user.json())
+    }
 
-    const found = await redis.repository(User).get(user.id)
-    expect(found).toBeInstanceOf(User)
-    expect(found.json()).toEqual(user.json())
+    {
+      await redis.repository(User).update(user.id, {
+        address: { city: "Yinchuan" },
+      })
+      const found = await redis.repository(User).get(user.id)
+      expect(found).toBeInstanceOf(User)
+      expect(found.address).toEqual({
+        country: "China",
+        city: "Yinchuan",
+      })
+    }
+
+    await redis.client.EXPIRE(user._key, 10)
   })
 })

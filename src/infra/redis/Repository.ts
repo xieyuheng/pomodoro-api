@@ -53,4 +53,54 @@ export class Repository<TModel extends Model<any>> {
     const json = await this.client.json.get(key)
     return this.create(this.schema.validate(json), id)
   }
+
+  async update(
+    id: string,
+    json: RecursivePartial<JsonOfModel<TModel>>
+  ): Promise<void> {
+    if (json === undefined) return
+    const key = this.formatKey(id)
+    const record = flattenJson(json as JsonObject)
+    for (const [path, value] of Object.entries(record))
+      await this.client.json.set(key, path, value)
+  }
+}
+
+type Json = string | number | boolean | null | Array<Json> | JsonObject
+
+type JsonObject = { [x: string]: Json }
+
+type LeafJson = string | number | boolean | null | Array<Json>
+
+function isLeafJson(json: Json): json is LeafJson {
+  return typeof json !== "object" || json instanceof Array
+}
+
+function flattenJson(json: JsonObject): Record<string, LeafJson> {
+  const record = {}
+  flattenJsonCollect(json, "$", record)
+  return record
+}
+
+function flattenJsonCollect(
+  json: { [x: string]: Json },
+  path: string = "$",
+  record: Record<string, LeafJson>
+): void {
+  for (const [key, value] of Object.entries(json)) {
+    const next = `${path}.${key}`
+    if (isLeafJson(value)) {
+      record[next] = value
+    } else {
+      flattenJsonCollect(value, next, record)
+    }
+  }
+}
+
+type RecursivePartial<T> = {
+  [P in keyof T]?: T[P] extends (infer U)[]
+    ? RecursivePartial<U>[]
+    : T[P] extends object
+    ? RecursivePartial<T[P]>
+    : T[P]
 }
