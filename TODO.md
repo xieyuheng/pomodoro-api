@@ -1,6 +1,8 @@
 # data layer
 
-- `Repository` -- `get`
+- `Repository` -- `get(id)`
+- `Repository` -- `put(id, json)`
+- `Repository` -- `delete(id)`
 
 - [upstream] use `schema.keys()`
 
