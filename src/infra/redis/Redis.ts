@@ -16,4 +16,8 @@ export class Redis {
   ): Repository<TModel> {
     return new Repository(this, clazz)
   }
+
+  formatHash(record: Record<string, string>): Array<string> {
+    return Object.entries(record).flatMap(([key, value]) => [key, value])
+  }
 }

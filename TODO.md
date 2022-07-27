@@ -1,6 +1,5 @@
 # data layer
 
-- [play] redis hash
 - [play] redis list
 - [play] redis set
 - [play] redis sorted set

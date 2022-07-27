@@ -47,7 +47,60 @@ describe("play with redis", async () => {
   })
 
   test("hash", async () => {
-    //
+    await client.sendCommand([
+      "HSET",
+      "Player:42",
+      ...redis.formatHash({
+        name: "Mimor",
+        race: "Elf",
+        level: "4",
+        hp: "20",
+        gold: "20",
+      }),
+    ])
+
+    expect(await client.HGETALL("Player:42")).toEqual({
+      name: "Mimor",
+      race: "Elf",
+      level: "4",
+      hp: "20",
+      gold: "20",
+    })
+
+    await client.sendCommand([
+      "HSET",
+      "Player:42",
+      ...redis.formatHash({
+        status: "dazed",
+      }),
+    ])
+
+    expect(await client.HGETALL("Player:42")).toEqual({
+      name: "Mimor",
+      race: "Elf",
+      level: "4",
+      hp: "20",
+      gold: "20",
+      status: "dazed",
+    })
+
+    await client.sendCommand(["HDEL", "Player:42", "status"])
+
+    expect(await client.HGETALL("Player:42")).toEqual({
+      name: "Mimor",
+      race: "Elf",
+      level: "4",
+      hp: "20",
+      gold: "20",
+    })
+
+    expect(await client.HGET("Player:42", "level")).toBe("4")
+    expect(await client.HGET("Player:42", "status")).toBe(null)
+
+    await client.HINCRBY("Player:42", "gold", 40)
+    expect(await client.HGET("Player:42", "gold")).toBe("60")
+
+    await client.EXPIRE("Player:42", 10)
   })
 
   test("list", async () => {
