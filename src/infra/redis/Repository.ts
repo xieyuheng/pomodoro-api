@@ -43,19 +43,19 @@ export class Repository<TModel extends Model<any>> {
 
   async save(model: TModel): Promise<void> {
     const key = this.formatKey(model.id)
-    await this.client.json.set(key, "$", model.json())
+    await this.client.json.SET(key, "$", model.json())
   }
 
   async find(id: string): Promise<TModel | null> {
     const key = this.formatKey(id)
-    const json = await this.client.json.get(key)
+    const json = await this.client.json.GET(key)
     if (json === null) return null
     return this.create(this.schema.validate(json), id)
   }
 
   async findOrFail(id: string): Promise<TModel> {
     const key = this.formatKey(id)
-    const json = await this.client.json.get(key)
+    const json = await this.client.json.GET(key)
     return this.create(this.schema.validate(json), id)
   }
 
@@ -83,6 +83,6 @@ export class Repository<TModel extends Model<any>> {
     const key = this.formatKey(id)
     const record = flattenJson(json as JsonObject)
     for (const [path, value] of Object.entries(record))
-      await this.client.json.set(key, path, value)
+      await this.client.json.SET(key, path, value)
   }
 }
