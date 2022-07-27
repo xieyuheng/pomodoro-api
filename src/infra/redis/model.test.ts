@@ -46,7 +46,6 @@ describe("redis model", async () => {
   await redis.createIndex(User, {
     "$.username": {
       type: SchemaFieldTypes.TEXT,
-      SORTABLE: "UNF",
     },
   })
 
@@ -137,7 +136,7 @@ describe("redis model", async () => {
 
     await redis.repository(User).where({ username: "xieyuheng" })
 
-    await user1.expire(10)
-    await user2.expire(10)
+    // await user1.expire(10)
+    // await user2.expire(10)
   })
 })

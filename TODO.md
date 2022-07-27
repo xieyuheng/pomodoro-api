@@ -4,11 +4,12 @@
 - [play] redis list
 - [play] redis set
 
-- `Repository` -- `firstWhere()`
+- move `createIndex` to `Repository`
+- use `sendCommand` to `createIndex`
+
+- `Repository` -- `allWhere()`
 
 - `Repository` -- `where().first()` & `where().firstOrFail()`
-
-- move `createIndex` to `Repository`
 
 - `Repository` -- `createIndex` from `ty.Schema`
 
