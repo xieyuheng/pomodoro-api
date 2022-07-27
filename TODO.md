@@ -4,8 +4,6 @@
 - [play] redis list
 - [play] redis set
 
-- `Model` -- `expire`
-
 - replace `redis-om-node` by our `Model` class
 
 # backend

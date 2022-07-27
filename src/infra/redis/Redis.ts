@@ -12,7 +12,7 @@ export class Redis {
   }
 
   repository<T, TModel extends Model<T>>(
-    clazz: ModelConstructor<TModel>,
+    clazz: ModelConstructor<TModel>
   ): Repository<TModel> {
     return new Repository(this, clazz)
   }

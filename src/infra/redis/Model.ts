@@ -1,5 +1,5 @@
-import { Repository } from "./Repository"
 import { Schemas } from "@xieyuheng/ty"
+import { Repository } from "./Repository"
 
 export type ModelConstructor<TModel> = new () => TModel
 
@@ -22,5 +22,9 @@ export abstract class Model<T> {
 
   async save(): Promise<void> {
     await this._repository.save(this)
+  }
+
+  async expire(seconds: number): Promise<void> {
+    await this._repository.expire(this.id, seconds)
   }
 }

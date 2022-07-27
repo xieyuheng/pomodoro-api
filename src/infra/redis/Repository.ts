@@ -1,8 +1,8 @@
 import crypto from "crypto"
-import { Model, JsonOfModel, ModelConstructor } from "./Model"
-import { Redis } from "./Redis"
 import { flattenJson, JsonObject } from "../../utils/flattenJson"
 import { RecursivePartial } from "../../utils/RecursivePartial"
+import { JsonOfModel, Model, ModelConstructor } from "./Model"
+import { Redis } from "./Redis"
 
 export class Repository<TModel extends Model<any>> {
   constructor(public redis: Redis, public clazz: ModelConstructor<TModel>) {}
@@ -52,7 +52,7 @@ export class Repository<TModel extends Model<any>> {
     return this.create(this.schema.validate(json), id)
   }
 
-  async has(id: string): Promise<boolean> {
+  async exists(id: string): Promise<boolean> {
     const key = this.formatKey(id)
     const flag = await this.client.EXISTS(key)
     return Boolean(flag)
@@ -61,6 +61,11 @@ export class Repository<TModel extends Model<any>> {
   async delete(id: string): Promise<void> {
     const key = this.formatKey(id)
     await this.client.DEL(key)
+  }
+
+  async expire(id: string, seconds: number): Promise<void> {
+    const key = this.formatKey(id)
+    await this.client.EXPIRE(key, seconds)
   }
 
   async update(

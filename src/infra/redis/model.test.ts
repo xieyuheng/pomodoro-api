@@ -1,7 +1,7 @@
+import ty from "@xieyuheng/ty"
 import { describe, expect, test } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
-import ty, { Schema, Schemas } from "@xieyuheng/ty"
 
 export type UserJson = {
   username: string
@@ -42,7 +42,7 @@ describe("redis model", async () => {
 
   await redis.client.connect()
 
-  test("User", async () => {
+  test("crate and update", async () => {
     const user = redis.repository(User).create({
       username: "xieyuheng",
       name: "Xie Yuheng",
@@ -93,8 +93,20 @@ describe("redis model", async () => {
       })
     }
 
-    expect(await redis.repository(User).has(user.id)).toBe(true)
+    await user.expire(10)
+  })
+
+  test("exists and delete", async () => {
+    const user = redis.repository(User).create({
+      username: "xieyuheng",
+      name: "Xie Yuheng",
+      email: "hi@xieyuheng.com",
+    })
+
+    expect(await redis.repository(User).exists(user.id)).toBe(false)
+    await user.save()
+    expect(await redis.repository(User).exists(user.id)).toBe(true)
     await redis.repository(User).delete(user.id)
-    expect(await redis.repository(User).has(user.id)).toBe(false)
+    expect(await redis.repository(User).exists(user.id)).toBe(false)
   })
 })
