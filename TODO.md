@@ -4,10 +4,13 @@
 - [play] redis list
 - [play] redis set
 
-- `Repository` -- `where().first()`
-- `Repository` -- `where().firstOrFail()`
+- `Repository` -- `firstWhere()`
 
-- `Redis` -- `createIndex` from `ty.Schema`
+- `Repository` -- `where().first()` & `where().firstOrFail()`
+
+- move `createIndex` to `Repository`
+
+- `Repository` -- `createIndex` from `ty.Schema`
 
 - `Repository` -- `where`
 

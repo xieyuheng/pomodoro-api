@@ -82,7 +82,21 @@ export class Repository<TModel extends Model<any>> {
     if (json === undefined) return
     const key = this.formatKey(id)
     const record = flattenJson(json as JsonObject)
-    for (const [path, value] of Object.entries(record))
+    for (const [path, value] of Object.entries(record)) {
       await this.client.json.SET(key, path, value)
+    }
+  }
+
+  async where(json: RecursivePartial<JsonOfModel<TModel>>) {
+    const key = this.redis.formatIndexKey(this.clazz)
+    const record = flattenJson(json as JsonObject)
+    for (const [path, value] of Object.entries(record)) {
+      const parts = path.split(".")
+      const prefix = parts.slice(1).join(":")
+      const query = `@${prefix}:"${value}"`
+      console.log({ query })
+      const results = await this.client.ft.search(key, query)
+      console.log({ results })
+    }
   }
 }

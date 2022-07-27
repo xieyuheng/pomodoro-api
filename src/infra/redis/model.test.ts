@@ -46,6 +46,7 @@ describe("redis model", async () => {
   await redis.createIndex(User, {
     "$.username": {
       type: SchemaFieldTypes.TEXT,
+      SORTABLE: "UNF",
     },
   })
 
@@ -115,5 +116,28 @@ describe("redis model", async () => {
     expect(await redis.repository(User).exists(user.id)).toBe(true)
     await redis.repository(User).delete(user.id)
     expect(await redis.repository(User).exists(user.id)).toBe(false)
+  })
+
+  test("query", async () => {
+    const user1 = redis.repository(User).create({
+      username: "xieyuheng",
+      name: "Xie Yuheng",
+      email: "hi@xieyuheng.com",
+    })
+
+    await user1.save()
+
+    const user2 = redis.repository(User).create({
+      username: "yuhengxie",
+      name: "Yu Hengxie ",
+      email: "hello@xieyuheng.com",
+    })
+
+    await user2.save()
+
+    await redis.repository(User).where({ username: "xieyuheng" })
+
+    await user1.expire(10)
+    await user2.expire(10)
   })
 })

@@ -32,8 +32,11 @@ export class Redis {
     record: any
   ): Promise<void> {
     const key = this.formatIndexKey(clazz)
-    const list = await this.client.ft._LIST()
-    if (list.includes(key)) return
+    const indexList = await this.client.ft._LIST()
+    if (indexList.includes(key)) {
+      console.log({ indexList })
+      return
+    }
 
     await this.client.ft.CREATE(key, record, {
       ON: "JSON",
