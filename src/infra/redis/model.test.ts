@@ -10,19 +10,15 @@ export type UserJson = {
   address?: string
 }
 
-export function createUserSchema(): Schemas.ObjectSchema<UserJson> {
-  return ty.object({
+export interface User extends UserJson {}
+
+export class User extends Model<UserJson> {
+  schema = ty.object({
     username: ty.string(),
     name: ty.string(),
     email: ty.string(),
     address: ty.optional(ty.string()),
   })
-}
-
-export interface User extends UserJson {}
-
-export class User extends Model<UserJson> {
-  schema = createUserSchema()
 
   sayHi() {
     console.log(`Hi~, I am ${this.name}.`)
@@ -64,5 +60,9 @@ describe("redis model", async () => {
     await user.save()
 
     await redis.client.EXPIRE(user._key, 10)
+
+    const found = await redis.repository(User).get(user.id)
+    expect(found).toBeInstanceOf(User)
+    expect(found.json()).toEqual(user.json())
   })
 })

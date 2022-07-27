@@ -103,15 +103,15 @@ describe("play with redis", async () => {
     await client.EXPIRE("Player:42", 10)
   })
 
+  test("sorted set", async () => {
+    //
+  })
+
   test("list", async () => {
     //
   })
 
   test("set", async () => {
-    //
-  })
-
-  test("sorted set", async () => {
     //
   })
 })

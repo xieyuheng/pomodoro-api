@@ -1,16 +1,13 @@
 # data layer
 
+- [play] redis sorted set
 - [play] redis list
 - [play] redis set
-- [play] redis sorted set
 
-- `Repository` -- `get(id)`
 - `Repository` -- `put(id, json)`
 - `Repository` -- `delete(id)`
 
 - `Model` -- `expire`
-
-- [upstream] use `schema.keys()`
 
 - replace `redis-om-node` by our `Model` class
 
@@ -22,6 +19,10 @@
 - `/api/register/[token]/verify` -- create and return `AccessToken`
 
 - use `server/middleware` to implement auth header by `AccessToken`
+
+# refactor
+
+- [upstream] use `schema.keys()`
 
 # frontend
 
