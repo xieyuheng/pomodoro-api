@@ -1,3 +1,9 @@
+# data layer
+
+- play with `redis.client`
+- `Model` class for `node-redis`
+- replace `redis-om-node` by our `Model` class
+
 # backend
 
 - `AccessToken`
