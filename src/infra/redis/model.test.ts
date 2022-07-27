@@ -1,4 +1,4 @@
-import { describe, test, expect } from "vitest"
+import { describe, expect, test } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
 
@@ -6,12 +6,14 @@ export type UserJson = {
   username: string
   name: string
   email: string
+  address?: string
 }
 
 export interface User extends UserJson {}
 export class User extends Model<UserJson> {
   sayHi() {
     console.log(`Hi~, I am ${this.name}.`)
+    console.log(`class name: ${this.repository.clazz.name}.`)
   }
 }
 
@@ -34,9 +36,15 @@ describe("redis", async () => {
     const user = redis.repository(User).create({
       username: "xieyuheng",
       name: "Xie Yuheng",
-      email: "",
+      email: "hi@xieyuheng.com",
     })
 
+    console.log(user.json())
+    ;(user.email = "hello@xieyuheng.com"),
+      (user.address = "nowhere"),
+      console.log(user.json())
+
+    await user.save()
     user.sayHi()
   })
 })

@@ -1,8 +1,6 @@
 # data layer
 
-- `Repository` -- `put`
-
-  - `Model` -- `save`
+- `Repository` has `schema` to filter fields for `json()`
 
 - `Repository` -- `get`
 

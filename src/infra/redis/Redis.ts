@@ -14,6 +14,6 @@ export class Redis {
   repository<TModel extends Model<any>>(
     clazz: ModelConstructor<TModel>
   ): Repository<TModel> {
-    return new Repository(clazz)
+    return new Repository(this, clazz)
   }
 }

@@ -6,8 +6,13 @@ export class Model<T> {
   _phantom?: T
   repository!: Repository<Model<T>>
   id!: string
+  json!: () => T
+
+  get age(): number {
+    return 100
+  }
 
   async save(): Promise<void> {
-    await this.repository.put(this)
+    await this.repository.save(this)
   }
 }
