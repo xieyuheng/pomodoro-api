@@ -1,4 +1,5 @@
 import ty from "@xieyuheng/ty"
+import { SchemaFieldTypes } from "redis"
 import { describe, expect, test } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
@@ -41,6 +42,12 @@ describe("redis model", async () => {
   })
 
   await redis.client.connect()
+
+  await redis.createIndex(User, {
+    "$.username": {
+      type: SchemaFieldTypes.TEXT,
+    },
+  })
 
   test("crate and update", async () => {
     const user = redis.repository(User).create({

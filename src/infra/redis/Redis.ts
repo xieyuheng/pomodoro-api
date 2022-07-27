@@ -1,4 +1,4 @@
-import { createClient } from "redis"
+import { createClient, SchemaFieldTypes } from "redis"
 import { Model, ModelConstructor } from "./Model"
 import { Repository } from "./Repository"
 
@@ -19,5 +19,25 @@ export class Redis {
 
   formatHash(record: Record<string, string>): Array<string> {
     return Object.entries(record).flatMap(([key, value]) => [key, value])
+  }
+
+  formatIndexKey<T, TModel extends Model<T>>(
+    clazz: ModelConstructor<TModel>
+  ): string {
+    return `${clazz.name}:index`
+  }
+
+  async createIndex<T, TModel extends Model<T>>(
+    clazz: ModelConstructor<TModel>,
+    record: any
+  ): Promise<void> {
+    const key = this.formatIndexKey(clazz)
+    const list = await this.client.ft._LIST()
+    if (list.includes(key)) return
+
+    await this.client.ft.CREATE(key, record, {
+      ON: "JSON",
+      PREFIX: clazz.name,
+    })
   }
 }
