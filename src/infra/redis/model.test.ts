@@ -81,7 +81,9 @@ describe("redis model", async () => {
 
     {
       await redis.repository(User).update(user.id, {
-        address: { city: "Yinchuan" },
+        address: {
+          city: "Yinchuan",
+        },
       })
       const found = await redis.repository(User).get(user.id)
       expect(found).toBeInstanceOf(User)

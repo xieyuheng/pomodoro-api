@@ -3,6 +3,12 @@ import { Schemas } from "@xieyuheng/ty"
 
 export type ModelConstructor<TModel> = new () => TModel
 
+export type JsonOfModel<TModel extends Model<any>> = TModel extends Model<
+  infer T
+>
+  ? T
+  : never
+
 export abstract class Model<T> {
   _phantom?: T
 
