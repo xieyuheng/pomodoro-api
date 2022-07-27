@@ -4,6 +4,15 @@
 - [play] redis list
 - [play] redis set
 
+- `Repository` -- `where` simple version
+
+- `Repository` -- `where`
+
+  - learn from laravel Eloquent API
+    - https://laravel.com/docs/9.x/eloquent#retrieving-models
+  - learn from laravel Query Builder
+    - https://laravel.com/docs/9.x/queries
+
 - replace `redis-om-node` by our `Model` class
 
 # backend

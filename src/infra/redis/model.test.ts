@@ -74,9 +74,9 @@ describe("redis model", async () => {
     await user.save()
 
     {
-      const found = await redis.repository(User).get(user.id)
+      const found = await redis.repository(User).find(user.id)
       expect(found).toBeInstanceOf(User)
-      expect(found.json()).toEqual(user.json())
+      expect(found?.json()).toEqual(user.json())
     }
 
     {
@@ -85,9 +85,9 @@ describe("redis model", async () => {
           city: "Yinchuan",
         },
       })
-      const found = await redis.repository(User).get(user.id)
+      const found = await redis.repository(User).find(user.id)
       expect(found).toBeInstanceOf(User)
-      expect(found.address).toEqual({
+      expect(found?.address).toEqual({
         country: "China",
         city: "Yinchuan",
       })

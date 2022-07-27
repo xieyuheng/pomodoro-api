@@ -46,7 +46,14 @@ export class Repository<TModel extends Model<any>> {
     await this.client.json.set(key, "$", model.json())
   }
 
-  async get(id: string): Promise<TModel> {
+  async find(id: string): Promise<TModel | null> {
+    const key = this.formatKey(id)
+    const json = await this.client.json.get(key)
+    if (json === null) return null
+    return this.create(this.schema.validate(json), id)
+  }
+
+  async findOrFail(id: string): Promise<TModel> {
     const key = this.formatKey(id)
     const json = await this.client.json.get(key)
     return this.create(this.schema.validate(json), id)
