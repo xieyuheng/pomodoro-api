@@ -11,6 +11,7 @@ export type UserJson = {
 }
 
 export interface User extends UserJson {}
+
 export class User extends Model<UserJson> {
   schema = ty.object({
     username: ty.string(),
@@ -48,9 +49,9 @@ describe("redis", async () => {
     })
 
     console.log(user.json())
-    ;(user.email = "hello@xieyuheng.com"),
-      (user.address = "nowhere"),
-      console.log(user.json())
+    user.email = "hello@xieyuheng.com"
+    user.address = "nowhere"
+    console.log(user.json())
 
     await user.save()
     user.sayHi()
