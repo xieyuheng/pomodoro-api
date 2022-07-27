@@ -1,9 +1,10 @@
 # data layer
 
-- `Repository` -- `create`
-- `Repository` -- `get`
 - `Repository` -- `put`
-- `Model` -- `save`
+
+  - `Model` -- `save`
+
+- `Repository` -- `get`
 
 - replace `redis-om-node` by our `Model` class
 

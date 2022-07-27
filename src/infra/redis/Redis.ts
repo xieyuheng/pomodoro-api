@@ -7,8 +7,8 @@ type Client = ReturnType<typeof createClient>
 export class Redis {
   client: Client
 
-  constructor(options: { url?: string }) {
-    this.client = createClient(options)
+  constructor(options: { client: { url?: string } }) {
+    this.client = createClient(options.client)
   }
 
   repository<TModel extends Model<any>>(

@@ -7,7 +7,9 @@ export class RedisProvider extends Provider {
   async register(app: Coupler) {
     app.singleton(Redis, (app) => {
       return new Redis({
-        url: config.redis.url,
+        client: {
+          url: config.redis.url,
+        },
       })
     })
   }

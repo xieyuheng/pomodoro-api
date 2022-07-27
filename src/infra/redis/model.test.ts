@@ -1,4 +1,4 @@
-import { test } from "vitest"
+import { describe, test, expect } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
 
@@ -10,37 +10,33 @@ export type UserJson = {
 
 export interface User extends UserJson {}
 export class User extends Model<UserJson> {
-  field: number = 1
-
-  get getter(): string {
-    return "hi"
-  }
-
-  method() {
-    console.log("hi~")
+  sayHi() {
+    console.log(`Hi~, I am ${this.name}.`)
   }
 }
 
-async function play() {
+describe("redis", async () => {
   const redis = new Redis({
-    url: "redis://127.0.0.1:6379",
+    client: {
+      url: "redis://127.0.0.1:6379",
+    },
   })
 
-  const user = redis.repository(User).create({
-    username: "xieyuheng",
-    name: "Xie Yuheng",
-    email: "",
+  await redis.client.connect()
+
+  test("redis core", async () => {
+    await redis.client.set("key", "value")
+    const value = await redis.client.get("key")
+    expect(value).toBe("value")
   })
 
-  console.log(user.name)
-}
+  test("User Model", async () => {
+    const user = redis.repository(User).create({
+      username: "xieyuheng",
+      name: "Xie Yuheng",
+      email: "",
+    })
 
-test("h", async () => {
-  await play()
-
-  // expect(h("question", { color: "red" }, ["Why?"])).toEqual({
-  //   tag: "question",
-  //   attributes: { color: "red" },
-  //   children: ["Why?"],
-  // })
+    user.sayHi()
+  })
 })
