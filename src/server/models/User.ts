@@ -21,8 +21,19 @@ export class User extends Entity {
     }
   )
 
-  static async create(json: UserJson): Promise<User> {
-    const repository = client.fetchRepository(User.schema)
-    return await repository.createAndSave(json)
+  static get repository() {
+    return client.fetchRepository(User.schema)
+  }
+
+  get repository() {
+    return client.fetchRepository(User.schema)
+  }
+
+  async save(): Promise<string> {
+    return await this.repository.save(this)
+  }
+
+  async delete(): Promise<void> {
+    await this.repository.remove(this.entityId)
   }
 }

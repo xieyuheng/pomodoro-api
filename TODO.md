@@ -1,5 +1,3 @@
-- [refactor] `Model` -- well typed active record and redis
-
 - `AccessToken`
 
 - `/api/register/[token]/verify` -- create `User`

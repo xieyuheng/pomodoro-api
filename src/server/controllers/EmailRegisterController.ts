@@ -21,7 +21,7 @@ export class EmailRegisterController extends Controller {
       confirmation_code: crypto.randomBytes(3).toString("hex"),
     }
 
-    const entity = await EmailRegister.create(json)
+    const entity = await EmailRegister.repository.createAndSave(json)
 
     const confirmation_link = `${config.base_url}/api/register/${entity.confirmation_token}/confirm`
 
