@@ -93,6 +93,8 @@ describe("redis model", async () => {
       })
     }
 
-    await redis.client.EXPIRE(user._key, 10)
+    expect(await redis.repository(User).has(user.id)).toBe(true)
+    await redis.repository(User).delete(user.id)
+    expect(await redis.repository(User).has(user.id)).toBe(false)
   })
 })

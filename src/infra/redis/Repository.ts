@@ -52,6 +52,17 @@ export class Repository<TModel extends Model<any>> {
     return this.create(this.schema.validate(json), id)
   }
 
+  async has(id: string): Promise<boolean> {
+    const key = this.formatKey(id)
+    const flag = await this.client.EXISTS(key)
+    return Boolean(flag)
+  }
+
+  async delete(id: string): Promise<void> {
+    const key = this.formatKey(id)
+    await this.client.DEL(key)
+  }
+
   async update(
     id: string,
     json: RecursivePartial<JsonOfModel<TModel>>

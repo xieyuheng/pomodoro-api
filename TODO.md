@@ -4,9 +4,6 @@
 - [play] redis list
 - [play] redis set
 
-- `Repository` -- `has(id)`
-- `Repository` -- `delete(id)`
-
 - `Model` -- `expire`
 
 - replace `redis-om-node` by our `Model` class
