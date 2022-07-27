@@ -1,7 +1,7 @@
 import { Coupler, Provider } from "@xieyuheng/coupler"
+import { config } from "../../config"
 import { Redis } from "../../infra/redis"
 import { connect } from "../../lib/redis"
-import { config } from "../../config"
 
 export class RedisProvider extends Provider {
   async register(app: Coupler) {

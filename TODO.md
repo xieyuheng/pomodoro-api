@@ -1,7 +1,10 @@
 # data layer
 
-- play with `redis.client`
-- `Model` class for `node-redis`
+- `Repository` -- `create`
+- `Repository` -- `get`
+- `Repository` -- `put`
+- `Model` -- `save`
+
 - replace `redis-om-node` by our `Model` class
 
 # backend
