@@ -21,8 +21,9 @@ export class Repository<TModel extends Model<any>> {
   }
 
   private enrich(model: TModel): void {
-    model.repository = this
+    model._repository = this
     model.id = crypto.randomUUID()
+    model._key = this.formatKey(model.id)
     model.json = () => {
       const keys = Object.keys(model.schema.properties)
       const json: any = {}

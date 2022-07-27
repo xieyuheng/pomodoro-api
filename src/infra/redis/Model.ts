@@ -5,17 +5,16 @@ export type ModelConstructor<TModel> = new () => TModel
 
 export abstract class Model<T> {
   _phantom?: T
-  repository!: Repository<Model<T>>
+
+  _repository!: Repository<Model<T>>
+  _key!: string
+
   id!: string
   json!: () => T
 
   abstract schema: Schemas.ObjectSchema<T>
 
-  get age(): number {
-    return 100
-  }
-
   async save(): Promise<void> {
-    await this.repository.save(this)
+    await this._repository.save(this)
   }
 }

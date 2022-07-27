@@ -22,11 +22,10 @@ export class User extends Model<UserJson> {
 
   sayHi() {
     console.log(`Hi~, I am ${this.name}.`)
-    console.log(`class name: ${this.repository.clazz.name}.`)
   }
 }
 
-describe("redis", async () => {
+describe("redis model", async () => {
   const redis = new Redis({
     client: {
       url: "redis://127.0.0.1:6379",
@@ -35,13 +34,7 @@ describe("redis", async () => {
 
   await redis.client.connect()
 
-  test("redis core", async () => {
-    await redis.client.set("key", "value")
-    const value = await redis.client.get("key")
-    expect(value).toBe("value")
-  })
-
-  test("User Model", async () => {
+  test("User", async () => {
     const user = redis.repository(User).create({
       username: "xieyuheng",
       name: "Xie Yuheng",
@@ -55,5 +48,28 @@ describe("redis", async () => {
 
     await user.save()
     user.sayHi()
+
+    await redis.client.EXPIRE(user._key, 10)
+  })
+
+  test("User many many many", async () => {
+    let count = 1000
+    while (count-- > 0) {
+      const user = redis.repository(User).create({
+        username: "xieyuheng",
+        name: "Xie Yuheng",
+        email: "hi@xieyuheng.com",
+      })
+
+      console.log(user.json())
+      user.email = "hello@xieyuheng.com"
+      user.address = "nowhere"
+      console.log(user.json())
+
+      await user.save()
+      user.sayHi()
+
+      await redis.client.EXPIRE(user._key, 10)
+    }
   })
 })

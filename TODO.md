@@ -1,8 +1,15 @@
 # data layer
 
+- [play] redis hash
+- [play] redis list
+- [play] redis set
+- [play] redis sorted set
+
 - `Repository` -- `get(id)`
 - `Repository` -- `put(id, json)`
 - `Repository` -- `delete(id)`
+
+- `Model` -- `expire`
 
 - [upstream] use `schema.keys()`
 
