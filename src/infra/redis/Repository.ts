@@ -13,6 +13,6 @@ export class Repository<TModel extends Model<any>> {
   }
 
   async put(model: TModel): Promise<void> {
-    // 
+    //
   }
 }
