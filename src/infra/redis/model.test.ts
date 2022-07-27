@@ -1,6 +1,7 @@
 import { describe, expect, test } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
+import ty from "@xieyuheng/ty"
 
 export type UserJson = {
   username: string
@@ -11,6 +12,13 @@ export type UserJson = {
 
 export interface User extends UserJson {}
 export class User extends Model<UserJson> {
+  schema = ty.object({
+    username: ty.string(),
+    name: ty.string(),
+    email: ty.string(),
+    address: ty.optional(ty.string()),
+  })
+
   sayHi() {
     console.log(`Hi~, I am ${this.name}.`)
     console.log(`class name: ${this.repository.clazz.name}.`)

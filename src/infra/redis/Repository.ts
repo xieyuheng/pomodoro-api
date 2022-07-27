@@ -2,6 +2,10 @@ import crypto from "crypto"
 import { Model, ModelConstructor } from "./Model"
 import { Redis } from "./Redis"
 
+type JsonOfModel<TModel extends Model<any>> = TModel extends Model<infer T>
+  ? T
+  : never
+
 export class Repository<TModel extends Model<any>> {
   constructor(public redis: Redis, public clazz: ModelConstructor<TModel>) {}
 
@@ -9,19 +13,24 @@ export class Repository<TModel extends Model<any>> {
     return this.redis.client
   }
 
-  create(json: TModel extends Model<infer T> ? T : never): TModel {
+  create(json: JsonOfModel<TModel>): TModel {
     const model = new this.clazz()
-
     Object.assign(model, json)
+    this.enrich(model)
+    return model
+  }
 
+  private enrich(model: TModel): void {
     model.repository = this
     model.id = crypto.randomUUID()
     model.json = () => {
-      // TODO filter by schema properties
-      return Object.assign({}, model)
+      const keys = Object.keys(model.schema.properties)
+      const json: any = {}
+      for (const key of keys) {
+        json[key] = (model as any)[key]
+      }
+      return json
     }
-
-    return model
   }
 
   formatKey(id: string): string {

@@ -11,8 +11,8 @@ export class Redis {
     this.client = createClient(options.client)
   }
 
-  repository<TModel extends Model<any>>(
-    clazz: ModelConstructor<TModel>
+  repository<T, TModel extends Model<T>>(
+    clazz: ModelConstructor<TModel>,
   ): Repository<TModel> {
     return new Repository(this, clazz)
   }

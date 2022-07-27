@@ -1,8 +1,8 @@
 # data layer
 
-- `Repository` has `schema` to filter fields for `json()`
-
 - `Repository` -- `get`
+
+- [upstream] use `schema.keys()`
 
 - replace `redis-om-node` by our `Model` class
 
