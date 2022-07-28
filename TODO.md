@@ -1,19 +1,25 @@
 # data layer
 
+- replace `redis-om-node` by our `Model` class
+
 - [play] redis sorted set
 - [play] redis list
 - [play] redis set
 
-- `Repository` -- `where().first()` & `where().firstOrFail()`
 - `Repository` -- `createIndex` from `ty.Schema`
 - `Repository` -- `where`
 
   - learn from laravel Eloquent API
+
     - https://laravel.com/docs/9.x/eloquent#retrieving-models
+
   - learn from laravel Query Builder
+
     - https://laravel.com/docs/9.x/queries
 
-- replace `redis-om-node` by our `Model` class
+  - `where().first()`
+  - `where().firstOrFail()`
+  - `where().all()`
 
 # backend
 
