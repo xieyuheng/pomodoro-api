@@ -1,13 +1,17 @@
 # data layer
 
+- remove `app` from `Controller`
 - move `Controller` to `framework/routing`
+- rename `Controller.useBody` to `body`
+- rename `Controller.sendRedirect` to `redirect`
 
 - learn more about redis search
-- why nuxt has module API?
 
 - [play] redis sorted set
 - [play] redis list
 - [play] redis set
+
+- why nuxt has module API?
 
 - be able to config `Repository` log behavior
 

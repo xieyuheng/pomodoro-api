@@ -6,9 +6,15 @@ import { Redis } from "../../framework/database"
 import { Mailer } from "../../framework/mail"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
+import { useApp } from "../useApp"
 
 export class EmailRegisterController extends Controller {
   async create(): Promise<VerifyingJson> {
+    const app = await useApp()
+
+    const redis = app.create(Redis)
+    const mailer = app.create(Mailer)
+
     const scheme = ty.object({
       username: ty.string(),
       name: ty.string(),
@@ -22,14 +28,10 @@ export class EmailRegisterController extends Controller {
       confirmation_code: crypto.randomBytes(3).toString("hex"),
     }
 
-    const redis = this.app.create(Redis)
-
     const model = await redis.repository(EmailRegister).create(json)
     await model.save()
 
     const confirmation_link = `${config.base_url}/api/register/${model.confirmation_token}/confirm`
-
-    const mailer = this.app.create(Mailer)
 
     await mailer.send({
       to: model.email,
@@ -56,7 +58,9 @@ export class EmailRegisterController extends Controller {
       }
     | undefined
   > {
-    const redis = this.app.create(Redis)
+    const app = await useApp()
+
+    const redis = app.create(Redis)
 
     const model = await redis.repository(EmailRegister).firstWhere({
       verification_token: token,
@@ -75,7 +79,9 @@ export class EmailRegisterController extends Controller {
   }
 
   async confirm(token: string): Promise<undefined> {
-    const redis = this.app.create(Redis)
+    const app = await useApp()
+
+    const redis = app.create(Redis)
 
     const model = await redis.repository(EmailRegister).firstWhere({
       confirmation_token: token,
@@ -95,7 +101,9 @@ export class EmailRegisterController extends Controller {
   }
 
   async revoke(token: string): Promise<undefined> {
-    const redis = this.app.create(Redis)
+    const app = await useApp()
+
+    const redis = app.create(Redis)
 
     const model = await redis.repository(EmailRegister).firstWhere({
       verification_token: token,
