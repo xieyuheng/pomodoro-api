@@ -1,4 +1,4 @@
-import { env } from "../framework/config/env"
+import { env } from "@/framework/config/env"
 
 export const config = {
   mode: process.env.NODE_ENV,

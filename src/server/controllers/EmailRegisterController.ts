@@ -1,10 +1,10 @@
+import { Redis } from "@/framework/database/Redis"
+import { Mailer } from "@/framework/mail/Mailer"
 import { Controller } from "@/framework/routing/Controller"
 import { VerifyingJson } from "@/types/VerifyingJson"
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { config } from "../../config"
-import { Redis } from "../../framework/database/Redis"
-import { Mailer } from "../../framework/mail/Mailer"
 import { EmailRegister } from "../models/EmailRegister"
 import { useApp } from "../useApp"
 
