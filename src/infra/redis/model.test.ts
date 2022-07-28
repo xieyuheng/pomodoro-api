@@ -1,7 +1,19 @@
-import ty from "@xieyuheng/ty"
+import ty, { Obtain } from "@xieyuheng/ty"
 import { describe, expect, test } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
+
+export const UserSchema = ty.object({
+  username: ty.string(),
+  name: ty.string(),
+  email: ty.string(),
+  address: ty.optional(
+    ty.object({
+      country: ty.string(),
+      city: ty.string(),
+    })
+  ),
+})
 
 export type UserJson = {
   username: string
@@ -16,17 +28,7 @@ export type UserJson = {
 export interface User extends UserJson {}
 
 export class User extends Model<UserJson> {
-  schema = ty.object({
-    username: ty.string(),
-    name: ty.string(),
-    email: ty.string(),
-    address: ty.optional(
-      ty.object({
-        country: ty.string(),
-        city: ty.string(),
-      })
-    ),
-  })
+  schema = UserSchema
 
   sayHi() {
     console.log(`Hi~, I am ${this.name}.`)

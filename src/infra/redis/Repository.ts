@@ -1,6 +1,6 @@
 import crypto from "crypto"
 import { flattenJson, JsonObject } from "../../utils/flattenJson"
-import { RecursivePartial } from "../../utils/RecursivePartial"
+import { DeepPartial } from "utility-types"
 import { JsonOfModel, Model, ModelConstructor } from "./Model"
 import { Redis } from "./Redis"
 
@@ -82,7 +82,7 @@ export class Repository<TModel extends Model<any>> {
 
   async update(
     id: string,
-    json: RecursivePartial<JsonOfModel<TModel>>
+    json: DeepPartial<JsonOfModel<TModel>>
   ): Promise<void> {
     if (json === undefined) return
     const key = this.formatKey(id)
@@ -123,7 +123,7 @@ export class Repository<TModel extends Model<any>> {
   }
 
   async allWhere(
-    json: RecursivePartial<JsonOfModel<TModel>>
+    json: DeepPartial<JsonOfModel<TModel>>
   ): Promise<Array<TModel>> {
     const fields: Array<string> = []
     const record = flattenJson(json as JsonObject)
