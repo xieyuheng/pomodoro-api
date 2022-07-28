@@ -10,7 +10,7 @@
     "format": "prettier src --write"
   },
   "devDependencies": {
-    "@nuxt/test-utils-edge": "^3.0.0-rc.6-27648790.4e2667f",
+    "@nuxt/test-utils-edge": "^3.0.0-rc.6-27650236.748b063",
     "@nuxtjs/tailwindcss": "^5.3.1",
     "@types/howler": "^2.2.7",
     "@types/nodemailer": "^6.4.4",
