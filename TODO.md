@@ -1,7 +1,6 @@
 # data layer
 
 - be able to config `Repository` log behavior
-- remove `redis-om-node`
 
 - [play] redis sorted set
 - [play] redis list
