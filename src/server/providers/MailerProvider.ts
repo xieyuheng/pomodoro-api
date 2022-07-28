@@ -1,6 +1,6 @@
 import { Coupler, Provider } from "@xieyuheng/coupler"
 import { config } from "../../config"
-import { Mailer } from "../../framework/mailer"
+import { Mailer } from "../../framework/mail"
 
 export class MailerProvider extends Provider {
   async register(app: Coupler): Promise<void> {

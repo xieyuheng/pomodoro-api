@@ -1,6 +1,10 @@
 # data layer
 
-- re-org framework by topics `mail/Mailer`
+- rename `framework/redis` to `framework/database`
+
+- move `Controller` to `framework/routing`
+- move `env` to `framework/config`
+
 - learn more about redis search
 - why nuxt has module API?
 
