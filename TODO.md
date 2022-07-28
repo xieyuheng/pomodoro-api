@@ -1,6 +1,5 @@
 # data layer
 
-- move `Controller` to `framework/routing`
 - rename `Controller.useBody` to `body`
 - rename `Controller.sendRedirect` to `redirect`
 
