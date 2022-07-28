@@ -4,14 +4,9 @@
 - [play] redis list
 - [play] redis set
 
-- use `sendCommand` to `createIndex`
-
 - `Repository` -- `allWhere()`
-
 - `Repository` -- `where().first()` & `where().firstOrFail()`
-
 - `Repository` -- `createIndex` from `ty.Schema`
-
 - `Repository` -- `where`
 
   - learn from laravel Eloquent API

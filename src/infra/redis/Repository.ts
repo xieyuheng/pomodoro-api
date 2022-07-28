@@ -91,21 +91,36 @@ export class Repository<TModel extends Model<any>> {
     return `${this.clazz.name}:index`
   }
 
-  async createIndex(record: any): Promise<void> {
+  async createIndex(indexJson: any): Promise<void> {
     const indexList = await this.client.ft._LIST()
     if (indexList.includes(this.indexKey)) return
 
-    await this.client.ft.CREATE(this.indexKey, record, {
-      ON: "JSON",
-      PREFIX: this.clazz.name,
-    })
+    const fields: Array<string> = []
+    const record = flattenJson(indexJson as JsonObject)
+    for (const [path, value] of Object.entries(record)) {
+      if (typeof value === "string") {
+        fields.push(`$.${path} AS ${path} ${value}`)
+      } else {
+        console.log({ message: `Unknown index value`, path, value })
+      }
+    }
+
+    const parts = [
+      "FT.CREATE",
+      this.indexKey,
+      "ON",
+      "JSON",
+      "SCHEMA",
+      ...fields.flatMap((field) => field.split(" ")),
+    ]
+
+    await this.client.sendCommand(parts)
   }
 
   async where(json: RecursivePartial<JsonOfModel<TModel>>) {
     const record = flattenJson(json as JsonObject)
     for (const [path, value] of Object.entries(record)) {
-      const parts = path.split(".")
-      const prefix = parts.slice(1).join(":")
+      const prefix = path.split(".").join(":")
       const query = `@${prefix}:"${value}"`
       const results = await this.client.ft.SEARCH(this.indexKey, query)
       console.log({ results })

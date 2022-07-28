@@ -6,7 +6,7 @@ export type LeafJson = string | number | boolean | null | Array<Json>
 
 export function flattenJson(json: JsonObject): Record<string, LeafJson> {
   const record = {}
-  flattenJsonCollect(json, "$", record)
+  flattenJsonCollect(json, [], record)
   return record
 }
 
@@ -16,15 +16,15 @@ function isLeafJson(json: Json): json is LeafJson {
 
 function flattenJsonCollect(
   json: { [x: string]: Json },
-  path: string = "$",
+  parts: Array<string>,
   record: Record<string, LeafJson>
 ): void {
-  for (const [key, value] of Object.entries(json)) {
-    const next = `${path}.${key}`
+  for (const [part, value] of Object.entries(json)) {
     if (isLeafJson(value)) {
-      record[next] = value
+      const key = [...parts, part].join(".")
+      record[key] = value
     } else {
-      flattenJsonCollect(value, next, record)
+      flattenJsonCollect(value, [...parts, part], record)
     }
   }
 }

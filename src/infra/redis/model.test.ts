@@ -1,5 +1,4 @@
 import ty from "@xieyuheng/ty"
-import { SchemaFieldTypes } from "redis"
 import { describe, expect, test } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
@@ -44,12 +43,13 @@ describe("redis model", async () => {
   await redis.client.connect()
 
   await redis.repository(User).createIndex({
-    "$.username": {
-      type: SchemaFieldTypes.TEXT,
+    name: "TEXT",
+    username: "TEXT",
+    address: {
+      country: "TEXT",
+      city: "TEXT",
     },
   })
-
-  // await redis.client.sendCommand([""])
 
   test("crate and update", async () => {
     const user = redis.repository(User).create({
@@ -124,6 +124,10 @@ describe("redis model", async () => {
       username: "xieyuheng",
       name: "Xie Yuheng",
       email: "hi@xieyuheng.com",
+      address: {
+        country: "China",
+        city: "Yinchuan",
+      },
     })
 
     await user1.save()
@@ -132,6 +136,10 @@ describe("redis model", async () => {
       username: "yuhengxie",
       name: "Yu Hengxie ",
       email: "hello@xieyuheng.com",
+      address: {
+        country: "China",
+        city: "Shenzhen",
+      },
     })
 
     await user2.save()
