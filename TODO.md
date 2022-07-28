@@ -1,5 +1,9 @@
 # data layer
 
+- naming convention of file and directory
+
+  - re-org framework by topics `mail/Mailer`?
+
 - learn more about redis search
 - learn more about mono repo
 
