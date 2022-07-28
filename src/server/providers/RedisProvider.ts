@@ -1,6 +1,6 @@
 import { Coupler, Provider } from "@xieyuheng/coupler"
 import { config } from "../../config"
-import { Redis } from "../../framework/database"
+import { Redis } from "../../framework/database/Redis"
 import { EmailRegister } from "../../server/models/EmailRegister"
 
 export class RedisProvider extends Provider {
