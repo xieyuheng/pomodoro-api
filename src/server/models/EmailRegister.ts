@@ -1,5 +1,5 @@
 import { Obtain, ty } from "@xieyuheng/ty"
-import { Model } from "../../infra/redis/Model"
+import { Model } from "../../framework/redis/Model"
 
 export const EmailRegisterSchema = ty.object({
   username: ty.string(),
