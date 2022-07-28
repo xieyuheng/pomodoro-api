@@ -1,8 +1,5 @@
 # data layer
 
-- rename `Controller.useBody` to `body`
-- rename `Controller.sendRedirect` to `redirect`
-
 - learn more about redis search
 
 - [play] redis sorted set

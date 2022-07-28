@@ -11,11 +11,11 @@ export class Controller {
     return this.event.res
   }
 
-  async useBody() {
+  async body() {
     return await useBody(this.req)
   }
 
-  async sendRedirect(location: string) {
+  async redirect(location: string) {
     return await sendRedirect(this.event, location)
   }
 }

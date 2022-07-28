@@ -22,7 +22,7 @@ export class EmailRegisterController extends Controller {
     })
 
     const json = {
-      ...scheme.validate(await this.useBody()),
+      ...scheme.validate(await this.body()),
       verification_token: crypto.randomBytes(32).toString("hex"),
       confirmation_token: crypto.randomBytes(32).toString("hex"),
       confirmation_code: crypto.randomBytes(3).toString("hex"),
@@ -95,9 +95,7 @@ export class EmailRegisterController extends Controller {
     model.confirmed_at = Date.now()
     await model.save()
 
-    await this.sendRedirect(
-      "/notifications/register-email-confirmation-success"
-    )
+    await this.redirect("/notifications/register-email-confirmation-success")
   }
 
   async revoke(token: string): Promise<undefined> {
