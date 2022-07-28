@@ -1,4 +1,4 @@
-import { ty, Obtain } from "@xieyuheng/ty"
+import { Obtain, ty } from "@xieyuheng/ty"
 import { Model } from "../../infra/redis/Model"
 
 export const UserSchema = ty.object({

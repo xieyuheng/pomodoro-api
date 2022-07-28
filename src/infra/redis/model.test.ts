@@ -1,4 +1,4 @@
-import { ty, Obtain } from "@xieyuheng/ty"
+import { Obtain, ty } from "@xieyuheng/ty"
 import { describe, expect, test } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
