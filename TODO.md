@@ -1,12 +1,39 @@
-# data layer
+# learn
 
 - learn more about redis search
+
+- why nuxt has module API?
 
 - [play] redis sorted set
 - [play] redis list
 - [play] redis set
 
-- why nuxt has module API?
+# backend
+
+- `AccessToken`
+
+- `/api/register/[token]/verify` -- create `User`
+- `/api/register/[token]/verify` -- create and return `AccessToken`
+
+- use `server/middleware` to implement auth header by `AccessToken`
+
+# frontend
+
+- `RegisterVerifying` -- save `AccessToken` to `localStorage`
+- `RegisterVerifying` -- save current user to `localStorage`
+
+- `components/login/LoginStart`
+- `components/login/Login.vue`
+
+- be able to config `settings.modes`
+
+- be able to save `tasks`
+
+- `PageLayoutHeader` show `PageLayoutMenu` if there is current user
+
+# refactor
+
+- [upstream] use `schema.keys()`
 
 - be able to config `Repository` log behavior
 
@@ -24,30 +51,3 @@
   - `where().first()`
   - `where().firstOrFail()`
   - `where().all()`
-
-# backend
-
-- `AccessToken`
-
-- `/api/register/[token]/verify` -- create `User`
-- `/api/register/[token]/verify` -- create and return `AccessToken`
-
-- use `server/middleware` to implement auth header by `AccessToken`
-
-# refactor
-
-- [upstream] use `schema.keys()`
-
-# frontend
-
-- `RegisterVerifying` -- save `AccessToken` to `localStorage`
-- `RegisterVerifying` -- save current user to `localStorage`
-
-- `components/login/LoginStart`
-- `components/login/Login.vue`
-
-- be able to config `settings.modes`
-
-- be able to save `tasks`
-
-- `PageLayoutHeader` show `PageLayoutMenu` if there is current user
