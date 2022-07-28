@@ -41,6 +41,11 @@ export class Repository<TModel extends Model<any>> {
     return `${this.clazz.name}:${id}`
   }
 
+  parseKey(key: string): { name: string; id: string } {
+    const [name, id] = key.split(":")
+    return { name, id }
+  }
+
   async save(model: TModel): Promise<void> {
     const key = this.formatKey(model.id)
     await this.client.json.SET(key, "$", model.json())
@@ -117,13 +122,22 @@ export class Repository<TModel extends Model<any>> {
     await this.client.sendCommand(parts)
   }
 
-  async where(json: RecursivePartial<JsonOfModel<TModel>>) {
+  async allWhere(
+    json: RecursivePartial<JsonOfModel<TModel>>
+  ): Promise<Array<TModel>> {
+    const fields: Array<string> = []
     const record = flattenJson(json as JsonObject)
     for (const [path, value] of Object.entries(record)) {
-      const prefix = path.split(".").join(":")
-      const query = `@${prefix}:"${value}"`
-      const results = await this.client.ft.SEARCH(this.indexKey, query)
-      console.log({ results })
+      const prefix = path.split(".").join("\\.")
+      fields.push(`@${prefix}:"${value}"`)
     }
+
+    const query = fields.join(" ")
+    const { documents } = await this.client.ft.SEARCH(this.indexKey, query)
+
+    return documents.map(({ id: key, value: json }) => {
+      const { id } = this.parseKey(key)
+      return this.create(this.schema.validate(json), id)
+    })
   }
 }

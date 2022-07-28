@@ -4,7 +4,6 @@
 - [play] redis list
 - [play] redis set
 
-- `Repository` -- `allWhere()`
 - `Repository` -- `where().first()` & `where().firstOrFail()`
 - `Repository` -- `createIndex` from `ty.Schema`
 - `Repository` -- `where`

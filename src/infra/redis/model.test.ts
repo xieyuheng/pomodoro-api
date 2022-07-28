@@ -102,7 +102,7 @@ describe("redis model", async () => {
       })
     }
 
-    await user.expire(10)
+    await user.delete()
   })
 
   test("exists and delete", async () => {
@@ -144,9 +144,34 @@ describe("redis model", async () => {
 
     await user2.save()
 
-    await redis.repository(User).where({ username: "xieyuheng" })
+    {
+      const found = await redis
+        .repository(User)
+        .allWhere({ username: "xieyuheng" })
 
-    // await user1.expire(10)
-    // await user2.expire(10)
+      expect(found[0]?.json()).toEqual(user1.json())
+      expect(found[0]?.id).toEqual(user1.id)
+    }
+
+    {
+      const found = await redis
+        .repository(User)
+        .allWhere({ address: { city: "Yinchuan" } })
+
+      expect(found[0]?.json()).toEqual(user1.json())
+      expect(found[0]?.id).toEqual(user1.id)
+    }
+
+    {
+      const found = await redis
+        .repository(User)
+        .allWhere({ username: "xieyuheng", address: { city: "Yinchuan" } })
+
+      expect(found[0]?.json()).toEqual(user1.json())
+      expect(found[0]?.id).toEqual(user1.id)
+    }
+
+    await user1.delete()
+    await user2.delete()
   })
 })
