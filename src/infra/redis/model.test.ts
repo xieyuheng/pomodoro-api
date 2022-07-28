@@ -15,15 +15,7 @@ export const UserSchema = ty.object({
   ),
 })
 
-export type UserJson = {
-  username: string
-  name: string
-  email: string
-  address?: {
-    country: string
-    city: string
-  }
-}
+export type UserJson = Obtain<typeof UserSchema>
 
 export interface User extends UserJson {}
 

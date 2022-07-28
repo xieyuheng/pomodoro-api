@@ -23,7 +23,7 @@
     "@headlessui/vue": "^1.6.7",
     "@heroicons/vue": "^1.0.6",
     "@xieyuheng/coupler": "^0.0.3",
-    "@xieyuheng/ty": "^0.1.16",
+    "@xieyuheng/ty": "^0.1.17",
     "h3": "^0.7.12",
     "howler": "^2.2.3",
     "lodash": "^4.17.21",
