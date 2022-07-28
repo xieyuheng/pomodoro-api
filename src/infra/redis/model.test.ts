@@ -43,11 +43,13 @@ describe("redis model", async () => {
 
   await redis.client.connect()
 
-  await redis.createIndex(User, {
+  await redis.repository(User).createIndex({
     "$.username": {
       type: SchemaFieldTypes.TEXT,
     },
   })
+
+  // await redis.client.sendCommand([""])
 
   test("crate and update", async () => {
     const user = redis.repository(User).create({

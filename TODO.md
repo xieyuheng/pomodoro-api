@@ -4,7 +4,6 @@
 - [play] redis list
 - [play] redis set
 
-- move `createIndex` to `Repository`
 - use `sendCommand` to `createIndex`
 
 - `Repository` -- `allWhere()`
