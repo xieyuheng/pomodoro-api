@@ -1,7 +1,6 @@
 import { EmailRegisterController } from "@/server/controllers/EmailRegisterController"
-import { useApp } from "@/server/useApp"
 
 export default defineEventHandler(async (event) => {
-  const controller = new EmailRegisterController(await useApp(), event)
+  const controller = new EmailRegisterController(event)
   return await controller.create()
 })

@@ -1,8 +1,7 @@
-import { Coupler } from "@xieyuheng/coupler"
 import { CompatibilityEvent, sendRedirect, useBody } from "h3"
 
 export class Controller {
-  constructor(public app: Coupler, public event: CompatibilityEvent) {}
+  constructor(public event: CompatibilityEvent) {}
 
   get req() {
     return this.event.req
