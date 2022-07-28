@@ -1,6 +1,5 @@
 # data layer
 
-- move `utils/` to `framework/utils`
 - move `Controller` to `framework/routing`
 
 - learn more about redis search

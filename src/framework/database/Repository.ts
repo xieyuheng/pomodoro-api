@@ -1,6 +1,6 @@
 import crypto from "crypto"
 import { DeepPartial } from "utility-types"
-import { flattenJson, JsonObject } from "../../utils/flattenJson"
+import { flattenJson, JsonObject } from "../utils/flattenJson"
 import { JsonOfModel, Model, ModelConstructor } from "./Model"
 import { Redis } from "./Redis"
 

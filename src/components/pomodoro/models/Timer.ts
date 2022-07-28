@@ -1,4 +1,4 @@
-import { leftPad } from "../../../utils/leftPad"
+import { leftPad } from "../../../framework/utils/leftPad"
 
 type TimerId = ReturnType<typeof setInterval>
 

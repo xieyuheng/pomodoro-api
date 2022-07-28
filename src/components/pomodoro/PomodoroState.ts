@@ -1,7 +1,7 @@
 import { useLang } from "../../composables/useLang"
 import { useTheme } from "../../composables/useTheme"
 import { config } from "../../config"
-import { removeFirst } from "../../utils/removeFirst"
+import { removeFirst } from "../../framework/utils/removeFirst"
 import { Mode, ModeKind } from "./models/Mode"
 import { defaultSettings, Settings, testingSettings } from "./models/Settings"
 import { Task } from "./models/Task"

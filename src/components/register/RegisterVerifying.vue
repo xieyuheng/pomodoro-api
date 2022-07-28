@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { RegisterState as State } from "./RegisterState"
 import { Verifying } from "./models/Verifying"
-import { poll } from "../../utils/poll"
+import { poll } from "../../framework/utils/poll"
 
 const { state, verifying } = defineProps<{
   state: State
