@@ -1,22 +1,25 @@
 # data layer
 
-- be able to config `Repository` log behavior
+- learn more about redis search
+- learn more about mono repo
 
 - [play] redis sorted set
 - [play] redis list
 - [play] redis set
 
+- be able to config `Repository` log behavior
+
+- `Repository` -- migration be able to `dropIndex`
+
 - `Repository` -- `createIndex` from `ty.Schema`
+
 - `Repository` -- `where`
 
+  - `Query` expression format to redis search query
   - learn from laravel Eloquent API
-
     - https://laravel.com/docs/9.x/eloquent#retrieving-models
-
   - learn from laravel Query Builder
-
     - https://laravel.com/docs/9.x/queries
-
   - `where().first()`
   - `where().firstOrFail()`
   - `where().all()`
