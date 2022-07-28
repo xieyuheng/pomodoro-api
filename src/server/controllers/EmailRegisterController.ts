@@ -3,7 +3,7 @@ import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { config } from "../../config"
 import { Mailer } from "../../framework/mail"
-import { Redis } from "../../framework/redis"
+import { Redis } from "../../framework/database"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
 

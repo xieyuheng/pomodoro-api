@@ -1,7 +1,5 @@
 # data layer
 
-- rename `framework/redis` to `framework/database`
-
 - move `Controller` to `framework/routing`
 - move `env` to `framework/config`
 
