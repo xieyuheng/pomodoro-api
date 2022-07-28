@@ -1,7 +1,7 @@
 # data layer
 
+- move `utils/` to `framework/utils`
 - move `Controller` to `framework/routing`
-- move `env` to `framework/config`
 
 - learn more about redis search
 - why nuxt has module API?
