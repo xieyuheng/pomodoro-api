@@ -1,4 +1,4 @@
-import ty, { Obtain } from "@xieyuheng/ty"
+import { ty, Obtain } from "@xieyuheng/ty"
 import { describe, expect, test } from "vitest"
 import { Model } from "./Model"
 import { Redis } from "./Redis"
@@ -37,11 +37,11 @@ describe("redis model", async () => {
   await redis.client.connect()
 
   await redis.repository(User).createIndex({
-    name: "TEXT",
-    username: "TEXT",
+    name: "text",
+    username: "text",
     address: {
-      country: "TEXT",
-      city: "TEXT",
+      country: "text",
+      city: "text",
     },
   })
 

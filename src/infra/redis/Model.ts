@@ -26,7 +26,7 @@ export abstract class Model<T> {
 
   async delete(): Promise<void> {
     await this._repository.delete(this.id)
-  }  
+  }
 
   async expire(seconds: number): Promise<void> {
     await this._repository.expire(this.id, seconds)

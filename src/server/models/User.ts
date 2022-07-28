@@ -1,39 +1,16 @@
-import { Entity, Schema } from "redis-om"
-import { client } from "../../lib/redis"
+import { ty, Obtain } from "@xieyuheng/ty"
+import { Model } from "../../infra/redis/Model"
 
-export type UserJson = {
-  username: string
-  name: string
-  email: string
-}
+export const UserSchema = ty.object({
+  username: ty.string(),
+  name: ty.string(),
+  email: ty.string(),
+})
+
+export type UserJson = Obtain<typeof UserSchema>
 
 export interface User extends UserJson {}
-export class User extends Entity {
-  static schema = new Schema(
-    User,
-    {
-      username: { type: "string" },
-      name: { type: "string" },
-      email: { type: "string" },
-    },
-    {
-      prefix: "User",
-    }
-  )
 
-  static get repository() {
-    return client.fetchRepository(User.schema)
-  }
-
-  get repository() {
-    return client.fetchRepository(User.schema)
-  }
-
-  async save(): Promise<string> {
-    return await this.repository.save(this)
-  }
-
-  async delete(): Promise<void> {
-    await this.repository.remove(this.entityId)
-  }
+export class User extends Model<UserJson> {
+  schema = UserSchema
 }

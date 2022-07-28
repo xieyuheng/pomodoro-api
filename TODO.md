@@ -1,6 +1,7 @@
 # data layer
 
-- replace `redis-om-node` by our `Model` class
+- be able to config `Repository` log behavior
+- remove `redis-om-node`
 
 - [play] redis sorted set
 - [play] redis list

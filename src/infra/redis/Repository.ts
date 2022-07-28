@@ -1,6 +1,6 @@
 import crypto from "crypto"
-import { flattenJson, JsonObject } from "../../utils/flattenJson"
 import { DeepPartial } from "utility-types"
+import { flattenJson, JsonObject } from "../../utils/flattenJson"
 import { JsonOfModel, Model, ModelConstructor } from "./Model"
 import { Redis } from "./Redis"
 
@@ -98,7 +98,16 @@ export class Repository<TModel extends Model<any>> {
 
   async createIndex(indexJson: any): Promise<void> {
     const indexList = await this.client.ft._LIST()
-    if (indexList.includes(this.indexKey)) return
+    if (indexList.includes(this.indexKey)) {
+      console.log({
+        who: "Repository.createIndex",
+        message: "Index already exists.",
+        indexKey: this.indexKey,
+        indexList,
+      })
+
+      return
+    }
 
     const fields: Array<string> = []
     const record = flattenJson(indexJson as JsonObject)
@@ -106,7 +115,12 @@ export class Repository<TModel extends Model<any>> {
       if (typeof value === "string") {
         fields.push(`$.${path} AS ${path} ${value}`)
       } else {
-        console.log({ message: `Unknown index value`, path, value })
+        console.log({
+          who: "Repository.createIndex",
+          message: `Unknown index value.`,
+          path,
+          value,
+        })
       }
     }
 
@@ -118,6 +132,11 @@ export class Repository<TModel extends Model<any>> {
       "SCHEMA",
       ...fields.flatMap((field) => field.split(" ")),
     ]
+
+    console.log({
+      who: "Repository.createIndex",
+      command: parts.join(" "),
+    })
 
     await this.client.sendCommand(parts)
   }
@@ -133,11 +152,22 @@ export class Repository<TModel extends Model<any>> {
     }
 
     const query = fields.join(" ")
+
+    console.log({
+      who: "Repository.allWhere",
+      query,
+    })
+
     const { documents } = await this.client.ft.SEARCH(this.indexKey, query)
 
     return documents.map(({ id: key, value: json }) => {
       const { id } = this.parseKey(key)
       return this.create(this.schema.validate(json), id)
     })
+  }
+
+  async firstWhere(json: DeepPartial<JsonOfModel<TModel>>): Promise<TModel> {
+    const models = await this.allWhere(json)
+    return models[0]
   }
 }

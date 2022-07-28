@@ -1,65 +1,22 @@
-import { Entity, Schema } from "redis-om"
-import { client } from "../../lib/redis"
+import { ty, Obtain } from "@xieyuheng/ty"
+import { Model } from "../../infra/redis/Model"
 
-export type EmailRegisterJson = {
-  username: string
-  name: string
-  email: string
-  verification_token: string
-  confirmation_token: string
-  confirmation_code: string
-  confirmed_at?: number
-  verified_at?: number
-  revoked_at?: number
-}
+export const EmailRegisterSchema = ty.object({
+  username: ty.string(),
+  name: ty.string(),
+  email: ty.string(),
+  verification_token: ty.string(),
+  confirmation_token: ty.string(),
+  confirmation_code: ty.string(),
+  confirmed_at: ty.optional(ty.number()),
+  verified_at: ty.optional(ty.number()),
+  revoked_at: ty.optional(ty.number()),
+})
+
+export type EmailRegisterJson = Obtain<typeof EmailRegisterSchema>
 
 export interface EmailRegister extends EmailRegisterJson {}
-export class EmailRegister extends Entity {
-  static schema = new Schema(
-    EmailRegister,
-    {
-      username: { type: "string" },
-      name: { type: "string" },
-      email: { type: "string" },
-      verification_token: { type: "string", indexed: true },
-      confirmation_token: { type: "string", indexed: true },
-      confirmation_code: { type: "string" },
-      confirmed_at: { type: "date" },
-      verified_at: { type: "date" },
-      revoked_at: { type: "date" },
-    },
-    {
-      prefix: "EmailRegister",
-    }
-  )
 
-  static get repository() {
-    return client.fetchRepository(EmailRegister.schema)
-  }
-
-  static async getByToken(token: string): Promise<EmailRegister | null> {
-    return this.repository
-      .search()
-      .where("confirmation_token")
-      .equals(token)
-      .or("verification_token")
-      .equals(token)
-      .return.first()
-  }
-
-  get repository() {
-    return client.fetchRepository(EmailRegister.schema)
-  }
-
-  async save(): Promise<string> {
-    return await this.repository.save(this)
-  }
-
-  async delete(): Promise<void> {
-    await this.repository.remove(this.entityId)
-  }
-
-  async expireInSeconds(s: number): Promise<void> {
-    await this.repository.expire(this.entityId, s)
-  }
+export class EmailRegister extends Model<EmailRegisterJson> {
+  schema = EmailRegisterSchema
 }

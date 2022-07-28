@@ -1,7 +1,7 @@
 import { Coupler, Provider } from "@xieyuheng/coupler"
 import { config } from "../../config"
 import { Redis } from "../../infra/redis"
-import { connect } from "../../lib/redis"
+import { EmailRegister } from "../../server/models/EmailRegister"
 
 export class RedisProvider extends Provider {
   async register(app: Coupler) {
@@ -17,6 +17,10 @@ export class RedisProvider extends Provider {
   async boot(app: Coupler) {
     const redis = app.create(Redis)
     await redis.client.connect()
-    await connect()
+
+    await redis.repository(EmailRegister).createIndex({
+      confirmation_token: "text",
+      verification_token: "text",
+    })
   }
 }

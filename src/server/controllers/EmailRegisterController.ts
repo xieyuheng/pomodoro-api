@@ -3,6 +3,7 @@ import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { config } from "../../config"
 import { Mailer } from "../../infra/mailer"
+import { Redis } from "../../infra/redis"
 import { Controller } from "../Controller"
 import { EmailRegister } from "../models/EmailRegister"
 
@@ -21,24 +22,27 @@ export class EmailRegisterController extends Controller {
       confirmation_code: crypto.randomBytes(3).toString("hex"),
     }
 
-    const entity = await EmailRegister.repository.createAndSave(json)
+    const redis = this.app.create(Redis)
 
-    const confirmation_link = `${config.base_url}/api/register/${entity.confirmation_token}/confirm`
+    const model = await redis.repository(EmailRegister).create(json)
+    await model.save()
+
+    const confirmation_link = `${config.base_url}/api/register/${model.confirmation_token}/confirm`
 
     const mailer = this.app.create(Mailer)
 
     await mailer.send({
-      to: entity.email,
+      to: model.email,
       from: `"Pomodoro" <support@readonly.link>`,
-      subject: `Pomodoro | Register Confirmation | ${entity.confirmation_code}`,
+      subject: `Pomodoro | Register Confirmation | ${model.confirmation_code}`,
       text: `Confirmation link: ${confirmation_link}`,
     })
 
     return {
-      username: entity.username,
-      email: entity.email,
-      confirmation_code: entity.confirmation_code,
-      verification_token: entity.verification_token,
+      username: model.username,
+      email: model.email,
+      confirmation_code: model.confirmation_code,
+      verification_token: model.verification_token,
     }
   }
 
@@ -52,30 +56,38 @@ export class EmailRegisterController extends Controller {
       }
     | undefined
   > {
-    const entity = await EmailRegister.getByToken(token)
+    const redis = this.app.create(Redis)
 
-    if (entity === null) return undefined
-    if (entity.revoked_at) return undefined
-    if (entity.verified_at) return undefined
+    const model = await redis.repository(EmailRegister).firstWhere({
+      verification_token: token,
+    })
 
-    if (!entity.confirmed_at) return { confirmed: false }
+    if (model === null) return undefined
+    if (model.revoked_at) return undefined
+    if (model.verified_at) return undefined
 
-    entity.verified_at = Date.now()
-    await entity.save()
+    if (!model.confirmed_at) return { confirmed: false }
 
-    return { confirmed: true, username: entity.username }
+    model.verified_at = Date.now()
+    await model.save()
+
+    return { confirmed: true, username: model.username }
   }
 
   async confirm(token: string): Promise<undefined> {
-    const entity = await EmailRegister.getByToken(token)
+    const redis = this.app.create(Redis)
 
-    if (entity === null) return undefined
-    if (entity.revoked_at) return undefined
-    if (entity.verified_at) return undefined
-    if (entity.confirmed_at) return undefined
+    const model = await redis.repository(EmailRegister).firstWhere({
+      confirmation_token: token,
+    })
 
-    entity.confirmed_at = Date.now()
-    await entity.save()
+    if (model === null) return undefined
+    if (model.revoked_at) return undefined
+    if (model.verified_at) return undefined
+    if (model.confirmed_at) return undefined
+
+    model.confirmed_at = Date.now()
+    await model.save()
 
     await this.sendRedirect(
       "/notifications/register-email-confirmation-success"
@@ -83,14 +95,18 @@ export class EmailRegisterController extends Controller {
   }
 
   async revoke(token: string): Promise<undefined> {
-    const entity = await EmailRegister.getByToken(token)
+    const redis = this.app.create(Redis)
 
-    if (entity === null) return undefined
-    if (entity.revoked_at) return undefined
-    if (entity.verified_at) return undefined
-    if (entity.confirmed_at) return undefined
+    const model = await redis.repository(EmailRegister).firstWhere({
+      verification_token: token,
+    })
 
-    entity.revoked_at = Date.now()
-    await entity.save()
+    if (model === null) return undefined
+    if (model.revoked_at) return undefined
+    if (model.verified_at) return undefined
+    if (model.confirmed_at) return undefined
+
+    model.revoked_at = Date.now()
+    await model.save()
   }
 }
