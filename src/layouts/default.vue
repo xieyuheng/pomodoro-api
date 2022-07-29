@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import "../assets/styles/index.css"
-import "../scripts/register-service-worker"
+import "../utils/registerServiceWorker"
 
 import PageLayout from "./page-layout/PageLayout.vue"
 </script>

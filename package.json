@@ -5,6 +5,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "check": "tsc --noEmit",
     "watch": "tsc --noEmit --watch",
     "test": "vitest --run",
     "format": "prettier src --write"
