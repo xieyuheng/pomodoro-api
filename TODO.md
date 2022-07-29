@@ -1,16 +1,4 @@
-# learn
-
-- learn nuxt's module API -- why needed?
-
-- learn about nuxt/content
-
-- [play] redis sorted set
-- [play] redis list
-- [play] redis set
-
 # backend
-
-- `AccessToken`
 
 - `/api/register/[token]/verify` -- create `User`
 - `/api/register/[token]/verify` -- create and return `AccessToken`
@@ -19,7 +7,7 @@
 
 # frontend
 
-- `RegisterVerifying` -- save `AccessToken` to `localStorage`
+- `RegisterVerifying` -- save `AccessToken` to `localStorage` or cookie?
 - `RegisterVerifying` -- save current user to `localStorage`
 
 - `components/login/LoginStart`
@@ -45,10 +33,14 @@
   - FT.DROPINDEX myIdx DD
 
 - `Repository` -- api about auto-complete
+
   - https://redis.io/commands/ft.sugadd/
   - https://redis.io/commands/ft.sugget/
 
 - `Repository` -- `createIndex` from `ty.Schema`
+
+  - https://redis.io/commands/ft.create/
+  - https://redis.io/docs/stack/search/design/indexing/
 
 - `Repository` -- `where`
 
@@ -57,9 +49,28 @@
     - https://laravel.com/docs/9.x/eloquent#retrieving-models
   - learn from laravel Query Builder
     - https://laravel.com/docs/9.x/queries
+    - https://redis.io/docs/stack/search/reference/query_syntax/
   - `where().first()`
   - `where().firstOrFail()`
   - `where().all()`
 
 - abstract `Repository` and `RedisRepository`
 - abstract `Repository` and `FiRepository`
+
+# learn
+
+- [learn nuxt] internals
+
+  - https://v3.nuxtjs.org/guide/going-further/internals/
+
+- [learn nuxt] module API
+
+  - https://v3.nuxtjs.org/guide/going-further/modules/
+
+- [learn nuxt] nuxt/content
+
+  - https://github.com/nuxt/content
+
+- [learn redis] redis sorted set
+- [learn redis] redis list
+- [learn redis] redis set
