@@ -5,13 +5,14 @@ import { VerifyingJson } from "@/types/VerifyingJson"
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { config } from "../../config"
+import { User } from "../models/User"
+import { AccessToken } from "../models/AccessToken"
 import { EmailRegister } from "../models/EmailRegister"
 import { useApp } from "../useApp"
 
 export class EmailRegisterController extends Controller {
   async create(): Promise<VerifyingJson> {
     const app = await useApp()
-
     const redis = app.create(Redis)
     const mailer = app.create(Mailer)
 
@@ -59,7 +60,6 @@ export class EmailRegisterController extends Controller {
     | undefined
   > {
     const app = await useApp()
-
     const redis = app.create(Redis)
 
     const model = await redis.repository(EmailRegister).firstWhere({
@@ -75,12 +75,14 @@ export class EmailRegisterController extends Controller {
     model.verified_at = Date.now()
     await model.save()
 
+    const user = await redis.repository(User).create(model)
+    await user.save()
+
     return { confirmed: true, username: model.username }
   }
 
   async confirm(token: string): Promise<undefined> {
     const app = await useApp()
-
     const redis = app.create(Redis)
 
     const model = await redis.repository(EmailRegister).firstWhere({
@@ -100,7 +102,6 @@ export class EmailRegisterController extends Controller {
 
   async revoke(token: string): Promise<undefined> {
     const app = await useApp()
-
     const redis = app.create(Redis)
 
     const model = await redis.repository(EmailRegister).firstWhere({

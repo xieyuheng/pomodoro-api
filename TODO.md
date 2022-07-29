@@ -1,7 +1,8 @@
 # backend
 
-- `/api/register/[token]/verify` -- create `User`
-- `/api/register/[token]/verify` -- create and return `AccessToken`
+- `/api/register/[token]/verify` -- return `AccessToken`
+
+- `Repository.create` filter keys by schema
 
 - use `server/middleware` to implement auth header by `AccessToken`
 
