@@ -4,8 +4,11 @@
 
 # frontend
 
-- `RegisterVerifying` -- save `AccessToken` to `localStorage`
+- `PageLayoutHeader` show `PageLayoutMenu` if there is current user
+
 - `RegisterVerifying` -- save current user to `localStorage`
+
+  - `useAuth` return function to help to set auth header
 
 - `components/login/LoginStart`
 - `components/login/Login.vue`
@@ -13,8 +16,6 @@
 - be able to config `settings.modes`
 
 - be able to save `tasks`
-
-- `PageLayoutHeader` show `PageLayoutMenu` if there is current user
 
 # refactor
 

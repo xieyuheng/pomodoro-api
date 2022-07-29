@@ -1,9 +1,9 @@
 import { Redis } from "@/framework/database/Redis"
 import { Coupler, Provider } from "@xieyuheng/coupler"
 import { config } from "../../config"
+import { AccessToken } from "../../server/models/AccessToken"
 import { EmailRegister } from "../../server/models/EmailRegister"
 import { User } from "../../server/models/User"
-import { AccessToken } from "../../server/models/AccessToken"
 
 export class RedisProvider extends Provider {
   async register(app: Coupler) {

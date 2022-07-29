@@ -15,8 +15,12 @@ const { stop } = poll({
     console.log({ message: "RegisterVerifying" })
     return $fetch(verifying.links.verify)
   },
-  check: ({ confirmed, username }) => ({ done: confirmed, data: username }),
-  then: (username) => router.replace({ path: "/" }),
+  check: (data) => data.confirmed,
+  then: (data) => {
+    const { login } = useAuth()
+    login(data.token)
+    router.replace({ path: "/" })
+  },
   interval: 3000,
 })
 

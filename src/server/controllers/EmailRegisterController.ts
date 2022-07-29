@@ -5,9 +5,9 @@ import { VerifyingJson } from "@/types/VerifyingJson"
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { config } from "../../config"
-import { User } from "../models/User"
 import { AccessToken } from "../models/AccessToken"
 import { EmailRegister } from "../models/EmailRegister"
+import { User } from "../models/User"
 import { useApp } from "../useApp"
 
 export class EmailRegisterController extends Controller {
