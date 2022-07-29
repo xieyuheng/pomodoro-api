@@ -1,9 +1,6 @@
 # backend
 
-- `/api/register/[token]/verify` -- return `AccessToken`
-
-- `Repository.create` filter keys by schema
-
+- `EmailRegisterController.verify` -- return `AccessToken`
 - use `server/middleware` to implement auth header by `AccessToken`
 
 # frontend

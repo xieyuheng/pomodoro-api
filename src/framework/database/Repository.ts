@@ -18,9 +18,16 @@ export class Repository<TModel extends Model<any>> {
 
   create(json: JsonOfModel<TModel>, id?: string): TModel {
     const model = new this.clazz()
-    Object.assign(model, json)
+    this.assignProperties(model, json)
     this.enrich(model, id)
     return model
+  }
+
+  private assignProperties(model: TModel, json: JsonOfModel<TModel>): void {
+    const keys = Object.keys(this.schema.properties)
+    for (const key of keys) {
+      ;(model as any)[key] = json[key]
+    }
   }
 
   private enrich(model: TModel, id?: string): void {
@@ -28,7 +35,7 @@ export class Repository<TModel extends Model<any>> {
     model.id = id || crypto.randomUUID()
     model._key = this.formatKey(model.id)
     model.json = () => {
-      const keys = Object.keys(model.schema.properties)
+      const keys = Object.keys(this.schema.properties)
       const json: any = {}
       for (const key of keys) {
         json[key] = (model as any)[key]
