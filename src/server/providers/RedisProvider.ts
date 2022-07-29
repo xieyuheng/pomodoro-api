@@ -2,6 +2,8 @@ import { Redis } from "@/framework/database/Redis"
 import { Coupler, Provider } from "@xieyuheng/coupler"
 import { config } from "../../config"
 import { EmailRegister } from "../../server/models/EmailRegister"
+import { User } from "../../server/models/User"
+import { AccessToken } from "../../server/models/AccessToken"
 
 export class RedisProvider extends Provider {
   async register(app: Coupler) {
@@ -19,8 +21,19 @@ export class RedisProvider extends Provider {
     await redis.client.connect()
 
     await redis.repository(EmailRegister).createIndex({
-      confirmation_token: "text",
-      verification_token: "text",
+      confirmation_token: "tag casesensitive",
+      verification_token: "tag casesensitive",
+    })
+
+    await redis.repository(User).createIndex({
+      username: "tag casesensitive",
+      name: "tag casesensitive",
+      email: "tag casesensitive",
+    })
+
+    await redis.repository(AccessToken).createIndex({
+      user_id: "tag casesensitive",
+      token: "tag casesensitive",
     })
   }
 }

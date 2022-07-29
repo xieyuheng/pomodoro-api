@@ -37,11 +37,11 @@ describe("redis model", async () => {
   await redis.client.connect()
 
   await redis.repository(User).createIndex({
-    name: "text",
-    username: "text",
+    name: "tag casesensitive",
+    username: "tag casesensitive",
     address: {
-      country: "text",
-      city: "text",
+      country: "tag casesensitive",
+      city: "tag casesensitive",
     },
   })
 

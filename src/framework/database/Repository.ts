@@ -146,9 +146,13 @@ export class Repository<TModel extends Model<any>> {
   ): Promise<Array<TModel>> {
     const fields: Array<string> = []
     const record = flattenJson(json as JsonObject)
-    for (const [path, value] of Object.entries(record)) {
+    for (let [path, value] of Object.entries(record)) {
       const prefix = path.split(".").join("\\.")
-      fields.push(`@${prefix}:"${value}"`)
+      if (typeof value === "string") {
+        value = value.replaceAll(" ", "\\ ")
+      }
+
+      fields.push(`@${prefix}:{${value}}`)
     }
 
     const query = fields.join(" ")

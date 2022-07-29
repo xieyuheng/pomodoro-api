@@ -4,7 +4,6 @@ import { Obtain, ty } from "@xieyuheng/ty"
 export const AccessTokenSchema = ty.object({
   user_id: ty.string(),
   token: ty.string(),
-  description: ty.optional(ty.string()),
 })
 
 export type AccessTokenJson = Obtain<typeof AccessTokenSchema>
