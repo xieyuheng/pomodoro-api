@@ -53,6 +53,7 @@ export class EmailRegisterController extends Controller {
     | {
         confirmed: true
         username: string
+        token: string
       }
     | {
         confirmed: false
@@ -78,7 +79,17 @@ export class EmailRegisterController extends Controller {
     const user = await redis.repository(User).create(model)
     await user.save()
 
-    return { confirmed: true, username: model.username }
+    const accessToken = await redis.repository(AccessToken).create({
+      user_id: user.id,
+      token: crypto.randomBytes(32).toString("hex"),
+    })
+    await accessToken.save()
+
+    return {
+      confirmed: true,
+      username: model.username,
+      token: accessToken.token,
+    }
   }
 
   async confirm(token: string): Promise<undefined> {

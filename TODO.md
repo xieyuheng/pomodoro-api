@@ -1,11 +1,10 @@
 # backend
 
-- `EmailRegisterController.verify` -- return `AccessToken`
 - use `server/middleware` to implement auth header by `AccessToken`
 
 # frontend
 
-- `RegisterVerifying` -- save `AccessToken` to `localStorage` or cookie?
+- `RegisterVerifying` -- save `AccessToken` to `localStorage`
 - `RegisterVerifying` -- save current user to `localStorage`
 
 - `components/login/LoginStart`
@@ -18,6 +17,9 @@
 - `PageLayoutHeader` show `PageLayoutMenu` if there is current user
 
 # refactor
+
+- `Repository` -- `createIndex` to side effect to `Model`
+- `Repository` -- query by schema
 
 - [upstream] use `schema.keys()`
 
