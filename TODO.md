@@ -1,6 +1,6 @@
 # backend
 
-- `UserController.current()`
+- `api/user`
 
 # frontend
 
