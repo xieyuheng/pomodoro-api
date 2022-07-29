@@ -1,8 +1,8 @@
 # learn
 
-- learn more about redis search
+- learn nuxt's module API -- why needed?
 
-- why nuxt has module API?
+- learn about nuxt/content
 
 - [play] redis sorted set
 - [play] redis list
@@ -35,9 +35,18 @@
 
 - [upstream] use `schema.keys()`
 
+- use `LIMIT 0 10` to implement `firstWhere`
+
 - be able to config `Repository` log behavior
 
 - `Repository` -- migration be able to `dropIndex`
+
+  - FT.DROPINDEX myIdx
+  - FT.DROPINDEX myIdx DD
+
+- `Repository` -- api about auto-complete
+  - https://redis.io/commands/ft.sugadd/
+  - https://redis.io/commands/ft.sugget/
 
 - `Repository` -- `createIndex` from `ty.Schema`
 
@@ -51,3 +60,6 @@
   - `where().first()`
   - `where().firstOrFail()`
   - `where().all()`
+
+- abstract `Repository` and `RedisRepository`
+- abstract `Repository` and `FiRepository`
