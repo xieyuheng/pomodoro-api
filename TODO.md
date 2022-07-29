@@ -1,14 +1,14 @@
 # backend
 
-- use `server/middleware` to implement auth header by `AccessToken`
+- `UserController.current()`
 
 # frontend
-
-- `PageLayoutHeader` show `PageLayoutMenu` if there is current user
 
 - `RegisterVerifying` -- save current user to `localStorage`
 
   - `useAuth` return function to help to set auth header
+
+- `PageLayoutHeader` show `PageLayoutMenu` if there is current user
 
 - `components/login/LoginStart`
 - `components/login/Login.vue`
