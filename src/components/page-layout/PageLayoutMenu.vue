@@ -13,27 +13,33 @@ defineProps<{ state: State }>()
     </MenuButton>
 
     <MenuItems
-      class="absolute top-8 right-0 min-w-max border-2"
+      class="absolute w-52 top-8 right-0 min-w-max border-2"
       :class="[`bg-${state.theme.name}-400 border-${state.theme.name}-300`]"
     >
-      <MenuItem v-slot="{ active }">
-        <div
-          v-if="state.auth.user"
-          class="flex min-w-max items-center p-2"
-          :class="[active && `bg-${state.theme.name}-500`]"
-        >
-          @{{ state.auth.user.username }}
+      <div v-if="state.auth.user">
+        <div class="w-full px-4 py-2">
+          <Lang>
+            <template #zh>专注者</template>
+            <template #en>Logged in as</template>
+          </Lang>
+          <div class="font-semibold">@{{ state.auth.user.username }}</div>
         </div>
-      </MenuItem>
-      <MenuItem v-slot="{ active }">
-        <button
-          class="flex min-w-max items-center p-2"
-          :class="[active && `bg-${state.theme.name}-500`]"
-          @click="state.auth.logout()"
-        >
-          Logout
-        </button>
-      </MenuItem>
+
+        <hr />
+
+        <MenuItem v-slot="{ active }">
+          <button
+            class="flex w-full px-4 py-2"
+            :class="[active && `bg-${state.theme.name}-500`]"
+            @click="state.auth.logout()"
+          >
+            <Lang>
+              <template #zh>退出</template>
+              <template #en>Logout</template>
+            </Lang>
+          </button>
+        </MenuItem>
+      </div>
     </MenuItems>
   </Menu>
 </template>

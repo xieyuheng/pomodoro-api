@@ -23,8 +23,6 @@
 
 # frontend
 
-- `PageLayoutMenu` -- `logged in as` & `Logout` button
-- `PageLayoutMenu` -- show different menu items depends on current user or not
 - `PageLayoutMenuMobile` -- show different menu items depends on current user or not
 
 - `components/login/LoginStart`
