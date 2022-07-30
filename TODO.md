@@ -14,9 +14,14 @@
 - `controllers/EmailLoginController` -- `confirm`
 - `controllers/EmailLoginController` -- `revoke`
 
-# frontend
+- add `expire` to `EmailRegister.create`
+- add `expire` to `EmailLogin.create`
 
 - `User` keep `username` and `email` unique
+
+  - `useForm` to handle backend error
+
+# frontend
 
 - `PageLayoutMenu` -- `logged in as` & `Logout` button
 - `PageLayoutMenu` -- show different menu items depends on current user or not
