@@ -1,7 +1,5 @@
 # backend
 
-- `controllers/EmailLoginController`
-
 - `api/login`
 - `api/login/[token]/confirm`
 - `api/login/[token]/verify`
