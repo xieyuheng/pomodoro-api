@@ -2,7 +2,7 @@
 
 # frontend
 
-- use cookie instead of `localStorage` for ssr
+- debug the use of cookie
 
 - `User` keep `username` and `email` unique
 

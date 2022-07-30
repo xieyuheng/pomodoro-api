@@ -25,8 +25,8 @@ defineProps<{ state: State }>()
     <div class="flex items-center space-x-2">
       <PageLayoutLang :state="state" />
       <div class="hidden md:block">
-        <PageLayoutLure v-if="!state.auth.user" :state="state" />
-        <PageLayoutMenu v-if="state.auth.user" :state="state" />
+        <PageLayoutMenu v-show="state.auth.user" :state="state" />
+        <PageLayoutLure v-show="!state.auth.user" :state="state" />
       </div>
 
       <div class="block md:hidden">

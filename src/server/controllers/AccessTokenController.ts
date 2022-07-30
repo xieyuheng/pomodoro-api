@@ -11,7 +11,7 @@ export class AccessTokenController extends Controller {
 
     const token = this.cookie("token")
 
-    console.log({ who: "AccessTokenController.auth", token })
+    console.log({ who: "AccessTokenController.auth", token }) 
 
     if (!token) return
 

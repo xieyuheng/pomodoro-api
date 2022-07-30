@@ -7,26 +7,15 @@ export class Auth {
   async loadUser(): Promise<void> {
     if (this.user) return
 
-    const token = useCookie("token")
-
-    if (!token.value) {
-      console.log({
-        who: "loadUser",
-        message: "cookie is not set for token",
-      })
-
-      return
-    }
-
-    console.log({ token: token.value })
-
+    const headers = useRequestHeaders(["cookie"])
     const { data } = await useFetch("/api/user", {
-      headers: {
-        authorization: `Bearer ${token.value}`,
-      },
+      headers: headers as any
     })
 
-    console.log({ data: data.value })
+    console.log({
+      cookie: headers.cookie,
+      data: data.value,
+    })
 
     if (!data.value) return
 
