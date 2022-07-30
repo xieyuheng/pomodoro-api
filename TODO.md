@@ -1,7 +1,5 @@
 # backend
 
-- `models/EmailLogin`
-
 - `controllers/EmailLoginController`
 
 - `api/login`
