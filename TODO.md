@@ -2,13 +2,11 @@
 
 # frontend
 
-- inline `useCurrentUser` into `useAuth`
-
-- `useAuth` reactive `currentUser`
-
 - `PageLayoutMenu` with `Logout` button
 - `PageLayoutMenu` show different menu items depends on current user or not
 - `PageLayoutMenuMobile` show different menu items depends on current user or not
+
+- `User` keep `username` and `email` unique
 
 - use cookie instead of `localStorage` for ssr
 

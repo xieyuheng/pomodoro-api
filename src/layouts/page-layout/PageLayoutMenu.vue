@@ -8,11 +8,15 @@ import {
   Transition,
 } from "@headlessui/vue"
 import { MenuIcon } from "@heroicons/vue/outline/index.js"
+import { useAuth } from "@/composables/useAuth"
 
 defineProps<{ state: State }>()
 
-const user = await useCurrentUser()
-const { logout } = await useAuth()
+const auth = ref(null)
+
+onMounted(async () => {
+  auth.value = await useAuth()
+})
 </script>
 
 <template>
@@ -27,17 +31,18 @@ const { logout } = await useAuth()
     >
       <MenuItem v-slot="{ active }">
         <div
+          v-if="auth?.user"
           class="flex min-w-max items-center p-2"
           :class="[active && `bg-${state.theme.name}-500`]"
         >
-          @{{ user.username }}
+          @{{ auth.user.username }}
         </div>
       </MenuItem>
       <MenuItem v-slot="{ active }">
         <button
           class="flex min-w-max items-center p-2"
           :class="[active && `bg-${state.theme.name}-500`]"
-          @click="logout()"
+          @click="auth?.logout()"
         >
           Logout
         </button>

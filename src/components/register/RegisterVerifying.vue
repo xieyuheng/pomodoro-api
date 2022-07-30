@@ -2,6 +2,7 @@
 import { RegisterState as State } from "./RegisterState"
 import { Verifying } from "./models/Verifying"
 import { poll } from "@/framework/utils/poll"
+import { useAuth } from "@/composables/useAuth"
 
 const { state, verifying } = defineProps<{
   state: State
@@ -16,9 +17,10 @@ const { stop } = poll({
     return $fetch(verifying.links.verify)
   },
   check: (data) => data.confirmed,
-  then: (data) => {
-    const { login } = useAuth()
-    login(data.token)
+  then: async (data) => {
+    const auth = await useAuth()
+    auth.login(data.token)
+    await auth.loadUser()
     router.replace({ path: "/" })
   },
   interval: 3000,
