@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { PomodoroState as State } from "./PomodoroState"
-import PomodoroTimer from "./PomodoroTimer.vue"
-import PomodoroTasks from "./PomodoroTasks.vue"
 
 const state = reactive(new State())
 

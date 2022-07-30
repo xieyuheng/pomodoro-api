@@ -1,5 +1,3 @@
-import { useLang } from "@/composables/useLang"
-import { useTheme } from "@/composables/useTheme"
 import { VerifyingJson } from "@/types/VerifyingJson"
 import { Verifying } from "./models/Verifying"
 

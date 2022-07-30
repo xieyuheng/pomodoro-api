@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { PomodoroState as State } from "./PomodoroState"
-import PomodoroModeButton from "./PomodoroModeButton.vue"
 
 defineProps<{ state: State }>()
 </script>

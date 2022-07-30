@@ -1,7 +1,4 @@
 <script setup lang="ts">
-const lang = useLang()
-const theme = useTheme()
-
 defineProps<{
   name: string
   type?: string

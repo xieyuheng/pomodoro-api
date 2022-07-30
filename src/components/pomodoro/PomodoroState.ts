@@ -1,5 +1,3 @@
-import { useLang } from "@/composables/useLang"
-import { useTheme } from "@/composables/useTheme"
 import { removeFirst } from "@/framework/utils/removeFirst"
 import { config } from "../../config"
 import { Mode, ModeKind } from "./models/Mode"

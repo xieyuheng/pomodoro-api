@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { PomodoroState as State } from "./PomodoroState"
-import PomodoroTimerButton from "./PomodoroTimerButton.vue"
 import { callWithConfirm } from "@/framework/utils/callWithConfirm"
 
 defineProps<{ state: State }>()

@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import { PomodoroState as State } from "./PomodoroState"
-import PomodoroTaskCurrent from "./PomodoroTaskCurrent.vue"
-import PomodoroTaskItem from "./PomodoroTaskItem.vue"
-import PomodoroTaskInput from "./PomodoroTaskInput.vue"
 
 defineProps<{ state: State }>()
 </script>

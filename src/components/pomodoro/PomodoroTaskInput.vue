@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { PomodoroState as State } from "./PomodoroState"
 import { PlusIcon } from "@heroicons/vue/outline/index.js"
-import PomodoroTaskForm from "./PomodoroTaskForm.vue"
 
 defineProps<{ state: State }>()
 </script>

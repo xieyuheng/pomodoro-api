@@ -2,7 +2,6 @@
 import { RegisterState as State } from "./RegisterState"
 import { Verifying } from "./models/Verifying"
 import { poll } from "@/framework/utils/poll"
-import { useAuth } from "@/composables/useAuth"
 
 const { state, verifying } = defineProps<{
   state: State

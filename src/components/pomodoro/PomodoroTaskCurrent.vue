@@ -2,8 +2,6 @@
 import { PomodoroState as State } from "./PomodoroState"
 import { Task } from "./models/Task"
 import { DotsVerticalIcon } from "@heroicons/vue/outline/index.js"
-import PomodoroTaskItemCount from "./PomodoroTaskItemCount.vue"
-import PomodoroTaskForm from "./PomodoroTaskForm.vue"
 
 const props = defineProps<{ state: State; task: Task }>()
 
