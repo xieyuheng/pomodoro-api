@@ -21,7 +21,7 @@ defineProps<{ state: State }>()
       leave-to-class="transform opacity-0 translate-x-6"
     >
       <MenuItems
-        class="flex flex-col justify-center fixed top-0 right-0 h-screen w-screen border-4 p-4"
+        class="flex flex-col pb-20 justify-center fixed top-0 right-0 h-screen w-screen border-4 px-6"
         :class="[`bg-${state.theme.name}-400 border-${state.theme.name}-300`]"
       >
         <div class="fixed top-4 right-4">
@@ -37,7 +37,7 @@ defineProps<{ state: State }>()
         </div>
 
         <div v-if="state.auth.user">
-          <div class="flex-col items-center space-y-1 p-2">
+          <div class="space-y-1 p-2">
             <Lang>
               <template #zh>专注者</template>
               <template #en>Logged in as</template>
@@ -49,12 +49,12 @@ defineProps<{ state: State }>()
 
           <MenuItem v-slot="{ active }">
             <button
-              class="flex justify-center p-2 font-semibold"
+              @click="state.auth.logout()"
+              class="p-2 font-semibold"
               :class="[
                 active && 'underline decoration-6',
                 active && `text-${state.theme.name}-200`,
               ]"
-              @click="state.auth.logout()"
             >
               <Lang>
                 <template #zh>退出</template>
@@ -68,7 +68,7 @@ defineProps<{ state: State }>()
           <MenuItem v-slot="{ active }">
             <Link
               href="/register"
-              class="flex justify-center p-2 font-semibold"
+              class="p-2 font-semibold"
               :class="[
                 active && 'underline decoration-6',
                 active && `text-${state.theme.name}-200`,
@@ -84,7 +84,7 @@ defineProps<{ state: State }>()
           <MenuItem v-slot="{ active }">
             <Link
               href="/login"
-              class="flex justify-center p-2 font-semibold"
+              class="p-2 font-semibold"
               :class="[
                 active && 'underline decoration-6',
                 active && `text-${state.theme.name}-200`,

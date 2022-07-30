@@ -23,7 +23,7 @@
 
 # frontend
 
-- `components/login/LoginStart`
+- `components/login/LoginStart.vue`
 - `components/login/Login.vue`
 
 - be able to config `settings.modes`
