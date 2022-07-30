@@ -13,7 +13,12 @@ defineProps<{
 </script>
 
 <template>
-  <a @click="href && router.push({ path: href })" :target="target">
+  <a
+    @click="href && router.push({ path: href })"
+    :target="target"
+    :class="class"
+    :style="style"
+  >
     <slot />
   </a>
 </template>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PomodoroState as State } from "./PomodoroState"
 
-defineProps<{
+const props = defineProps<{
   state: State
   modelValue?: string
   options: {
@@ -11,6 +11,8 @@ defineProps<{
     onSave?: () => void
   }
 }>()
+
+const { placeholder, onDelete, onCancel, onSave } = props.options
 </script>
 
 <template>
@@ -29,47 +31,47 @@ defineProps<{
       @input="
         $emit('update:modelValue', ($event.target as HTMLInputElement).value)
       "
-      :placeholder="options.placeholder"
+      :placeholder="placeholder"
       @keydown.enter="
         () => {
-          if (options.onSave) options.onSave()
+          if (onSave) onSave()
         }
       "
     />
 
     <div class="flex justify-end space-x-2 pt-4">
       <button
-        v-if="options.onDelete"
+        v-if="onDelete"
         class="border-2 py-1 px-2 text-lg font-semibold md:text-xl"
         :class="[
           state.classes.transition,
           `border-${state.theme.name}-300 bg-${state.theme.name}-200 text-${state.theme.name}-600`,
         ]"
-        @click="options.onDelete"
+        @click="onDelete"
       >
         {{ state.lang.zh ? "删除" : "DELETE" }}
       </button>
 
       <button
-        v-if="options.onCancel"
+        v-if="onCancel"
         class="border-2 py-1 px-2 text-lg font-semibold md:text-xl"
         :class="[
           state.classes.transition,
           `border-${state.theme.name}-300 bg-${state.theme.name}-200 text-${state.theme.name}-600`,
         ]"
-        @click="options.onCancel"
+        @click="onCancel"
       >
         {{ state.lang.zh ? "取消" : "CANCEL" }}
       </button>
 
       <button
-        v-if="options.onSave"
+        v-if="onSave"
         class="border-2 py-1 px-2 text-lg font-semibold md:text-xl"
         :class="[
           state.classes.transition,
           `border-${state.theme.name}-300 bg-${state.theme.name}-200 text-${state.theme.name}-600`,
         ]"
-        @click="options.onSave"
+        @click="onSave"
       >
         {{ state.lang.zh ? "保存" : "SAVE" }}
       </button>
