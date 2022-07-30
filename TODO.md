@@ -1,7 +1,6 @@
 # frontend
 
 - `components/login/LoginStart.vue`
-- `components/login/LoginPage.vue`
 - `components/login/LoginVerifying.vue`
 
 - be able to config `settings.modes`
