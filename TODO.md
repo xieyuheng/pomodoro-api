@@ -1,7 +1,5 @@
 # frontend
 
-- `components/login/LoginState.ts`
-
 - `components/login/LoginStart.vue`
 - `components/login/LoginPage.vue`
 - `components/login/LoginVerifying.vue`
