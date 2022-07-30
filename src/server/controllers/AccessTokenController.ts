@@ -24,8 +24,6 @@ export class AccessTokenController extends Controller {
 
     const auth = { user }
 
-    console.log({ auth })
-
     this.event.context.auth = auth
   }
 }

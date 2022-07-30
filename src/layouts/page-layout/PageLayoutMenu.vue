@@ -10,6 +10,9 @@ import {
 import { MenuIcon } from "@heroicons/vue/outline/index.js"
 
 defineProps<{ state: State }>()
+
+const user = await useCurrentUser()
+const { logout } = await useAuth()
 </script>
 
 <template>
@@ -27,16 +30,17 @@ defineProps<{ state: State }>()
           class="flex min-w-max items-center p-2"
           :class="[active && `bg-${state.theme.name}-500`]"
         >
-          Hi
+          @{{ user.username }}
         </div>
       </MenuItem>
       <MenuItem v-slot="{ active }">
-        <div
+        <button
           class="flex min-w-max items-center p-2"
           :class="[active && `bg-${state.theme.name}-500`]"
+          @click="logout()"
         >
-          Hi
-        </div>
+          Logout
+        </button>
       </MenuItem>
     </MenuItems>
   </Menu>

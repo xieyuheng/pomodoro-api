@@ -2,7 +2,15 @@
 
 # frontend
 
+- inline `useCurrentUser` into `useAuth`
+
+- `useAuth` reactive `currentUser`
+
 - `PageLayoutMenu` with `Logout` button
+- `PageLayoutMenu` show different menu items depends on current user or not
+- `PageLayoutMenuMobile` show different menu items depends on current user or not
+
+- use cookie instead of `localStorage` for ssr
 
 - `components/login/LoginStart`
 - `components/login/Login.vue`
