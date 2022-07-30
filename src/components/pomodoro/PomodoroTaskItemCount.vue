@@ -12,7 +12,7 @@ const records = computed(() =>
 <template>
   <div v-if="task.count > 0" class="flex space-x-0.5 pt-2">
     <div
-      v-for="record of records"
+      v-for="record of records" :key="record.index"
       class="h-2.5 w-2.5 border"
       :class="[
         state.classes.transition,
