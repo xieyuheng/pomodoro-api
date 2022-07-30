@@ -1,12 +1,26 @@
 # backend
 
+- `models/EmailLogin`
+
+- `controllers/EmailLoginController`
+
+- `api/login`
+- `api/login/[token]/confirm`
+- `api/login/[token]/verify`
+- `api/login/[token]/revoke`
+
+- `controllers/EmailLoginController` -- `create`
+- `controllers/EmailLoginController` -- `verify`
+- `controllers/EmailLoginController` -- `confirm`
+- `controllers/EmailLoginController` -- `revoke`
+
 # frontend
 
 - `User` keep `username` and `email` unique
 
-- `PageLayoutMenu` with `Logout` button
-- `PageLayoutMenu` show different menu items depends on current user or not
-- `PageLayoutMenuMobile` show different menu items depends on current user or not
+- `PageLayoutMenu` -- `logged in as` & `Logout` button
+- `PageLayoutMenu` -- show different menu items depends on current user or not
+- `PageLayoutMenuMobile` -- show different menu items depends on current user or not
 
 - `components/login/LoginStart`
 - `components/login/Login.vue`
