@@ -11,22 +11,14 @@ export class AccessTokenController extends Controller {
 
     const token = this.cookie("token")
 
-    console.log({ who: "AccessTokenController.auth", token }) 
-
     if (!token) return
 
-    const accessToken = await redis
-      .repository(AccessToken)
-      .firstWhere({ token })
+    const accessToken = await redis.repo(AccessToken).firstWhere({ token })
 
     if (!accessToken) return
 
-    const user = await redis.repository(User).findOrFail(accessToken.user_id)
+    const user = await redis.repo(User).findOrFail(accessToken.user_id)
 
-    const auth = { user }
-
-    console.log({ who: "AccessTokenController.auth", user })     
-
-    this.event.context.auth = auth
+    this.event.context.auth = { user }
   }
 }

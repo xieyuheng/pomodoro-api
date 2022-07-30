@@ -1,6 +1,6 @@
 import { createClient } from "redis"
 import { Model, ModelConstructor } from "./Model"
-import { Repository } from "./Repository"
+import { Repo } from "./Repo"
 
 type Client = ReturnType<typeof createClient>
 
@@ -11,10 +11,10 @@ export class Redis {
     this.client = createClient(options.client)
   }
 
-  repository<T, TModel extends Model<T>>(
+  repo<T, TModel extends Model<T>>(
     clazz: ModelConstructor<TModel>
-  ): Repository<TModel> {
-    return new Repository(this, clazz)
+  ): Repo<TModel> {
+    return new Repo(this, clazz)
   }
 
   formatHash(record: Record<string, string>): Array<string> {

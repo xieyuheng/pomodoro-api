@@ -29,7 +29,7 @@ export class EmailRegisterController extends Controller {
       confirmation_code: crypto.randomBytes(3).toString("hex"),
     }
 
-    const model = await redis.repository(EmailRegister).create(json)
+    const model = await redis.repo(EmailRegister).create(json)
     await model.save()
 
     const confirmation_link = `${config.base_url}/api/register/${model.confirmation_token}/confirm`
@@ -62,7 +62,7 @@ export class EmailRegisterController extends Controller {
     const app = await useApp()
     const redis = app.create(Redis)
 
-    const model = await redis.repository(EmailRegister).firstWhere({
+    const model = await redis.repo(EmailRegister).firstWhere({
       verification_token: token,
     })
 
@@ -75,10 +75,10 @@ export class EmailRegisterController extends Controller {
     model.verified_at = Date.now()
     await model.save()
 
-    const user = await redis.repository(User).create(model)
+    const user = await redis.repo(User).create(model)
     await user.save()
 
-    const accessToken = await redis.repository(AccessToken).create({
+    const accessToken = await redis.repo(AccessToken).create({
       user_id: user.id,
       token: crypto.randomBytes(32).toString("hex"),
     })
@@ -99,7 +99,7 @@ export class EmailRegisterController extends Controller {
     const app = await useApp()
     const redis = app.create(Redis)
 
-    const model = await redis.repository(EmailRegister).firstWhere({
+    const model = await redis.repo(EmailRegister).firstWhere({
       confirmation_token: token,
     })
 
@@ -118,7 +118,7 @@ export class EmailRegisterController extends Controller {
     const app = await useApp()
     const redis = app.create(Redis)
 
-    const model = await redis.repository(EmailRegister).firstWhere({
+    const model = await redis.repo(EmailRegister).firstWhere({
       verification_token: token,
     })
 

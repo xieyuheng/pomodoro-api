@@ -1,5 +1,5 @@
 import { Schemas } from "@xieyuheng/ty"
-import { Repository } from "./Repository"
+import { Repo } from "./Repo"
 
 export type ModelConstructor<TModel> = new () => TModel
 
@@ -12,7 +12,7 @@ export type JsonOfModel<TModel extends Model<any>> = TModel extends Model<
 export abstract class Model<T> {
   _phantom?: T
 
-  _repository!: Repository<Model<T>>
+  _repo!: Repo<Model<T>>
   _key!: string
 
   id!: string
@@ -21,14 +21,14 @@ export abstract class Model<T> {
   abstract schema: Schemas.ObjectSchema<T>
 
   async save(): Promise<void> {
-    await this._repository.save(this)
+    await this._repo.save(this)
   }
 
   async delete(): Promise<void> {
-    await this._repository.delete(this.id)
+    await this._repo.delete(this.id)
   }
 
   async expire(seconds: number): Promise<void> {
-    await this._repository.expire(this.id, seconds)
+    await this._repo.expire(this.id, seconds)
   }
 }

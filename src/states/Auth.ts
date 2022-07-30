@@ -9,7 +9,7 @@ export class Auth {
 
     const headers = useRequestHeaders(["cookie"])
     const { data } = await useFetch("/api/user", {
-      headers: headers as any
+      headers: headers as any,
     })
 
     console.log({

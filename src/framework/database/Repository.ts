@@ -4,7 +4,7 @@ import { flattenJson, JsonObject } from "../utils/flattenJson"
 import { JsonOfModel, Model, ModelConstructor } from "./Model"
 import { Redis } from "./Redis"
 
-export class Repository<TModel extends Model<any>> {
+export class Repo<TModel extends Model<any>> {
   constructor(public redis: Redis, public clazz: ModelConstructor<TModel>) {}
 
   get client() {
@@ -31,7 +31,7 @@ export class Repository<TModel extends Model<any>> {
   }
 
   private enrich(model: TModel, id?: string): void {
-    model._repository = this
+    model._repo = this
     model.id = id || crypto.randomUUID()
     model._key = this.formatKey(model.id)
     model.json = () => {
@@ -107,7 +107,7 @@ export class Repository<TModel extends Model<any>> {
     const indexList = await this.client.ft._LIST()
     if (indexList.includes(this.indexKey)) {
       console.log({
-        who: "Repository.createIndex",
+        who: "Repo.createIndex",
         message: "Index already exists.",
         indexKey: this.indexKey,
         indexList,
@@ -123,7 +123,7 @@ export class Repository<TModel extends Model<any>> {
         fields.push(`$.${path} AS ${path} ${value}`)
       } else {
         console.log({
-          who: "Repository.createIndex",
+          who: "Repo.createIndex",
           message: `Unknown index value.`,
           path,
           value,
@@ -141,7 +141,7 @@ export class Repository<TModel extends Model<any>> {
     ]
 
     console.log({
-      who: "Repository.createIndex",
+      who: "Repo.createIndex",
       command: parts.join(" "),
     })
 
@@ -165,7 +165,7 @@ export class Repository<TModel extends Model<any>> {
     const query = fields.join(" ")
 
     console.log({
-      who: "Repository.allWhere",
+      who: "Repo.allWhere",
       query,
     })
 

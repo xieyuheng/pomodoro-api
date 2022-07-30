@@ -19,31 +19,31 @@
 
 # refactor
 
-- `Repository` -- `createIndex` to side effect to `Model`
-- `Repository` -- query by schema
+- `Repo` -- `createIndex` to side effect to `Model`
+- `Repo` -- query by schema
 
 - [upstream] use `schema.keys()`
 
 - use `LIMIT 0 10` to implement `firstWhere`
 
-- be able to config `Repository` log behavior
+- be able to config `Repo` log behavior
 
-- `Repository` -- migration be able to `dropIndex`
+- `Repo` -- migration be able to `dropIndex`
 
   - FT.DROPINDEX myIdx
   - FT.DROPINDEX myIdx DD
 
-- `Repository` -- api about auto-complete
+- `Repo` -- api about auto-complete
 
   - https://redis.io/commands/ft.sugadd/
   - https://redis.io/commands/ft.sugget/
 
-- `Repository` -- `createIndex` from `ty.Schema`
+- `Repo` -- `createIndex` from `ty.Schema`
 
   - https://redis.io/commands/ft.create/
   - https://redis.io/docs/stack/search/design/indexing/
 
-- `Repository` -- `where`
+- `Repo` -- `where`
 
   - `Query` expression format to redis search query
   - learn from laravel Eloquent API
@@ -55,8 +55,8 @@
   - `where().firstOrFail()`
   - `where().all()`
 
-- abstract `Repository` and `RedisRepository`
-- abstract `Repository` and `FiRepository`
+- abstract `Repo` and `RedisRepo`
+- abstract `Repo` and `FiRepo`
 
 # learn
 

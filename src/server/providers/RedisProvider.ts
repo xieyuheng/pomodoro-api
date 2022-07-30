@@ -20,18 +20,18 @@ export class RedisProvider extends Provider {
     const redis = app.create(Redis)
     await redis.client.connect()
 
-    await redis.repository(EmailRegister).createIndex({
+    await redis.repo(EmailRegister).createIndex({
       confirmation_token: "tag casesensitive",
       verification_token: "tag casesensitive",
     })
 
-    await redis.repository(User).createIndex({
+    await redis.repo(User).createIndex({
       username: "tag casesensitive",
       name: "tag casesensitive",
       email: "tag casesensitive",
     })
 
-    await redis.repository(AccessToken).createIndex({
+    await redis.repo(AccessToken).createIndex({
       user_id: "tag casesensitive",
       token: "tag casesensitive",
     })

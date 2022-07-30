@@ -1,18 +1,14 @@
-import { Auth } from "@/states/Auth"
+import { useAuth } from "../../composables/useAuth"
 import { useLang } from "../../composables/useLang"
 import { useTheme } from "../../composables/useTheme"
 
 export class PageLayoutState {
   lang = useLang()
   theme = useTheme()
-  auth: Auth
+  auth = useAuth()
 
   classes = {
     transition: "transition delay-0 duration-500 ease-out",
-  }
-
-  constructor(options: { auth: Auth }) {
-    this.auth = options.auth
   }
 
   get appName(): string {

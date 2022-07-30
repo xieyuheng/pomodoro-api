@@ -36,7 +36,7 @@ describe("redis model", async () => {
 
   await redis.client.connect()
 
-  await redis.repository(User).createIndex({
+  await redis.repo(User).createIndex({
     name: "tag casesensitive",
     username: "tag casesensitive",
     address: {
@@ -46,7 +46,7 @@ describe("redis model", async () => {
   })
 
   test("crate and update", async () => {
-    const user = redis.repository(User).create({
+    const user = redis.repo(User).create({
       username: "xieyuheng",
       name: "Xie Yuheng",
       email: "hi@xieyuheng.com",
@@ -77,18 +77,18 @@ describe("redis model", async () => {
     await user.save()
 
     {
-      const found = await redis.repository(User).find(user.id)
+      const found = await redis.repo(User).find(user.id)
       expect(found).toBeInstanceOf(User)
       expect(found?.json()).toEqual(user.json())
     }
 
     {
-      await redis.repository(User).update(user.id, {
+      await redis.repo(User).update(user.id, {
         address: {
           city: "Yinchuan",
         },
       })
-      const found = await redis.repository(User).find(user.id)
+      const found = await redis.repo(User).find(user.id)
       expect(found).toBeInstanceOf(User)
       expect(found?.address).toEqual({
         country: "China",
@@ -100,21 +100,21 @@ describe("redis model", async () => {
   })
 
   test("exists and delete", async () => {
-    const user = redis.repository(User).create({
+    const user = redis.repo(User).create({
       username: "xieyuheng",
       name: "Xie Yuheng",
       email: "hi@xieyuheng.com",
     })
 
-    expect(await redis.repository(User).exists(user.id)).toBe(false)
+    expect(await redis.repo(User).exists(user.id)).toBe(false)
     await user.save()
-    expect(await redis.repository(User).exists(user.id)).toBe(true)
-    await redis.repository(User).delete(user.id)
-    expect(await redis.repository(User).exists(user.id)).toBe(false)
+    expect(await redis.repo(User).exists(user.id)).toBe(true)
+    await redis.repo(User).delete(user.id)
+    expect(await redis.repo(User).exists(user.id)).toBe(false)
   })
 
   test("query", async () => {
-    const user1 = redis.repository(User).create({
+    const user1 = redis.repo(User).create({
       username: "xieyuheng",
       name: "Xie Yuheng",
       email: "hi@xieyuheng.com",
@@ -126,7 +126,7 @@ describe("redis model", async () => {
 
     await user1.save()
 
-    const user2 = redis.repository(User).create({
+    const user2 = redis.repo(User).create({
       username: "yuhengxie",
       name: "Yu Hengxie ",
       email: "hello@xieyuheng.com",
@@ -139,9 +139,7 @@ describe("redis model", async () => {
     await user2.save()
 
     {
-      const found = await redis
-        .repository(User)
-        .allWhere({ username: "xieyuheng" })
+      const found = await redis.repo(User).allWhere({ username: "xieyuheng" })
 
       expect(found[0]?.json()).toEqual(user1.json())
       expect(found[0]?.id).toEqual(user1.id)
@@ -149,7 +147,7 @@ describe("redis model", async () => {
 
     {
       const found = await redis
-        .repository(User)
+        .repo(User)
         .allWhere({ address: { city: "Yinchuan" } })
 
       expect(found[0]?.json()).toEqual(user1.json())
@@ -158,7 +156,7 @@ describe("redis model", async () => {
 
     {
       const found = await redis
-        .repository(User)
+        .repo(User)
         .allWhere({ username: "xieyuheng", address: { city: "Yinchuan" } })
 
       expect(found[0]?.json()).toEqual(user1.json())
