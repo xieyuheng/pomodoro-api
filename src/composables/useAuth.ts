@@ -1,4 +1,4 @@
-import { defineAsyncState } from "@/framework/utils/defineAsyncState"
+import { defineState } from "@/framework/utils/defineState"
 import { Auth } from "../states/Auth"
 
-export const { use: useAuth } = defineAsyncState(() => new Auth().loadUser())
+export const { use: useAuth } = defineState(new Auth())

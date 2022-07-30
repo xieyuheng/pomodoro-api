@@ -5,15 +5,8 @@ import PageLayoutLang from "./PageLayoutLang.vue"
 import PageLayoutLure from "./PageLayoutLure.vue"
 import PageLayoutMenu from "./PageLayoutMenu.vue"
 import PageLayoutMenuMobile from "./PageLayoutMenuMobile.vue"
-import { useAuth } from "@/composables/useAuth"
 
 defineProps<{ state: State }>()
-
-const auth = ref(null)
-
-onMounted(async () => {
-  auth.value = await useAuth()
-})
 </script>
 
 <template>
@@ -32,8 +25,8 @@ onMounted(async () => {
     <div class="flex items-center space-x-2">
       <PageLayoutLang :state="state" />
       <div class="hidden md:block">
-        <PageLayoutLure v-if="!auth?.user" :state="state" />
-        <PageLayoutMenu v-if="auth?.user" :state="state" />
+        <PageLayoutLure v-if="!state.auth.user" :state="state" />
+        <PageLayoutMenu v-if="state.auth.user" :state="state" />
       </div>
 
       <div class="block md:hidden">

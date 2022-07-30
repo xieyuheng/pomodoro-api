@@ -2,13 +2,13 @@
 
 # frontend
 
-- `PageLayoutMenu` with `Logout` button
-- `PageLayoutMenu` show different menu items depends on current user or not
-- `PageLayoutMenuMobile` show different menu items depends on current user or not
+- use cookie instead of `localStorage` for ssr
 
 - `User` keep `username` and `email` unique
 
-- use cookie instead of `localStorage` for ssr
+- `PageLayoutMenu` with `Logout` button
+- `PageLayoutMenu` show different menu items depends on current user or not
+- `PageLayoutMenuMobile` show different menu items depends on current user or not
 
 - `components/login/LoginStart`
 - `components/login/Login.vue`

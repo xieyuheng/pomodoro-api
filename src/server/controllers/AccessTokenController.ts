@@ -9,11 +9,12 @@ export class AccessTokenController extends Controller {
     const app = await useApp()
     const redis = app.create(Redis)
 
-    const authorization = this.event.req.headers.authorization
+    const token = this.cookie("token")
 
-    if (!authorization?.startsWith("Bearer ")) return
+    console.log({ who: "AccessTokenController.auth", token })
 
-    const token = authorization.slice("Bearer ".length)
+    if (!token) return
+
     const accessToken = await redis
       .repository(AccessToken)
       .firstWhere({ token })

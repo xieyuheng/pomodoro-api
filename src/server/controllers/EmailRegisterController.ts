@@ -53,7 +53,6 @@ export class EmailRegisterController extends Controller {
     | {
         confirmed: true
         username: string
-        token: string
       }
     | {
         confirmed: false
@@ -85,10 +84,15 @@ export class EmailRegisterController extends Controller {
     })
     await accessToken.save()
 
+    this.setCookie("token", accessToken.token, {
+      HttpOnly: true,
+      sameSite: "lax",
+      maxAge: 60 * 60 * 24 * 7, // 1 week
+    })
+
     return {
       confirmed: true,
       username: model.username,
-      token: accessToken.token,
     }
   }
 

@@ -13,13 +13,12 @@ const router = useRouter()
 
 const { stop } = poll({
   target: () => {
-    console.log({ message: "RegisterVerifying" })
+    console.log({ who: "RegisterVerifying", message: "polling" })
     return $fetch(verifying.links.verify)
   },
   check: (data) => data.confirmed,
   then: async (data) => {
-    const auth = await useAuth()
-    auth.login(data.token)
+    const auth = useAuth()
     await auth.loadUser()
     router.replace({ path: "/" })
   },

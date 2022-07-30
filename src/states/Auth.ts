@@ -1,35 +1,39 @@
+import { useFetch } from "#imports"
 import { UserJson, UserSchema } from "../types/UserJson"
 
 export class Auth {
   user: UserJson | null = null
 
-  async loadUser(): Promise<this> {
-    if (this.user) return this
-    if (!this.token) return this
+  async loadUser(): Promise<void> {
+    if (this.user) return
 
-    const result = await $fetch("/api/user", {
+    const token = useCookie("token")
+
+    if (!token.value) {
+      console.log({
+        who: "loadUser",
+        message: "cookie is not set for token",
+      })
+
+      return
+    }
+
+    console.log({ token: token.value })
+
+    const { data } = await useFetch("/api/user", {
       headers: {
-        Authorization: `Bearer ${this.token}`,
+        authorization: `Bearer ${token.value}`,
       },
     })
 
-    if (!result) return this.logout()
+    console.log({ data: data.value })
 
-    this.user = UserSchema.validate(result)
-    return this
+    if (!data.value) return
+
+    this.user = UserSchema.validate(data.value)
   }
 
-  get token(): string | null {
-    return localStorage.getItem("AccessToken")
-  }
-
-  login(token: string) {
-    localStorage.setItem("AccessToken", token)
-  }
-
-  logout(): this {
-    localStorage.removeItem("AccessToken")
+  logout(): void {
     this.user = null
-    return this
   }
 }
