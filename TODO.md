@@ -23,8 +23,6 @@
 
 # frontend
 
-- `PageLayoutMenuMobile` -- show different menu items depends on current user or not
-
 - `components/login/LoginStart`
 - `components/login/Login.vue`
 

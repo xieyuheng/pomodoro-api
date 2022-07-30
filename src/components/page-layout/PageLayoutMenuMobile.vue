@@ -21,10 +21,10 @@ defineProps<{ state: State }>()
       leave-to-class="transform opacity-0 translate-x-6"
     >
       <MenuItems
-        class="fixed top-0 right-0 h-screen w-screen border-4 p-4"
+        class="flex flex-col justify-center fixed top-0 right-0 h-screen w-screen border-4 p-4"
         :class="[`bg-${state.theme.name}-400 border-${state.theme.name}-300`]"
       >
-        <div class="flex justify-end">
+        <div class="fixed top-4 right-4">
           <MenuItem v-slot="{ active }">
             <XIcon
               class="h-10 w-10 text-right"
@@ -36,7 +36,35 @@ defineProps<{ state: State }>()
           </MenuItem>
         </div>
 
-        <div class="py-10">
+        <div v-if="state.auth.user">
+          <div class="flex-col items-center space-y-1 p-2">
+            <Lang>
+              <template #zh>专注者</template>
+              <template #en>Logged in as</template>
+            </Lang>
+            <div class="font-semibold">@{{ state.auth.user.username }}</div>
+          </div>
+
+          <hr class="mt-4 mb-4" />
+
+          <MenuItem v-slot="{ active }">
+            <button
+              class="flex justify-center p-2 font-semibold"
+              :class="[
+                active && 'underline decoration-6',
+                active && `text-${state.theme.name}-200`,
+              ]"
+              @click="state.auth.logout()"
+            >
+              <Lang>
+                <template #zh>退出</template>
+                <template #en>Logout</template>
+              </Lang>
+            </button>
+          </MenuItem>
+        </div>
+
+        <div v-else>
           <MenuItem v-slot="{ active }">
             <Link
               href="/register"
