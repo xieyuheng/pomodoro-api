@@ -5,8 +5,8 @@ import PageLayoutHeader from "./PageLayoutHeader.vue"
 const state = reactive(new State())
 await state.auth.loadUser()
 
-const headers = useRequestHeaders(["cookie"])
-console.log(headers.cookie)
+
+console.log(useCookie("cookie"))
 </script>
 
 <template>
