@@ -1,10 +1,5 @@
 # backend
 
-- `api/login`
-- `api/login/[token]/confirm`
-- `api/login/[token]/verify`
-- `api/login/[token]/revoke`
-
 - `controllers/EmailLoginController` -- `create`
 - `controllers/EmailLoginController` -- `verify`
 - `controllers/EmailLoginController` -- `confirm`
