@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { PageLayoutState as State } from "./PageLayoutState"
 import PageLayoutHeader from "./PageLayoutHeader.vue"
+import { useAuth } from "@/composables/useAuth"
 
-const state = new State()
-await state.auth.loadUser()
+const state = reactive(new State({ auth: await useAuth().loadUser() }))
 </script>
 
 <template>

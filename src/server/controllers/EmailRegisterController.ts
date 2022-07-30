@@ -85,7 +85,6 @@ export class EmailRegisterController extends Controller {
     await accessToken.save()
 
     this.setCookie("token", accessToken.token, {
-      httpOnly: true,
       sameSite: "lax",
       maxAge: 60 * 60 * 24 * 7, // 1 week
     })

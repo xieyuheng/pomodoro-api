@@ -4,8 +4,8 @@ import { UserJson, UserSchema } from "../types/UserJson"
 export class Auth {
   user: UserJson | null = null
 
-  async loadUser(): Promise<void> {
-    if (this.user) return
+  async loadUser(): Promise<this> {
+    if (this.user) return this
 
     const headers = useRequestHeaders(["cookie"])
     const { data } = await useFetch("/api/user", {
@@ -13,13 +13,16 @@ export class Auth {
     })
 
     console.log({
+      who: "Auth.loadUser",
       cookie: headers.cookie,
       data: data.value,
     })
 
-    if (!data.value) return
+    if (!data.value) return this
 
     this.user = UserSchema.validate(data.value)
+
+    return this
   }
 
   logout(): void {
