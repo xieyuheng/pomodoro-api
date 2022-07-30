@@ -4,7 +4,12 @@
 
 const router = useRouter()
 
-defineProps<{ href?: string; target?: string }>()
+defineProps<{
+  href?: string
+  target?: string
+  class?: any
+  style?: any
+}>()
 </script>
 
 <template>

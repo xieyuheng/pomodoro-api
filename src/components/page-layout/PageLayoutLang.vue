@@ -1,16 +1,12 @@
 <script setup lang="ts">
-import { PageLayoutState as State } from "./PageLayoutState"
 import {
   Listbox,
   ListboxButton,
-  ListboxOptions,
   ListboxOption,
+  ListboxOptions,
 } from "@headlessui/vue"
-import {
-  TranslateIcon,
-  CheckIcon,
-  SelectorIcon,
-} from "@heroicons/vue/outline/index.js"
+import { CheckIcon, SelectorIcon } from "@heroicons/vue/outline/index.js"
+import { PageLayoutState as State } from "./PageLayoutState"
 
 defineProps<{ state: State }>()
 </script>

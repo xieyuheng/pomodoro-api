@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { PomodoroState as State } from "./PomodoroState"
 import { PlusIcon } from "@heroicons/vue/outline/index.js"
+import { PomodoroState as State } from "./PomodoroState"
 
 defineProps<{ state: State }>()
 </script>
@@ -21,7 +21,7 @@ defineProps<{ state: State }>()
         :options="{
           placeholder: state.lang.zh ? '新的任务' : 'Create a new task',
           onCancel: () => {
-            state.inputTaskTitle = null
+            state.inputTaskTitle = undefined
             state.editing = false
           },
           onSave: () => {

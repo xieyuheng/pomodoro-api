@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { PomodoroState as State } from "./PomodoroState"
 import { callWithConfirm } from "@/framework/utils/callWithConfirm"
+import { PomodoroState as State } from "./PomodoroState"
 
 defineProps<{ state: State }>()
 </script>

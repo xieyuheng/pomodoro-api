@@ -11,9 +11,9 @@ export type PomodoroStateJson = {
   timer: TimerJson
   playing: boolean
   editing: boolean
-  currentTesk: Task | null
+  currentTesk?: Task
   tasks: Array<Task>
-  inputTaskTitle: string | null
+  inputTaskTitle?: string
   settings: Settings
 }
 
@@ -22,9 +22,9 @@ export class PomodoroState {
   timer: Timer
   playing = false
   editing = false
-  currentTesk: Task | null = null
+  currentTesk?: Task
   tasks: Array<Task> = []
-  inputTaskTitle: string | null = null
+  inputTaskTitle?: string
   settings: Settings =
     config.mode === "development" ? testingSettings : defaultSettings
 
@@ -101,16 +101,16 @@ export class PomodoroState {
 
     if (this.currentTesk === null) {
       this.currentTesk = newTask
-      this.inputTaskTitle = null
+      this.inputTaskTitle = undefined
     } else {
       this.tasks.push(newTask)
-      this.inputTaskTitle = null
+      this.inputTaskTitle = undefined
     }
   }
 
   deleteTask(id: number) {
     if (this.currentTesk?.id === id) {
-      this.currentTesk = null
+      this.currentTesk = undefined
       if (this.tasks[0]) {
         this.selectTask(this.tasks[0].id)
       }

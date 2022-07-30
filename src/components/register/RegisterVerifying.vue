@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { RegisterState as State } from "./RegisterState"
-import { Verifying } from "./models/Verifying"
 import { poll } from "@/framework/utils/poll"
+import { Verifying } from "./models/Verifying"
+import { RegisterState as State } from "./RegisterState"
 
 const { state, verifying } = defineProps<{
   state: State
@@ -10,13 +10,13 @@ const { state, verifying } = defineProps<{
 
 const router = useRouter()
 
-const { stop } = poll({
+const { stop } = poll<{ confirmed: boolean }>({
   target: () => {
     console.log({ who: "RegisterVerifying", message: "polling" })
     return $fetch(verifying.links.verify)
   },
   check: (data) => data.confirmed,
-  then: async (data) => {
+  then: async () => {
     const auth = useAuth()
     await auth.loadUser()
     router.replace({ path: "/" })

@@ -1,11 +1,13 @@
 <script setup lang="ts">
-import { PomodoroState as State } from "./PomodoroState"
-import { Task } from "./models/Task"
 import { DotsVerticalIcon } from "@heroicons/vue/outline/index.js"
+import { Task } from "./models/Task"
+import { PomodoroState as State } from "./PomodoroState"
 
 const props = defineProps<{ state: State; task: Task }>()
 
 const locals = reactive({ inputTitle: props.task.title })
+
+const alert = window.alert
 </script>
 
 <template>

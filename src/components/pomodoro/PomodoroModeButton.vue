@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { PomodoroState as State } from "./PomodoroState"
-import { ModeKind } from "./models/Mode"
 import { callWithConfirm } from "@/framework/utils/callWithConfirm"
+import { ModeKind } from "./models/Mode"
+import { PomodoroState as State } from "./PomodoroState"
 
 defineProps<{ state: State; kind: ModeKind }>()
 </script>

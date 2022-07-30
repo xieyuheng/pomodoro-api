@@ -26,7 +26,9 @@ defineProps<{
       type="text"
       :value="modelValue"
       :modelValue="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="
+        $emit('update:modelValue', ($event.target as HTMLInputElement).value)
+      "
       :placeholder="options.placeholder"
       @keydown.enter="
         () => {

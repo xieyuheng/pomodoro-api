@@ -5,8 +5,6 @@ export default defineNuxtConfig({
   transpile: ["@heroicons/vue", "tailwindcss"],
   srcDir: "src/",
   modules: ["@nuxtjs/tailwindcss"],
-  typescript: { strict: true },
-  vite: {
-    server: { watch: { usePolling: true } },
-  },
+  typescript: { typeCheck: true, strict: true },
+  vite: { server: { watch: { usePolling: true } } },
 })

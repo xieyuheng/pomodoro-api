@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { PomodoroState as State } from "./PomodoroState"
 import { Task } from "./models/Task"
+import { PomodoroState as State } from "./PomodoroState"
 
 const props = defineProps<{ state: State; task: Task }>()
 

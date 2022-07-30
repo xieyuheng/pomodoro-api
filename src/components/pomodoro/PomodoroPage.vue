@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { PomodoroState as State } from "./PomodoroState"
 
-const state = reactive(new State())
+const state = reactive(new State()) as State
 
 onMounted(() => state.setupNotification())
 </script>

@@ -5,8 +5,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "check": "tsc --noEmit",
-    "watch": "tsc --noEmit --watch",
+    "check": "vue-tsc --noEmit",
+    "watch": "vue-tsc --noEmit --watch",
     "test": "vitest --run",
     "format": "prettier src --write"
   },
@@ -18,7 +18,8 @@
     "nuxt": "^3.0.0-rc.6",
     "prettier": "^2.7.1",
     "typescript": "^4.7.4",
-    "vitest": "^0.19.1"
+    "vitest": "^0.19.1",
+    "vue-tsc": "^0.39.0"
   },
   "dependencies": {
     "@headlessui/vue": "^1.6.7",
