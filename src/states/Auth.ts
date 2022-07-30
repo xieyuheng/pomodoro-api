@@ -1,28 +1,31 @@
-import { useFetch } from "#imports"
 import { UserJson, UserSchema } from "../types/UserJson"
+
+function isServer() {
+  return typeof window === "undefined"
+}
 
 export class Auth {
   user: UserJson | null = null
 
-  async loadUser(): Promise<this> {
-    if (this.user) return this
+  async loadUser(): Promise<void> {
+    if (isServer()) return this.loadUserServer()
+
+    if (this.user) return
+
+    const data = await $fetch("/api/user")
+    if (!data) return
+
+    this.user = UserSchema.validate(data)
+  }
+
+  async loadUserServer(): Promise<void> {
+    if (this.user) return
 
     const headers = useRequestHeaders(["cookie"])
-    const { data } = await useFetch("/api/user", {
-      headers: headers as any,
-    })
+    const data = await $fetch("/api/user", { headers: headers as any })
+    if (!data) return
 
-    console.log({
-      who: "Auth.loadUser",
-      cookie: headers.cookie,
-      data: data.value,
-    })
-
-    if (!data.value) return this
-
-    this.user = UserSchema.validate(data.value)
-
-    return this
+    this.user = UserSchema.validate(data)
   }
 
   logout(): void {

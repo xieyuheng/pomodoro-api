@@ -2,8 +2,6 @@
 
 # frontend
 
-- debug the use of cookie
-
 - `User` keep `username` and `email` unique
 
 - `PageLayoutMenu` with `Logout` button
