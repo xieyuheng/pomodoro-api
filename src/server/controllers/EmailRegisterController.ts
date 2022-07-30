@@ -78,13 +78,13 @@ export class EmailRegisterController extends Controller {
     const user = await redis.repo(User).create(model)
     await user.save()
 
-    const accessToken = await redis.repo(AccessToken).create({
+    const access = await redis.repo(AccessToken).create({
       user_id: user.id,
       token: crypto.randomBytes(32).toString("hex"),
     })
-    await accessToken.save()
+    await access.save()
 
-    this.setCookie("token", accessToken.token, {
+    this.setCookie("token", access.token, {
       sameSite: "lax",
       maxAge: 60 * 60 * 24 * 7, // 1 week
     })
