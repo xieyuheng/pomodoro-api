@@ -8,7 +8,11 @@ import PageLayoutMenuMobile from "./PageLayoutMenuMobile.vue"
 
 defineProps<{ state: State }>()
 
-const user = false
+const user = ref(null)
+
+onMounted(async () => {
+  user.value = await useCurrentUser()
+})
 </script>
 
 <template>

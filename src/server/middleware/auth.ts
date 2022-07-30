@@ -2,12 +2,5 @@ import { AccessTokenController } from "@/server/controllers/AccessTokenControlle
 
 export default defineEventHandler(async (event) => {
   const controller = new AccessTokenController(event)
-
-  const headers = useRequestHeaders(["authorization"])
-  if (headers.authorization?.startsWith("Bearer ")) {
-    const token = headers.authorization.slice("Bearer ".length)
-    const auth = await controller.auth(token)
-    console.log({ auth })
-    event.context.auth = auth
-  }
+  await controller.auth()
 })

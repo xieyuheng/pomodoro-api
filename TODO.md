@@ -1,14 +1,8 @@
 # backend
 
-- `api/user`
-
 # frontend
 
-- `RegisterVerifying` -- save current user to `localStorage`
-
-  - `useAuth` return function to help to set auth header
-
-- `PageLayoutHeader` show `PageLayoutMenu` if there is current user
+- `PageLayoutMenu` with `Logout` button
 
 - `components/login/LoginStart`
 - `components/login/Login.vue`
