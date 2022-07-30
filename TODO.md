@@ -1,17 +1,3 @@
-# backend
-
-- `controllers/EmailLoginController` -- `create`
-- `controllers/EmailLoginController` -- `verify`
-- `controllers/EmailLoginController` -- `confirm`
-- `controllers/EmailLoginController` -- `revoke`
-
-- add `expire` to `EmailRegister.create`
-- add `expire` to `EmailLogin.create`
-
-- `User` keep `username` and `email` unique
-
-  - `useForm` to handle backend error
-
 # frontend
 
 - `components/login/LoginStart.vue`
@@ -20,6 +6,18 @@
 - be able to config `settings.modes`
 
 - be able to save `tasks`
+
+# backend
+
+- add `expire` to `EmailRegister.create`
+- add `expire` to `EmailLogin.create`
+- add `expire` to `AccessToken.create`
+
+- `controllers/EmailLoginController` -- `create` -- return error for form
+
+- `User.create` keep `username` and `email` unique
+
+  - [maybe] `useForm` to handle backend error
 
 # refactor
 

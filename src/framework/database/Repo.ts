@@ -64,10 +64,10 @@ export class Repo<TModel extends Model<any>> {
     await this.client.json.SET(key, "$", model.json())
   }
 
-  async find(id: string): Promise<TModel | null> {
+  async find(id: string): Promise<TModel | undefined> {
     const key = this.formatKey(id)
     const json = await this.client.json.GET(key)
-    if (json === null) return null
+    if (json === null) return undefined
     return this.create(this.schema.validate(json), id)
   }
 
@@ -183,7 +183,9 @@ export class Repo<TModel extends Model<any>> {
     })
   }
 
-  async firstWhere(json: DeepPartial<JsonOfModel<TModel>>): Promise<TModel> {
+  async firstWhere(
+    json: DeepPartial<JsonOfModel<TModel>>
+  ): Promise<TModel | undefined> {
     const models = await this.allWhere(json)
     return models[0]
   }

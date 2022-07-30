@@ -56,7 +56,7 @@ export class EmailRegisterController extends Controller {
       verification_token: token,
     })
 
-    if (model === null) return undefined
+    if (!model) return undefined
     if (model.revoked_at) return undefined
     if (model.verified_at) return undefined
 
@@ -65,16 +65,21 @@ export class EmailRegisterController extends Controller {
     model.verified_at = Date.now()
     await model.save()
 
-    const user = await redis.repo(User).createAndSave(model)
+    const user = await redis.repo(User).createAndSave({
+      username: model.username,
+      name: model.name,
+      email: model.email,
+    })
 
     const access = await redis.repo(AccessToken).createAndSave({
       user_id: user.id,
       token: crypto.randomBytes(32).toString("hex"),
     })
 
+    const oneWeek = 60 * 60 * 24 * 7
     this.setCookie("token", access.token, {
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7, // 1 week
+      maxAge: oneWeek,
     })
 
     return true
@@ -88,7 +93,7 @@ export class EmailRegisterController extends Controller {
       confirmation_token: token,
     })
 
-    if (model === null) return undefined
+    if (!model) return undefined
     if (model.revoked_at) return undefined
     if (model.verified_at) return undefined
     if (model.confirmed_at) return undefined
@@ -107,7 +112,7 @@ export class EmailRegisterController extends Controller {
       verification_token: token,
     })
 
-    if (model === null) return undefined
+    if (!model) return undefined
     if (model.revoked_at) return undefined
     if (model.verified_at) return undefined
     if (model.confirmed_at) return undefined

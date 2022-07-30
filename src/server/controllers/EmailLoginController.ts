@@ -27,6 +27,10 @@ export class EmailLoginController extends Controller {
       confirmation_code: crypto.randomBytes(3).toString("hex"),
     }
 
+    const user = await redis.repo(User).firstWhere({ email: json.email })
+    // TODO return error for form
+    if (!user) return undefined
+
     const model = await redis.repo(EmailLogin).createAndSave(json)
 
     const confirmation_link = `${config.base_url}/api/login/${model.confirmation_token}/confirm`
@@ -39,7 +43,7 @@ export class EmailLoginController extends Controller {
     })
 
     return {
-      username: "TODO",
+      username: user.username,
       email: model.email,
       confirmation_code: model.confirmation_code,
       verification_token: model.verification_token,
@@ -54,7 +58,7 @@ export class EmailLoginController extends Controller {
       verification_token: token,
     })
 
-    if (model === null) return undefined
+    if (!model) return undefined
     if (model.revoked_at) return undefined
     if (model.verified_at) return undefined
 
@@ -63,16 +67,18 @@ export class EmailLoginController extends Controller {
     model.verified_at = Date.now()
     await model.save()
 
-    const user = await redis.repo(User).createAndSave(model)
+    const user = await redis.repo(User).firstWhere({ email: model.email })
+    if (!user) return undefined
 
     const access = await redis.repo(AccessToken).createAndSave({
       user_id: user.id,
       token: crypto.randomBytes(32).toString("hex"),
     })
 
+    const oneWeek = 60 * 60 * 24 * 7
     this.setCookie("token", access.token, {
       sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 7, // 1 week
+      maxAge: oneWeek,
     })
 
     return true
@@ -86,7 +92,7 @@ export class EmailLoginController extends Controller {
       confirmation_token: token,
     })
 
-    if (model === null) return undefined
+    if (!model) return undefined
     if (model.revoked_at) return undefined
     if (model.verified_at) return undefined
     if (model.confirmed_at) return undefined
@@ -105,7 +111,7 @@ export class EmailLoginController extends Controller {
       verification_token: token,
     })
 
-    if (model === null) return undefined
+    if (!model) return undefined
     if (model.revoked_at) return undefined
     if (model.verified_at) return undefined
     if (model.confirmed_at) return undefined
