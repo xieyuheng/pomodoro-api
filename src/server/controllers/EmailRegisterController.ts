@@ -49,16 +49,7 @@ export class EmailRegisterController extends Controller {
     }
   }
 
-  async verify(token: string): Promise<
-    | {
-        confirmed: true
-        username: string
-      }
-    | {
-        confirmed: false
-      }
-    | undefined
-  > {
+  async verify(token: string): Promise<boolean | undefined> {
     const app = await useApp()
     const redis = app.create(Redis)
 
@@ -70,7 +61,7 @@ export class EmailRegisterController extends Controller {
     if (model.revoked_at) return undefined
     if (model.verified_at) return undefined
 
-    if (!model.confirmed_at) return { confirmed: false }
+    if (!model.confirmed_at) return false
 
     model.verified_at = Date.now()
     await model.save()
@@ -89,10 +80,7 @@ export class EmailRegisterController extends Controller {
       maxAge: 60 * 60 * 24 * 7, // 1 week
     })
 
-    return {
-      confirmed: true,
-      username: model.username,
-    }
+    return true
   }
 
   async confirm(token: string): Promise<undefined> {

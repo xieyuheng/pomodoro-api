@@ -10,12 +10,12 @@ const { state, verifying } = defineProps<{
 
 const router = useRouter()
 
-const { stop } = poll<{ confirmed: boolean }>({
+const { stop } = poll<boolean>({
   target: () => {
     console.log({ who: "RegisterVerifying", message: "polling" })
     return $fetch(verifying.links.verify)
   },
-  check: (data) => data.confirmed,
+  check: (confirmed) => confirmed,
   then: async () => {
     const auth = useAuth()
     await auth.loadUser()

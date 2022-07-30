@@ -30,7 +30,7 @@ export class EmailLoginController extends Controller {
     const model = await redis.repo(EmailLogin).create(json)
     await model.save()
 
-    const confirmation_link = `${config.base_url}/api/register/${model.confirmation_token}/confirm`
+    const confirmation_link = `${config.base_url}/api/login/${model.confirmation_token}/confirm`
 
     await mailer.send({
       to: model.email,
@@ -47,15 +47,7 @@ export class EmailLoginController extends Controller {
     }
   }
 
-  async verify(token: string): Promise<
-    | {
-        confirmed: true
-      }
-    | {
-        confirmed: false
-      }
-    | undefined
-  > {
+  async verify(token: string): Promise<boolean | undefined> {
     const app = await useApp()
     const redis = app.create(Redis)
 
@@ -67,7 +59,7 @@ export class EmailLoginController extends Controller {
     if (model.revoked_at) return undefined
     if (model.verified_at) return undefined
 
-    if (!model.confirmed_at) return { confirmed: false }
+    if (!model.confirmed_at) return false
 
     model.verified_at = Date.now()
     await model.save()
@@ -86,7 +78,7 @@ export class EmailLoginController extends Controller {
       maxAge: 60 * 60 * 24 * 7, // 1 week
     })
 
-    return { confirmed: true }
+    return true
   }
 
   async confirm(token: string): Promise<undefined> {
@@ -105,7 +97,7 @@ export class EmailLoginController extends Controller {
     model.confirmed_at = Date.now()
     await model.save()
 
-    await this.redirect("/notifications/register-email-confirmation-success")
+    await this.redirect("/notifications/login-email-confirmation-success")
   }
 
   async revoke(token: string): Promise<undefined> {
