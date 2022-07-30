@@ -1,6 +1,4 @@
-<script setup>
-import { useLang } from "../../composables/useLang"
-
+<script setup lang="ts">
 const lang = useLang()
 </script>
 

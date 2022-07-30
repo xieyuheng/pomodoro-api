@@ -1,6 +1,6 @@
-import { useAuth } from "../../composables/useAuth"
-import { useLang } from "../../composables/useLang"
-import { useTheme } from "../../composables/useTheme"
+import { useAuth } from "@/composables/useAuth"
+import { useLang } from "@/composables/useLang"
+import { useTheme } from "@/composables/useTheme"
 
 export class PageLayoutState {
   lang = useLang()

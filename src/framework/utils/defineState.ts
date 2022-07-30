@@ -1,16 +1,14 @@
 import { reactive } from "vue"
 import { isServer } from "./isServer"
 
-export function defineState<T>(state: T): { use: () => T } {
+export function defineState<T>(state: T): () => T {
   let initialized = false
 
-  function use() {
+  return () => {
     if (initialized || isServer()) return state
 
     state = reactive<any>(state)
     initialized = true
     return state
   }
-
-  return { use }
 }

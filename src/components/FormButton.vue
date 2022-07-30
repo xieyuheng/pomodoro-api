@@ -1,7 +1,4 @@
 <script setup lang="ts">
-import { useLang } from "../composables/useLang"
-import { useTheme } from "../composables/useTheme"
-
 defineProps<{ disabled?: boolean }>()
 
 const lang = useLang()
