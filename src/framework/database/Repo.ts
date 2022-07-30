@@ -23,6 +23,12 @@ export class Repo<TModel extends Model<any>> {
     return model
   }
 
+  async createAndSave(json: JsonOfModel<TModel>, id?: string): Promise<TModel> {
+    const model = await this.create(json, id)
+    await model.save()
+    return model
+  }
+
   private assignProperties(model: TModel, json: JsonOfModel<TModel>): void {
     const keys = Object.keys(this.schema.properties)
     for (const key of keys) {

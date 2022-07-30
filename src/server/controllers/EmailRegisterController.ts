@@ -29,8 +29,7 @@ export class EmailRegisterController extends Controller {
       confirmation_code: crypto.randomBytes(3).toString("hex"),
     }
 
-    const model = await redis.repo(EmailRegister).create(json)
-    await model.save()
+    const model = await redis.repo(EmailRegister).createAndSave(json)
 
     const confirmation_link = `${config.base_url}/api/register/${model.confirmation_token}/confirm`
 
@@ -66,14 +65,12 @@ export class EmailRegisterController extends Controller {
     model.verified_at = Date.now()
     await model.save()
 
-    const user = await redis.repo(User).create(model)
-    await user.save()
+    const user = await redis.repo(User).createAndSave(model)
 
-    const access = await redis.repo(AccessToken).create({
+    const access = await redis.repo(AccessToken).createAndSave({
       user_id: user.id,
       token: crypto.randomBytes(32).toString("hex"),
     })
-    await access.save()
 
     this.setCookie("token", access.token, {
       sameSite: "lax",
