@@ -1,5 +1,4 @@
 import { VerifyingJson } from "@/types/VerifyingJson"
-import { Verifying } from "./models/Verifying"
 
 export class RegisterState {
   lang = useLang()
@@ -9,5 +8,19 @@ export class RegisterState {
 
   verify(json: VerifyingJson) {
     this.verifying = new Verifying(json)
+  }
+}
+
+export interface Verifying extends VerifyingJson {}
+export class Verifying {
+  constructor(json: VerifyingJson) {
+    Object.assign(this, json)
+  }
+
+  get links() {
+    return {
+      verify: `/api/register/${this.verification_token}/verify`,
+      revoke: `/api/register/${this.verification_token}/revoke`,
+    }
   }
 }
