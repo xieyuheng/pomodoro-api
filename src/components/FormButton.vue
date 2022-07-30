@@ -1,8 +1,8 @@
 <script setup lang="ts">
-defineProps<{ disabled?: boolean }>()
-
 const lang = useLang()
 const theme = useTheme()
+
+defineProps<{ disabled?: boolean }>()
 </script>
 
 <template>

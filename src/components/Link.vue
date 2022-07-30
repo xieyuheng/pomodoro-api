@@ -2,9 +2,9 @@
 // We can not use <NuxtLink> with headlessui:
 // - https://headlessui.com/react/menu#integrating-with-next-js
 
-defineProps<{ href?: string; target?: string }>()
-
 const router = useRouter()
+
+defineProps<{ href?: string; target?: string }>()
 </script>
 
 <template>

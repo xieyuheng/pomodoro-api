@@ -1,9 +1,7 @@
 <script setup lang="ts">
-defineProps<{
-  name: string
-  type?: string
-  required?: boolean
-}>()
+const theme = useTheme()
+
+defineProps<{ name: string; type?: string; required?: boolean }>()
 </script>
 
 <template>
