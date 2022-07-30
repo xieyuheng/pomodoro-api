@@ -1,4 +1,5 @@
-import { CompatibilityEvent, sendRedirect, useBody } from "h3"
+import { CompatibilityEvent, sendRedirect, useBody, setCookie } from "h3"
+import { CookieSerializeOptions } from "cookie"
 
 export class Controller {
   constructor(public event: CompatibilityEvent) {}
@@ -17,5 +18,9 @@ export class Controller {
 
   async redirect(location: string) {
     return await sendRedirect(this.event, location)
+  }
+
+  setCookie(name: string, value: string, options: CookieSerializeOptions) {
+    setCookie(this.event, name, value, options)
   }
 }
