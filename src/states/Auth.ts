@@ -8,7 +8,9 @@ export class Auth {
   user: UserJson | null = null
 
   async loadUser(): Promise<void> {
-    if (isServer()) return this.loadUserServer()
+    if (isServer()) {
+      return this.loadUserServer()
+    }
 
     if (this.user) return
 
@@ -29,6 +31,8 @@ export class Auth {
   }
 
   logout(): void {
+    const token = useCookie("token")
+    token.value = ""
     this.user = null
   }
 }
