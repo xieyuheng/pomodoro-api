@@ -146,6 +146,9 @@ export class Repo<TModel extends Model<any>> {
       this.indexKey,
       "ON",
       "JSON",
+      "PREFIX",
+      "1",
+      `${this.clazz.name}:`,
       "SCHEMA",
       ...fields.flatMap((field) => field.split(" ")),
     ]

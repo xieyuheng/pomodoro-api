@@ -1,7 +1,8 @@
 # frontend
 
-- `components/login/LoginStart.vue` -- fix cookie login
 - `useForm` -- handle backend error
+
+- frontend middleware to redirect from `/register` and `/login` for authed user
 
 - be able to config `settings.modes`
 - be able to save `tasks`
