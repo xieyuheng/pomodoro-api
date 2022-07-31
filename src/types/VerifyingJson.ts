@@ -1,6 +1,10 @@
-export interface VerifyingJson {
-  username: string
-  email: string
-  confirmation_code: string
-  verification_token: string
-}
+import { Obtain, ty } from "@xieyuheng/ty"
+
+export const VerifyingSchema = ty.object({
+  username: ty.string(),
+  email: ty.string(),
+  confirmation_code: ty.string(),
+  verification_token: ty.string(),
+})
+
+export type VerifyingJson = Obtain<typeof VerifyingSchema>

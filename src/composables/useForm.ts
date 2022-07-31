@@ -2,24 +2,21 @@ import { isServer } from "@/framework/utils/isServer"
 
 type Values = Record<string, string>
 
-export function useForm(values: Values): Form {
+export function useForm<T extends Values>(values: T) {
   const form = new Form(values)
-
-  if (isServer()) return form
-
-  return reactive(form)
+  return isServer() ? form : reactive(form)
 }
 
-export class Form {
+export class Form<T extends Values> {
   processing = false
   // errors: Values =
 
-  constructor(public values: Values) {}
+  constructor(public values: T) {}
 
-  async postByEvent(event: any, url: string, options?: Record<string, any>) {
-    const target = event.target
+  async postByEvent(event: Event, url: string, options?: Record<string, any>) {
+    const target: any = event.target
     for (const key of Object.keys(this.values)) {
-      this.values[key] = target[key].value
+      ;(this.values as any)[key] = target[key].value
     }
 
     return await this.post(url, options)

@@ -9,9 +9,8 @@ const form = useForm({
   email: "",
 })
 
-async function handleSubmit(event: any) {
-  const result: any = await form.postByEvent(event, "/api/register")
-  state.verify(result)
+async function handleSubmit(event: Event) {
+  state.verify(await form.postByEvent(event, "/api/register"))
 }
 </script>
 
