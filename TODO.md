@@ -1,10 +1,9 @@
 # frontend
 
-- `components/login/LoginStart.vue` -- use `form`
-- [maybe] `useForm` to handle backend error
+- `components/login/LoginStart.vue` -- use `useForm`
+- `useForm` -- handle backend error
 
 - be able to config `settings.modes`
-
 - be able to save `tasks`
 
 # backend

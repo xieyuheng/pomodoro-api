@@ -1,37 +1,23 @@
 <script setup lang="ts">
 import { RegisterState as State } from "./RegisterState"
 
-defineProps<{ state: State }>()
+const { state } = defineProps<{ state: State }>()
 
-const processing = ref(false)
+const form = useForm({
+  username: "",
+  name: "",
+  email: "",
+})
 
-async function handleSubmit(event: Event, state: State) {
-  processing.value = true
-
-  const target = event.target as typeof event.target & {
-    username: { value: string }
-    name: { value: string }
-    email: { value: string }
-  }
-
-  const username = target.username.value
-  const name = target.name.value
-  const email = target.email.value
-
-  state.verify(
-    await $fetch("/api/register", {
-      method: "POST",
-      body: { username, name, email },
-    })
-  )
-
-  processing.value = false
+async function handleSubmit(event: any) {
+  const result: any = await form.postByEvent(event, "/api/register")
+  state.verify(result)
 }
 </script>
 
 <template>
   <form
-    @submit.prevent="(event) => handleSubmit(event, state)"
+    @submit.prevent="handleSubmit"
     class="flex w-full flex-col space-y-2 text-xl sm:w-auto"
   >
     <Lang class="font-logo text-3xl font-semibold">
@@ -77,7 +63,7 @@ async function handleSubmit(event: Event, state: State) {
       <hr class="border-t border-white" />
     </div>
 
-    <FormButton :disabled="processing">
+    <FormButton :disabled="form.processing">
       <Lang>
         <template #zh>注册</template>
         <template #en>Register</template>

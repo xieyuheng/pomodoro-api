@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { LoginState as State } from "./LoginState"
 import {
-  DotsCircleHorizontalIcon,
   ArrowCircleRightIcon,
+  DotsCircleHorizontalIcon,
 } from "@heroicons/vue/outline/index.js"
+import { LoginState as State } from "./LoginState"
 
 defineProps<{ state: State }>()
 
