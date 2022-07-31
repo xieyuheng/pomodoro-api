@@ -1,5 +1,3 @@
-- frontend middleware to redirect from `/register` and `/login` for authed user
-
 - add `expire` to `EmailRegister.create`
 
   - show time couter in `RegisterVerifying`
