@@ -9,7 +9,7 @@ export function useForm<T extends Values>(values: T) {
 
 export class Form<T extends Values> {
   processing = false
-  // errors: Values =
+  errors: Partial<T> = {}
 
   constructor(public values: T) {}
 

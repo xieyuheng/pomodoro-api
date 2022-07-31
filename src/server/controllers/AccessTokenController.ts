@@ -15,7 +15,8 @@ export class AccessTokenController extends Controller {
     const access = await redis.repo(AccessToken).firstWhere({ token })
     if (!access) return
 
-    const user = await redis.repo(User).findOrFail(access.user_id)
+    const user = await redis.repo(User).find(access.user_id)
+    if (!user) return
 
     this.event.context.auth = { user }
   }

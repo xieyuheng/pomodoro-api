@@ -20,4 +20,13 @@ export class Redis {
   formatHash(record: Record<string, string>): Array<string> {
     return Object.entries(record).flatMap(([key, value]) => [key, value])
   }
+
+  escapeTag(tag: string) {
+    const chars = " .!@$%^&*-+=".split("")
+    for (const char of chars) {
+      tag = tag.replaceAll(char, "\\" + char)
+    }
+
+    return tag
+  }
 }

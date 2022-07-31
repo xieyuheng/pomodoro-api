@@ -5,41 +5,18 @@ import {
 } from "@heroicons/vue/outline/index.js"
 import { LoginState as State } from "./LoginState"
 
-defineProps<{ state: State }>()
+const { state } = defineProps<{ state: State }>()
 
-const processing = ref(false)
+const form = useForm({ email: "" })
 
-const form = {
-  email: "todo",
-  processing: false,
-  errors: {
-    email: "todo",
-  },
-}
-
-async function handleSubmit(event: Event, state: State) {
-  processing.value = true
-
-  const target = event.target as typeof event.target & {
-    email: { value: string }
-  }
-
-  const email = target.email.value
-
-  state.verify(
-    await $fetch("/api/login", {
-      method: "POST",
-      body: { email },
-    })
-  )
-
-  processing.value = false
+async function handleSubmit() {
+  state.verify(await form.post("/api/login"))
 }
 </script>
 
 <template>
   <form
-    @submit.prevent="(event) => handleSubmit(event, state)"
+    @submit.prevent="handleSubmit"
     class="flex w-full flex-col pt-20 space-y-2 text-xl sm:w-auto"
   >
     <div class="flex flex-col pb-2">
@@ -68,6 +45,7 @@ async function handleSubmit(event: Event, state: State) {
     <div class="flex flex-col">
       <div class="flex">
         <input
+          v-model.trim="form.values.email"
           id="email"
           name="email"
           autocomplete="email"
@@ -82,7 +60,6 @@ async function handleSubmit(event: Event, state: State) {
           :placeholder="state.lang.zh ? '电子邮箱' : 'Email'"
           spellcheck="false"
           required
-          v-model.trim="form.email"
         />
 
         <button
@@ -100,7 +77,7 @@ async function handleSubmit(event: Event, state: State) {
         </button>
       </div>
 
-      <div v-if="form.errors.email" class="text-xm py-1 text-orange-500">
+      <div v-if="form.errors.email" class="text-xm py-1">
         {{ form.errors.email }}
       </div>
     </div>

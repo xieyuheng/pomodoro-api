@@ -3,11 +3,7 @@ import { RegisterState as State } from "./RegisterState"
 
 const { state } = defineProps<{ state: State }>()
 
-const form = useForm({
-  username: "",
-  name: "",
-  email: "",
-})
+const form = useForm({ username: "", name: "", email: "" })
 
 async function handleSubmit(event: Event) {
   state.verify(await form.postByEvent(event, "/api/register"))

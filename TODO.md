@@ -1,6 +1,6 @@
 # frontend
 
-- `components/login/LoginStart.vue` -- use `useForm`
+- `components/login/LoginStart.vue` -- fix cookie login
 - `useForm` -- handle backend error
 
 - be able to config `settings.modes`

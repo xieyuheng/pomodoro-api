@@ -74,6 +74,10 @@ export class Repo<TModel extends Model<any>> {
   async findOrFail(id: string): Promise<TModel> {
     const key = this.formatKey(id)
     const json = await this.client.json.GET(key)
+    if (json === null) {
+      throw new Error(`Fail to find ${id} for ${this.clazz.name}`)
+    }
+
     return this.create(this.schema.validate(json), id)
   }
 
@@ -162,7 +166,7 @@ export class Repo<TModel extends Model<any>> {
     for (let [path, value] of Object.entries(record)) {
       const prefix = path.split(".").join("\\.")
       if (typeof value === "string") {
-        value = value.replaceAll(" ", "\\ ")
+        value = this.redis.escapeTag(value)
       }
 
       fields.push(`@${prefix}:{${value}}`)
