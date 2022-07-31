@@ -36,8 +36,8 @@ defineProps<{ state: State }>()
           </MenuItem>
         </div>
 
-        <div v-if="state.auth.user">
-          <div class="space-y-1 p-2">
+        <div v-if="state.auth.user" class="space-y-2">
+          <div class="space-y-1">
             <Lang>
               <template #zh>专注者</template>
               <template #en>Logged in as</template>
@@ -48,12 +48,14 @@ defineProps<{ state: State }>()
             </div>
           </div>
 
-          <hr class="mt-4 mb-4" />
+          <div class="py-2 flex flex-col justify-center">
+            <div class="border-b border-white"></div>
+          </div>
 
           <MenuItem v-slot="{ active }">
             <button
               @click="state.auth.logout()"
-              class="p-2 font-semibold"
+              class="font-semibold"
               :class="[
                 active && 'underline decoration-6',
                 active && `text-${state.theme.name}-200`,
@@ -67,11 +69,11 @@ defineProps<{ state: State }>()
           </MenuItem>
         </div>
 
-        <div v-else>
-          <MenuItem v-slot="{ active }">
+        <div v-else class="space-y-2">
+          <MenuItem as="div" v-slot="{ active }">
             <Link
               href="/register"
-              class="p-2 font-semibold"
+              class="font-semibold"
               :class="[
                 active && 'underline decoration-6',
                 active && `text-${state.theme.name}-200`,
@@ -84,10 +86,10 @@ defineProps<{ state: State }>()
             </Link>
           </MenuItem>
 
-          <MenuItem v-slot="{ active }">
+          <MenuItem as="div" v-slot="{ active }">
             <Link
               href="/login"
-              class="p-2 font-semibold"
+              class="font-semibold"
               :class="[
                 active && 'underline decoration-6',
                 active && `text-${state.theme.name}-200`,
