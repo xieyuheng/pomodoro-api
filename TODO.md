@@ -1,6 +1,5 @@
 # frontend
 
-- `components/login/LoginVerifying.vue`
 - `components/login/LoginStart.vue` -- use `form`
 - [maybe] `useForm` to handle backend error
 
