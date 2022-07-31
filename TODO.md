@@ -17,8 +17,10 @@
 - `User.create` keep `username` and `email` unique
 - `controllers/EmailLoginController` -- `create` -- return error for form
 
-- be able to config `settings.modes`
+- be able to save `settings`
 - be able to save `tasks`
+
+- `/settings` be able to config `settings.modes` -- simple CRUD
 
 # refactor
 
