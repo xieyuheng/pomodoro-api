@@ -1,7 +1,8 @@
 # frontend
 
-- `components/login/LoginStart.vue`
 - `components/login/LoginVerifying.vue`
+- `components/login/LoginStart.vue` -- use `form`
+- [maybe] `useForm` to handle backend error
 
 - be able to config `settings.modes`
 
@@ -16,8 +17,6 @@
 - `controllers/EmailLoginController` -- `create` -- return error for form
 
 - `User.create` keep `username` and `email` unique
-
-  - [maybe] `useForm` to handle backend error
 
 # refactor
 
