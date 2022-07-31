@@ -42,7 +42,10 @@ defineProps<{ state: State }>()
               <template #zh>专注者</template>
               <template #en>Logged in as</template>
             </Lang>
-            <div class="font-semibold">@{{ state.auth.user.username }}</div>
+            <div class="font-semibold">{{ state.auth.user.name }}</div>
+            <div class="text-xl font-semibold">
+              @{{ state.auth.user.username }}
+            </div>
           </div>
 
           <hr class="mt-4 mb-4" />
