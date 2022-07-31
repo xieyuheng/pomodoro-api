@@ -1,23 +1,30 @@
-# frontend
+- frontend middleware to redirect from `/register` and `/login` for authed user
+
+- add `expire` to `EmailRegister.create`
+
+  - show time couter in `RegisterVerifying`
+  - show some message about timeout
+
+- add `expire` to `EmailLogin.create`
+
+  - show time couter in `LoginVerifying`
+  - show some message about timeout
+
+- add `expire` to `AccessToken.create`
+
+  - the same as cookie (maybe little longer)
 
 - `useForm` -- handle backend error
 
-- frontend middleware to redirect from `/register` and `/login` for authed user
+- `User.create` keep `username` and `email` unique
+- `controllers/EmailLoginController` -- `create` -- return error for form
 
 - be able to config `settings.modes`
 - be able to save `tasks`
 
-# backend
-
-- add `expire` to `EmailRegister.create`
-- add `expire` to `EmailLogin.create`
-- add `expire` to `AccessToken.create`
-
-- `controllers/EmailLoginController` -- `create` -- return error for form
-
-- `User.create` keep `username` and `email` unique
-
 # refactor
+
+- nitro (h3) + backend framework + fidb
 
 - `Repo` -- `createIndex` to side effect to `Model`
 - `Repo` -- query by schema
