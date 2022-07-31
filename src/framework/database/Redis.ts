@@ -22,7 +22,7 @@ export class Redis {
   }
 
   escapeTag(tag: string) {
-    const chars = " .!@$%^&*-+=".split("")
+    const chars = " .@+-=".split("")
     for (const char of chars) {
       tag = tag.replaceAll(char, "\\" + char)
     }

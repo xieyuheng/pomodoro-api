@@ -39,6 +39,7 @@ describe("redis model", async () => {
   await redis.repo(User).createIndex({
     name: "tag casesensitive",
     username: "tag casesensitive",
+    email: "tag casesensitive",
     address: {
       country: "tag casesensitive",
       city: "tag casesensitive",
@@ -161,6 +162,15 @@ describe("redis model", async () => {
 
       expect(found[0]?.json()).toEqual(user1.json())
       expect(found[0]?.id).toEqual(user1.id)
+    }
+
+    {
+      const found = await redis
+        .repo(User)
+        .allWhere({ email: "hello@xieyuheng.com" })
+
+      expect(found[0]?.json()).toEqual(user2.json())
+      expect(found[0]?.id).toEqual(user2.id)
     }
 
     await user1.delete()
