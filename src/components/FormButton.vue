@@ -2,7 +2,9 @@
 const lang = useLang()
 const theme = useTheme()
 
-defineProps<{ disabled?: boolean }>()
+defineProps<{
+  disabled?: boolean
+}>()
 </script>
 
 <template>
