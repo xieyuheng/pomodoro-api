@@ -2,8 +2,6 @@
 // We can not use <NuxtLink> with headlessui:
 // - https://headlessui.com/react/menu#integrating-with-next-js
 
-const router = useRouter()
-
 defineProps<{
   href?: string
   target?: string
@@ -14,7 +12,7 @@ defineProps<{
 
 <template>
   <a
-    @click="href && router.push({ path: href })"
+    @click="href && $router.push({ path: href })"
     :target="target"
     :class="class"
     :style="style"
