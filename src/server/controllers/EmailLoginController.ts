@@ -31,7 +31,9 @@ export class EmailLoginController extends Controller {
     // TODO return error for form
     if (!user) return undefined
 
+    const fiveMinutes = 5 * 60
     const model = await redis.repo(EmailLogin).createAndSave(json)
+    await model.expire(fiveMinutes)
 
     const confirmation_link = `${config.base_url}/api/login/${model.confirmation_token}/confirm`
 
@@ -70,12 +72,12 @@ export class EmailLoginController extends Controller {
     const user = await redis.repo(User).firstWhere({ email: model.email })
     if (!user) return undefined
 
+    const oneWeek = 60 * 60 * 24 * 7
     const access = await redis.repo(AccessToken).createAndSave({
       user_id: user.id,
       token: crypto.randomBytes(32).toString("hex"),
     })
-
-    const oneWeek = 60 * 60 * 24 * 7
+    await access.expire(oneWeek)
     this.setCookie("token", access.token, {
       sameSite: "lax",
       maxAge: oneWeek,

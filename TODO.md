@@ -1,17 +1,3 @@
-- add `expire` to `EmailRegister.create`
-
-  - show time couter in `RegisterVerifying`
-  - show some message about timeout
-
-- add `expire` to `EmailLogin.create`
-
-  - show time couter in `LoginVerifying`
-  - show some message about timeout
-
-- add `expire` to `AccessToken.create`
-
-  - the same as cookie (maybe little longer)
-
 - `useForm` -- handle backend error
 
 - `User.create` keep `username` and `email` unique
