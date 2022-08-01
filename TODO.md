@@ -10,8 +10,6 @@
 
 # refactor
 
-- nitro (h3) + backend framework + fidb
-
 - `Repo` -- `createIndex` to side effect to `Model`
 - `Repo` -- query by schema
 
@@ -49,7 +47,6 @@
   - `where().all()`
 
 - abstract `Repo` and `RedisRepo`
-- abstract `Repo` and `FiRepo`
 
 # learn
 
