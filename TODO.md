@@ -1,8 +1,3 @@
-- `controllers/EmailRegisterController` -- `create`
-
-  - return `invalid` for form
-  - `User.create` keep `username` and `email` unique
-
 - be able to save `settings`
 - be able to save `tasks`
 

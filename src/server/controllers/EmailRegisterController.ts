@@ -4,6 +4,7 @@ import { Controller } from "@/framework/routing/Controller"
 import { VerifyingJson } from "@/types/VerifyingJson"
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
+import { createError } from "h3"
 import { config } from "../../config"
 import { AccessToken } from "../models/AccessToken"
 import { EmailRegister } from "../models/EmailRegister"
@@ -22,8 +23,37 @@ export class EmailRegisterController extends Controller {
       email: ty.string(),
     })
 
+    const body = scheme.validate(await this.body())
+
+    const invalid: {
+      email?: { en: string; zh: string }
+      username?: { en: string; zh: string }
+    } = {}
+
+    {
+      if (await redis.repo(User).firstWhere({ email: body.email })) {
+        invalid.email = {
+          en: "This email is taken.",
+          zh: "这个邮箱注册过账号了",
+        }
+      }
+    }
+
+    {
+      if (await redis.repo(User).firstWhere({ username: body.username })) {
+        invalid.username = {
+          en: "This username is taken.",
+          zh: "这个用户名邮箱注册过账号了",
+        }
+      }
+    }
+
+    if (Object.keys(invalid).length > 0) {
+      throw createError({ statusCode: 400, data: { invalid } })
+    }
+
     const json = {
-      ...scheme.validate(await this.body()),
+      ...body,
       verification_token: crypto.randomBytes(32).toString("hex"),
       confirmation_token: crypto.randomBytes(32).toString("hex"),
       confirmation_code: crypto.randomBytes(3).toString("hex"),

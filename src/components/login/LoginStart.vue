@@ -12,7 +12,11 @@ const form = useForm({ email: "" })
 
 <template>
   <form
-    @submit.prevent="form.post('/api/login', { then: state.verify })"
+    @submit.prevent="
+      form.post('/api/login', {
+        then: (result) => state.verify(result),
+      })
+    "
     class="flex w-full flex-col pt-20 space-y-2 text-xl sm:w-auto"
   >
     <div class="flex flex-col pb-2">
@@ -76,7 +80,7 @@ const form = useForm({ email: "" })
       <div v-if="form.error" class="text-xm py-1">
         <Lang class="font-bold text-yellow-300">
           <template #zh>这个邮箱不对</template>
-          <template #en>Invalid email</template>
+          <template #en>Invalid email.</template>
         </Lang>
       </div>
     </div>

@@ -20,20 +20,20 @@ export class Form<T extends Values> {
   constructor(public values: T) {}
 
   get invalid() {
-    return this.error?.data?.invalid
+    return this.error?.data?.data?.invalid
   }
 
-  get code() {
-    return this.error?.data?.statusCode
-  }
-
-  async postByEvent(event: Event, url: string, options?: PostOptions) {
+  async postByEvent(
+    event: Event,
+    url: string,
+    options?: PostOptions
+  ): Promise<void> {
     const target: any = event.target
     for (const key of Object.keys(this.values)) {
       ;(this.values as any)[key] = target[key].value
     }
 
-    return await this.post(url, options)
+    await this.post(url, options)
   }
 
   async post(url: string, options?: PostOptions): Promise<void> {
@@ -45,6 +45,7 @@ export class Form<T extends Values> {
         method: "POST",
         body: this.values,
       })
+
       if (options?.then) {
         options.then(result)
       }

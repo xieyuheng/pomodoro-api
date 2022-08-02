@@ -4,15 +4,16 @@ import { RegisterState as State } from "./RegisterState"
 const { state } = defineProps<{ state: State }>()
 
 const form = useForm({ username: "", name: "", email: "" })
-
-async function handleSubmit(event: Event) {
-  state.verify(await form.postByEvent(event, "/api/register"))
-}
 </script>
 
 <template>
   <form
-    @submit.prevent="handleSubmit"
+    @submit.prevent="
+      (event) =>
+        form.postByEvent(event, '/api/register', {
+          then: (result) => state.verify(result),
+        })
+    "
     class="flex w-full flex-col space-y-2 text-xl sm:w-auto"
   >
     <Lang class="font-logo text-3xl font-semibold">
@@ -28,6 +29,13 @@ async function handleSubmit(event: Event) {
         </Lang>
       </template>
     </FormInput>
+
+    <div v-if="form.invalid?.username">
+      <Lang class="font-bold text-yellow-300 text-xm py-1">
+        <template #zh>{{ form.invalid.username.zh }}</template>
+        <template #en>{{ form.invalid.username.en }}</template>
+      </Lang>
+    </div>
 
     <FormInput name="name" required>
       <template #label>
@@ -45,14 +53,14 @@ async function handleSubmit(event: Event) {
           <template #en>Email</template>
         </Lang>
       </template>
-
-      <template #footer>
-        <Lang class="py-1 text-base text-white">
-          <template #zh>您的邮箱地址不会被公开</template>
-          <template #en>Your email address will be kept private.</template>
-        </Lang>
-      </template>
     </FormInput>
+
+    <div v-if="form.invalid?.email">
+      <Lang class="font-bold text-yellow-300 text-xm py-1">
+        <template #zh>{{ form.invalid.email.zh }}</template>
+        <template #en>{{ form.invalid.email.en }}</template>
+      </Lang>
+    </div>
 
     <div class="flex flex-col justify-center py-4">
       <hr class="border-t border-white" />
