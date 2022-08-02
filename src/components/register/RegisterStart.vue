@@ -31,7 +31,7 @@ const form = useForm({ username: "", name: "", email: "" })
     </FormInput>
 
     <div v-if="form.invalid?.username">
-      <Lang class="font-bold text-yellow-300 text-xm py-1">
+      <Lang class="font-bold text-yellow-300 text-base py-1">
         <template #zh>{{ form.invalid.username.zh }}</template>
         <template #en>{{ form.invalid.username.en }}</template>
       </Lang>
@@ -56,7 +56,7 @@ const form = useForm({ username: "", name: "", email: "" })
     </FormInput>
 
     <div v-if="form.invalid?.email">
-      <Lang class="font-bold text-yellow-300 text-xm py-1">
+      <Lang class="font-bold text-yellow-300 text-base py-1">
         <template #zh>{{ form.invalid.email.zh }}</template>
         <template #en>{{ form.invalid.email.en }}</template>
       </Lang>
