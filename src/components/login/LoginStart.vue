@@ -74,7 +74,7 @@ const form = useForm({ email: "" })
       </div>
 
       <div v-if="form.error" class="text-xm py-1">
-        <Lang>
+        <Lang class="font-bold text-yellow-300">
           <template #zh>这个邮箱不对</template>
           <template #en>Invalid email</template>
         </Lang>
