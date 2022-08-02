@@ -1,7 +1,7 @@
-- `useForm` -- handle backend error
+- `controllers/EmailRegisterController` -- `create`
 
-- `User.create` keep `username` and `email` unique
-- `controllers/EmailLoginController` -- `create` -- return error for form
+  - return `invalid` for form
+  - `User.create` keep `username` and `email` unique
 
 - be able to save `settings`
 - be able to save `tasks`

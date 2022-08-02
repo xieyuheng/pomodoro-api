@@ -8,15 +8,11 @@ import { LoginState as State } from "./LoginState"
 const { state } = defineProps<{ state: State }>()
 
 const form = useForm({ email: "" })
-
-async function handleSubmit() {
-  state.verify(await form.post("/api/login"))
-}
 </script>
 
 <template>
   <form
-    @submit.prevent="handleSubmit"
+    @submit.prevent="form.post('/api/login', { then: state.verify })"
     class="flex w-full flex-col pt-20 space-y-2 text-xl sm:w-auto"
   >
     <div class="flex flex-col pb-2">
@@ -77,8 +73,11 @@ async function handleSubmit() {
         </button>
       </div>
 
-      <div v-if="form.errors.email" class="text-xm py-1">
-        {{ form.errors.email }}
+      <div v-if="form.error" class="text-xm py-1">
+        <Lang>
+          <template #zh>这个邮箱不对</template>
+          <template #en>Invalid email</template>
+        </Lang>
       </div>
     </div>
   </form>

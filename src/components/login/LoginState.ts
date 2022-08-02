@@ -1,4 +1,4 @@
-import { VerifyingJson } from "@/types/VerifyingJson"
+import { VerifyingJson, VerifyingSchema } from "@/types/VerifyingJson"
 
 export class LoginState {
   lang = useLang()
@@ -6,7 +6,8 @@ export class LoginState {
 
   verifying: Verifying | null = null
 
-  verify(json: VerifyingJson) {
+  verify(input: any) {
+    const json = VerifyingSchema.validate(input)
     this.verifying = new Verifying(json)
   }
 }
