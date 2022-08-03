@@ -1,9 +1,5 @@
 - quit using nuxt -- DX is not good
 
-- setup pure vue project
-
-  - next.pomodoro.readonly.link
-
 - rename project to `xieyuheng/pomodoro-nuxtjs`
 
 - extract `framework` as a package for backend development
