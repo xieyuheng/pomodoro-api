@@ -1,7 +1,3 @@
-- quit using nuxt -- DX is not good
-
-- rename project to `xieyuheng/pomodoro-nuxtjs`
-
 - extract `framework` as a package for backend development
 
   - fi
