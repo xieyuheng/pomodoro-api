@@ -1,8 +1,3 @@
-- extract `framework` as a package for backend development
-
-  - fi
-  - fidb
-
 - be able to save `settings`
 - be able to save `tasks`
 
