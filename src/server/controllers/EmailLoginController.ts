@@ -79,7 +79,7 @@ export class EmailLoginController extends Controller {
     })
     await access.expire(oneWeek)
     this.setCookie("token", access.token, {
-      sameSite: "lax",
+      sameSite: "none",
       maxAge: oneWeek,
     })
 
