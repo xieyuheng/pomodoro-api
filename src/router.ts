@@ -1,8 +1,8 @@
 import { AccessTokenController } from "./controllers/AccessTokenController"
-import { WelcomeController } from "./controllers/WelcomeController"
-import { UserController } from "./controllers/UserController"
 import { EmailLoginController } from "./controllers/EmailLoginController"
 import { EmailRegisterController } from "./controllers/EmailRegisterController"
+import { UserController } from "./controllers/UserController"
+import { WelcomeController } from "./controllers/WelcomeController"
 import { Router } from "./framework/routing/Router"
 
 export const router = new Router()

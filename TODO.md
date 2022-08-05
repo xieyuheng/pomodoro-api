@@ -1,6 +1,3 @@
-- fix `AccessTokenController.auth` -- set `auth` object
-- fix `UserController.current` get `user` from `auth` object
-
 - [refactor] relation between `Server` and `App`
 
 - frontend and backend know each other by url

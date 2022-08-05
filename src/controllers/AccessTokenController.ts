@@ -19,7 +19,7 @@ export class AccessTokenController extends Controller {
     if (!user) return this.next()
 
     return this.next()
-    // TODO
-    // this.event.context.auth = { user }
+
+    this.router.express.set("auth", { user })
   }
 }
