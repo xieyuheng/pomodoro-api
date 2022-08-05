@@ -1,4 +1,4 @@
-import { server } from "./server"
+const { server } = require("./lib/server")
 
 server
   .run({
