@@ -1,15 +1,21 @@
 import { NextFunction, Request, Response } from "express"
+import { Router } from "./Router"
+
+export interface ControllerOptions {
+  req: Request
+  res: Response
+  next: NextFunction
+  router: Router
+}
 
 export type ControllerConstructor<TController> = new (
-  req: Request,
-  res: Response,
-  next: NextFunction
+  options: ControllerOptions
 ) => TController
 
+export interface Controller extends ControllerOptions {}
+
 export class Controller {
-  constructor(
-    public req: Request,
-    public res: Response,
-    public next: NextFunction
-  ) {}
+  constructor(options: ControllerOptions) {
+    Object.assign(this, options)
+  }
 }

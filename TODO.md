@@ -1,10 +1,9 @@
-- [maybe] inject `server` and `router` to `Controller`
-- frontend and backend know each other by url
-- fix the use of `router._router.use`
 - fix `AccessTokenController.auth` -- set `auth` object
 - fix `UserController.current` get `user` from `auth` object
-- [learn] express session
+
 - [refactor] relation between `Server` and `App`
+
+- frontend and backend know each other by url
 
 # features
 

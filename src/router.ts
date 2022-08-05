@@ -23,7 +23,7 @@ router.get("/login/:token/verify", EmailLoginController, "verify")
 router.get("/login/:token/revoke", EmailLoginController, "revoke")
 router.get("/login/:token/confirm", EmailLoginController, "confirm")
 
-router._router.use((req, res) => {
+router.express.use((req, res) => {
   res.status(404).json({
     status: {
       code: 404,

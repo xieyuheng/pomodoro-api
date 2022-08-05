@@ -1,22 +1,17 @@
 import cookieParser from "cookie-parser"
 import cors from "cors"
-import express, {
-  NextFunction,
-  Request,
-  Response,
-  Router as ExpressRouter,
-} from "express"
+import express, { NextFunction, Request, Response } from "express"
 import { Controller, ControllerConstructor } from "./Controller"
 
 export type Handler = (req: Request, res: Response, next: NextFunction) => void
 
 export class Router {
-  _router = ExpressRouter()
+  express = express()
 
   constructor() {
-    this._router.use(express.json())
-    this._router.use(cookieParser())
-    this._router.use(cors())
+    this.express.use(express.json())
+    this.express.use(cookieParser())
+    this.express.use(cors())
   }
 
   post<TController extends Controller>(
@@ -24,7 +19,7 @@ export class Router {
     clazz: ControllerConstructor<TController>,
     name: keyof TController
   ) {
-    this._router.post(path, this.createHandler(clazz, name))
+    this.express.post(path, this.createHandler(clazz, name))
   }
 
   get<TController extends Controller>(
@@ -32,7 +27,7 @@ export class Router {
     clazz: ControllerConstructor<TController>,
     name: keyof TController
   ) {
-    this._router.get(path, this.createHandler(clazz, name))
+    this.express.get(path, this.createHandler(clazz, name))
   }
 
   patch<TController extends Controller>(
@@ -40,7 +35,7 @@ export class Router {
     clazz: ControllerConstructor<TController>,
     name: keyof TController
   ) {
-    this._router.patch(path, this.createHandler(clazz, name))
+    this.express.patch(path, this.createHandler(clazz, name))
   }
 
   put<TController extends Controller>(
@@ -48,7 +43,7 @@ export class Router {
     clazz: ControllerConstructor<TController>,
     name: keyof TController
   ) {
-    this._router.put(path, this.createHandler(clazz, name))
+    this.express.put(path, this.createHandler(clazz, name))
   }
 
   delete<TController extends Controller>(
@@ -56,7 +51,7 @@ export class Router {
     clazz: ControllerConstructor<TController>,
     name: keyof TController
   ) {
-    this._router.delete(path, this.createHandler(clazz, name))
+    this.express.delete(path, this.createHandler(clazz, name))
   }
 
   head<TController extends Controller>(
@@ -64,7 +59,7 @@ export class Router {
     clazz: ControllerConstructor<TController>,
     name: keyof TController
   ) {
-    this._router.head(path, this.createHandler(clazz, name))
+    this.express.head(path, this.createHandler(clazz, name))
   }
 
   use<TController extends Controller>(
@@ -72,7 +67,7 @@ export class Router {
     clazz: ControllerConstructor<TController>,
     name: keyof TController
   ) {
-    this._router.use(path, this.createHandler(clazz, name))
+    this.express.use(path, this.createHandler(clazz, name))
   }
 
   createHandler<TController extends Controller>(
@@ -84,7 +79,7 @@ export class Router {
       const who = `${clazz.name}.${name.toString()}`
 
       try {
-        const controller = new clazz(req, res, next)
+        const controller = new clazz({ req, res, next, router: this })
         const action = controller[name] as unknown as Function
         const args = Object.values(req.params)
         const result = await action.bind(controller)(...args)
