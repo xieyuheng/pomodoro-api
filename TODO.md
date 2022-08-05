@@ -1,5 +1,4 @@
-- rename to `pomodoro-api`
-- setup vercel
+- setup vercel -- api.pomodoro.readonly.link
 - remove frontend code
 
 - be able to save `settings`
