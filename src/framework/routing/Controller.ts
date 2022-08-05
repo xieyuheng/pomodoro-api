@@ -1,6 +1,11 @@
 import { CookieSerializeOptions } from "cookie"
 import { Request, Response } from "express"
 
+export type ControllerConstructor<TController> = new (
+  req: Request,
+  res: Response
+) => TController
+
 export class Controller {
   constructor(public req: Request, public res: Response) {}
 

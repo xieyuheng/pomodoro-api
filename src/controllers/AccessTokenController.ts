@@ -1,7 +1,5 @@
 import { Redis } from "../framework/database/Redis"
 import { Controller } from "../framework/routing/Controller"
-import { AccessToken } from "../models/AccessToken"
-import { User } from "../models/User"
 import { useApp } from "../useApp"
 
 export class AccessTokenController extends Controller {

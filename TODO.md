@@ -1,4 +1,3 @@
-- setup `routes/` -- `Server.route`
 - fix `Controller`
 - setup `env`
 - vercel `api/` use server
