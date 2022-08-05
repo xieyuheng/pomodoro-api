@@ -1,7 +1,6 @@
-- setup `routes/`
-- setup `env`
+- setup `routes/` -- `Server.route`
 - fix `Controller`
-- `server` use `app`
+- setup `env`
 - vercel `api/` use server
 
 # features
