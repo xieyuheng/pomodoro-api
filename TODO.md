@@ -1,3 +1,16 @@
+# features
+
+- be able to save `tasks`
+- `/settings` be able to config `settings.modes` -- simple CRUD
+
+# deploy
+
+- deploy to `web@ro-aws-1`
+- setup local redis config and data.dump
+- use cf tunnel
+
+# learn
+
 - [learn] express middleware
 
   https://expressjs.com/en/guide/using-middleware.html
@@ -9,13 +22,6 @@
 
 - [learn] express session
 - [refactor] relation between `Server` and `App`
-
-# features
-
-- be able to save `settings`
-- be able to save `tasks`
-
-- `/settings` be able to config `settings.modes` -- simple CRUD
 
 # refactor
 
