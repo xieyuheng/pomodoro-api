@@ -1,6 +1,7 @@
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import express, { NextFunction, Request, Response } from "express"
+import invariant from "tiny-invariant"
 import { Controller, ControllerConstructor } from "./Controller"
 
 type Handler = (req: Request, res: Response, next: NextFunction) => void
@@ -13,9 +14,17 @@ export class Router {
   express = express()
 
   constructor(options: RouterOptions) {
-    this.express.use(express.json())
-    this.express.use(cookieParser())
     this.express.use(cors(options.cors))
+    this.express.use(cookieParser())
+    this.express.use(express.json())
+  }
+
+  all<TController extends Controller>(
+    path: string,
+    clazz: ControllerConstructor<TController>,
+    name: keyof TController
+  ) {
+    this.express.all(path, this.createHandler(clazz, name))
   }
 
   post<TController extends Controller>(
@@ -79,27 +88,28 @@ export class Router {
     name: keyof TController
   ): Handler {
     return async (req, res, next) => {
+      const controller = new clazz({ req, res, next, router: this })
+      const action = controller[name]
+      invariant(
+        action instanceof Function,
+        `Action should be a function ${name.toString()}`
+      )
+
       const t0 = Date.now()
       const who = `${clazz.name}.${name.toString()}`
 
       try {
-        const controller = new clazz({ req, res, next, router: this })
-        const action = controller[name] as unknown as Function
         const args = Object.values(req.params)
         const result = await action.bind(controller)(...args)
-        if (result === null || result === undefined) {
-          // NOTE success, but no content to return
-          res.status(204)
-          res.end()
+        const t1 = Date.now()
+        const elapse = t1 - t0
+        console.log({ who, elapse })
+        if (result === undefined) {
+          next()
+        } else if (typeof result === "string") {
+          res.send(result)
         } else {
-          const t1 = Date.now()
-          const elapse = t1 - t0
-          console.log({ who, elapse })
-          if (typeof result === "string") {
-            res.send(result)
-          } else {
-            res.json(result)
-          }
+          res.json(result)
         }
       } catch (error) {
         const t1 = Date.now()

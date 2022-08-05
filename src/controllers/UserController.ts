@@ -1,8 +1,11 @@
 import { Controller } from "../framework/routing/Controller"
-import { User } from "../models/User"
 
 export class UserController extends Controller {
-  async current(): Promise<User | undefined> {
-    return this.router.express.get("auth")?.user
+  async current() {
+    const user = this.router.express.get("auth")?.user
+
+    if (!user) return this.res.status(404).end()
+
+    return user
   }
 }

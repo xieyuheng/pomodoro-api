@@ -5,14 +5,13 @@ import { config } from "../config"
 import { Redis } from "../framework/database/Redis"
 import { Mailer } from "../framework/mail/Mailer"
 import { Controller } from "../framework/routing/Controller"
-import { VerifyingJson } from "../jsons/VerifyingJson"
 import { AccessToken } from "../models/AccessToken"
 import { EmailRegister } from "../models/EmailRegister"
 import { User } from "../models/User"
 import { useApp } from "../useApp"
 
 export class EmailRegisterController extends Controller {
-  async create(): Promise<VerifyingJson> {
+  async create() {
     const app = await useApp()
     const redis = app.create(Redis)
     const mailer = app.create(Mailer)
@@ -80,7 +79,7 @@ export class EmailRegisterController extends Controller {
     }
   }
 
-  async verify(token: string): Promise<boolean | undefined> {
+  async verify(token: string) {
     const app = await useApp()
     const redis = app.create(Redis)
 
@@ -88,9 +87,9 @@ export class EmailRegisterController extends Controller {
       verification_token: token,
     })
 
-    if (!model) return undefined
-    if (model.revoked_at) return undefined
-    if (model.verified_at) return undefined
+    if (!model) return this.res.status(404).end()
+    if (model.revoked_at) return this.res.status(404).end()
+    if (model.verified_at) return this.res.status(404).end()
 
     if (!model.confirmed_at) return false
 
@@ -117,7 +116,7 @@ export class EmailRegisterController extends Controller {
     return true
   }
 
-  async confirm(token: string): Promise<undefined> {
+  async confirm(token: string) {
     const app = await useApp()
     const redis = app.create(Redis)
 
@@ -125,10 +124,10 @@ export class EmailRegisterController extends Controller {
       confirmation_token: token,
     })
 
-    if (!model) return undefined
-    if (model.revoked_at) return undefined
-    if (model.verified_at) return undefined
-    if (model.confirmed_at) return undefined
+    if (!model) return this.res.status(404).end()
+    if (model.revoked_at) return this.res.status(404).end()
+    if (model.verified_at) return this.res.status(404).end()
+    if (model.confirmed_at) return this.res.status(404).end()
 
     model.confirmed_at = Date.now()
     await model.save()
@@ -138,7 +137,7 @@ export class EmailRegisterController extends Controller {
     )
   }
 
-  async revoke(token: string): Promise<undefined> {
+  async revoke(token: string) {
     const app = await useApp()
     const redis = app.create(Redis)
 
@@ -146,10 +145,10 @@ export class EmailRegisterController extends Controller {
       verification_token: token,
     })
 
-    if (!model) return undefined
-    if (model.revoked_at) return undefined
-    if (model.verified_at) return undefined
-    if (model.confirmed_at) return undefined
+    if (!model) return this.res.status(404).end()
+    if (model.revoked_at) return this.res.status(404).end()
+    if (model.verified_at) return this.res.status(404).end()
+    if (model.confirmed_at) return this.res.status(404).end()
 
     model.revoked_at = Date.now()
     await model.save()

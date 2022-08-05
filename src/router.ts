@@ -1,14 +1,15 @@
+import { config } from "./config"
 import { AccessTokenController } from "./controllers/AccessTokenController"
 import { EmailLoginController } from "./controllers/EmailLoginController"
 import { EmailRegisterController } from "./controllers/EmailRegisterController"
 import { UserController } from "./controllers/UserController"
 import { WelcomeController } from "./controllers/WelcomeController"
 import { Router } from "./framework/routing/Router"
-import { config } from "./config"
 
 export const router = new Router({
   cors: {
     origin: config.app_url,
+    credentials: true,
   },
 })
 
