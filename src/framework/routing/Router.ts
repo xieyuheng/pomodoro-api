@@ -99,10 +99,10 @@ export class Router {
         console.log({ who, elapse, path: req.path })
         if (result instanceof Function) {
           result()
-        } else if (result === undefined || !isPureObject(result)) {
-          if (!res.headersSent) next()
-        } else {
+        } else if (isJson(result)) {
           res.json(result)
+        } else {
+          if (!res.headersSent) next()
         }
       } catch (error) {
         const t1 = Date.now()
@@ -114,8 +114,25 @@ export class Router {
   }
 }
 
-function isPureObject(value: any): boolean {
+function isJson(value: any): boolean {
+  return isAtom(value) || isAtom(value) || isObject(value)
+}
+
+function isAtom(value: any): boolean {
   return (
-    null !== value && typeof value === "object" && value.constructor === Object
+    value === null ||
+    typeof value === "string" ||
+    typeof value === "number" ||
+    typeof value === "boolean"
+  )
+}
+
+function isArray(value: any): boolean {
+  return value instanceof Array
+}
+
+function isObject(value: any): boolean {
+  return (
+    value !== null && typeof value === "object" && value.constructor === Object
   )
 }
