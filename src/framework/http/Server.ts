@@ -1,15 +1,7 @@
-import { Router, RouterOptions } from "../routing/Router"
-
-interface ServerOptions {
-  router: RouterOptions
-}
+import { Router } from "../routing/Router"
 
 export class Server {
-  router: Router
-
-  constructor(public options: ServerOptions) {
-    this.router = new Router(options.router)
-  }
+  constructor(public router: Router) {}
 
   async run(options: { port: number; host: string }): Promise<void> {
     const { port, host } = options
