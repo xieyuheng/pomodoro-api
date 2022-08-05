@@ -29,7 +29,8 @@ export class EmailLoginController extends Controller {
     const user = await redis.repo(User).firstWhere({ email: json.email })
     // TODO return error for form
     if (!user) {
-      return this.res.status(404).end()
+      this.res.status(404).end()
+      return
     }
 
     const fiveMinutes = 5 * 60
@@ -62,7 +63,8 @@ export class EmailLoginController extends Controller {
     })
 
     if (!model || model.revoked_at || model.verified_at) {
-      return this.res.status(404).end()
+      this.res.status(404).end()
+      return
     }
 
     if (!model.confirmed_at) {
@@ -74,7 +76,8 @@ export class EmailLoginController extends Controller {
 
     const user = await redis.repo(User).firstWhere({ email: model.email })
     if (!user) {
-      return this.res.status(404).end()
+      this.res.status(404).end()
+      return
     }
 
     const oneWeek = 60 * 60 * 24 * 7
@@ -84,7 +87,8 @@ export class EmailLoginController extends Controller {
     })
     await access.expire(oneWeek)
     this.res.cookie("token", access.token, {
-      sameSite: "None",
+      sameSite: "none",
+      secure: true,
       maxAge: oneWeek,
     })
 
@@ -100,7 +104,8 @@ export class EmailLoginController extends Controller {
     })
 
     if (!model || model.revoked_at || model.verified_at || model.confirmed_at) {
-      return this.res.status(404).end()
+      this.res.status(404).end()
+      return
     }
 
     model.confirmed_at = Date.now()
@@ -120,7 +125,8 @@ export class EmailLoginController extends Controller {
     })
 
     if (!model || model.revoked_at || model.verified_at || model.confirmed_at) {
-      return this.res.status(404).end()
+      this.res.status(404).end()
+      return
     }
 
     model.revoked_at = Date.now()

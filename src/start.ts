@@ -1,7 +1,7 @@
+import invariant from "tiny-invariant"
 import { Server } from "./framework/http/Server"
 import { router } from "./router"
 import { useApp } from "./useApp"
-import invariant from "tiny-invariant"
 
 async function run() {
   await useApp()

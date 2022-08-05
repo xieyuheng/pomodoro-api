@@ -88,7 +88,8 @@ export class EmailRegisterController extends Controller {
     })
 
     if (!model || model.revoked_at || model.verified_at) {
-      return this.res.status(404).end()
+      this.res.status(404).end()
+      return
     }
 
     if (!model.confirmed_at) {
@@ -111,7 +112,8 @@ export class EmailRegisterController extends Controller {
     })
     await access.expire(oneWeek)
     this.res.cookie("token", access.token, {
-      sameSite: "None",
+      sameSite: "none",
+      secure: true,
       maxAge: oneWeek,
     })
 
@@ -127,7 +129,8 @@ export class EmailRegisterController extends Controller {
     })
 
     if (!model || model.revoked_at || model.verified_at || model.confirmed_at) {
-      return this.res.status(404).end()
+      this.res.status(404).end()
+      return
     }
 
     model.confirmed_at = Date.now()
@@ -147,7 +150,8 @@ export class EmailRegisterController extends Controller {
     })
 
     if (!model || model.revoked_at || model.verified_at || model.confirmed_at) {
-      return this.res.status(404).end()
+      this.res.status(404).end()
+      return
     }
 
     model.revoked_at = Date.now()
