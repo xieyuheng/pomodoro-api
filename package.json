@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "node lib/server",
+    "dev": "PORT=3000 node lib/run.js",
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "vitest --run",
