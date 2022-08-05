@@ -19,14 +19,14 @@ export class Server {
     actionName: keyof TController
   ) {
     const handler: Handler = async (req, res, next) => {
-      const controller = new clazz(req, res)
-      const action = controller[actionName]
-
       const t0 = Date.now()
       const who = `${clazz.name}.${actionName.toString()}`
 
       try {
-        const result = await (action as any)()
+        const controller = new clazz(req, res)
+        const action = controller[actionName]
+
+        const result = await (action as any).bind(controller)()
         if (result === null || result === undefined) {
           // NOTE success, but no content to return
           res.status(204)
@@ -38,11 +38,10 @@ export class Server {
           res.json(result)
         }
       } catch (error) {
-        // NOTE According to: https://expressjs.com/en/guide/error-handling.html
-        if (res.headersSent) return next(error)
         const t1 = Date.now()
         const elapse = t1 - t0
         console.error({ who, elapse })
+        next(error)
       }
     }
 
