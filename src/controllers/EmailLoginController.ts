@@ -106,7 +106,7 @@ export class EmailLoginController extends Controller {
     model.confirmed_at = Date.now()
     await model.save()
 
-    await this.res.redirect(
+    this.res.redirect(
       `${config.app_url}/notifications/login-email-confirmation-success`
     )
   }

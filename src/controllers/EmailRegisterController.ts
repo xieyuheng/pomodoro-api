@@ -133,7 +133,7 @@ export class EmailRegisterController extends Controller {
     model.confirmed_at = Date.now()
     await model.save()
 
-    await this.res.redirect(
+    this.res.redirect(
       `${config.app_url}/notifications/register-email-confirmation-success`
     )
   }
