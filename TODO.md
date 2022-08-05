@@ -1,6 +1,9 @@
 - setup `routes/`
 - `mountRoutes`
 
+- `server` use `app`
+- vercel `api/` use server
+
 # features
 
 - be able to save `settings`
