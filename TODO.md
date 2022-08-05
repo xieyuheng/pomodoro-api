@@ -1,4 +1,6 @@
 - [learn] express middleware
+- [refactor] `Router` http methods
+- [refactor] `Router` support alist as args -- for middleware
 - rename run to start & inline server to start
 - [learn] express session
 - [refactor] relation between `Server` and `App`

@@ -76,14 +76,6 @@ export class Router {
     this.express.head(path, this.createHandler(clazz, name))
   }
 
-  use<TController extends Controller>(
-    path: string,
-    clazz: ControllerConstructor<TController>,
-    name: FunctionKeys<TController>
-  ) {
-    this.express.use(path, this.createHandler(clazz, name))
-  }
-
   createHandler<TController extends Controller>(
     clazz: ControllerConstructor<TController>,
     name: FunctionKeys<TController>
