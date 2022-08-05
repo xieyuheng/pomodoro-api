@@ -2,6 +2,7 @@ import { env } from "../framework/config/env"
 
 export const config = {
   mode: process.env.NODE_ENV,
+  self_url: env("SELF_URL"),
   app_url: env("APP_URL"),
   redis: {
     url: env("REDIS_URL"),
