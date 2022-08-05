@@ -6,7 +6,7 @@ import { Controller, ControllerConstructor } from "./Controller"
 type Handler = (req: Request, res: Response, next: NextFunction) => void
 
 export interface RouterOptions {
-  // cors: 
+  cors?: Parameters<typeof cors>[0]
 }
 
 export class Router {
@@ -15,7 +15,7 @@ export class Router {
   constructor(options: RouterOptions) {
     this.express.use(express.json())
     this.express.use(cookieParser())
-    this.express.use(cors())
+    this.express.use(cors(options.cors))
   }
 
   post<TController extends Controller>(

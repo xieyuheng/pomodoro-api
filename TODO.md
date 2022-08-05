@@ -1,4 +1,3 @@
-- router config cros
 - [learn] express session
 - [refactor] relation between `Server` and `App`
 
