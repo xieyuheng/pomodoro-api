@@ -1,5 +1,5 @@
-import { Model } from "@/framework/database/Model"
 import { Obtain, ty } from "@xieyuheng/ty"
+import { Model } from "../../framework/database/Model"
 
 export const AccessTokenSchema = ty.object({
   user_id: ty.string(),

@@ -1,10 +1,9 @@
-# Pomodoro
+# Pomodoro API
 
-[ [VISIT](https://pomodoro-nuxtjs.vercel.app)
+[ [API](https://api.pomodoro.readonly.link)
+| [VISIT](https://pomodoro.readonly.link)
 | [DICTIONARY](https://en.wiktionary.org/wiki/pomodoro)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Pomodoro_Technique) ]
-
-🍅 A Pomodoro timer.
 
 ## Contributions
 

@@ -1,6 +1,5 @@
 export function env(name: string, defaultValue: string = ""): string {
-  const env = typeof window === "undefined" ? process.env : import.meta.env
-  const value = env[name] || defaultValue
+  const value = process.env[name] || defaultValue
   return String(value)
 }
 

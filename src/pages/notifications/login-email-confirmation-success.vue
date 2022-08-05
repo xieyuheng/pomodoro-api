@@ -1,3 +1,0 @@
-<template>
-  <LoginEmailConfirmationSuccessPage />
-</template>

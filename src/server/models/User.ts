@@ -1,4 +1,4 @@
-import { Model } from "@/framework/database/Model"
+import { Model } from "../../framework/database/Model"
 import { UserJson, UserSchema } from "../../types/UserJson"
 
 export interface User extends UserJson {}

@@ -1,6 +1,6 @@
-import { Redis } from "@/framework/database/Redis"
 import { Coupler, Provider } from "@xieyuheng/coupler"
 import { config } from "../../config"
+import { Redis } from "../../framework/database/Redis"
 import { AccessToken } from "../../server/models/AccessToken"
 import { EmailLogin } from "../../server/models/EmailLogin"
 import { EmailRegister } from "../../server/models/EmailRegister"

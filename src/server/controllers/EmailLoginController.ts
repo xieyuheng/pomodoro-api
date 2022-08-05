@@ -1,10 +1,10 @@
-import { Redis } from "@/framework/database/Redis"
-import { Mailer } from "@/framework/mail/Mailer"
-import { Controller } from "@/framework/routing/Controller"
-import { VerifyingJson } from "@/types/VerifyingJson"
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
 import { config } from "../../config"
+import { Redis } from "../../framework/database/Redis"
+import { Mailer } from "../../framework/mail/Mailer"
+import { Controller } from "../../framework/routing/Controller"
+import { VerifyingJson } from "../../types/VerifyingJson"
 import { AccessToken } from "../models/AccessToken"
 import { EmailLogin } from "../models/EmailLogin"
 import { User } from "../models/User"
@@ -29,7 +29,7 @@ export class EmailLoginController extends Controller {
 
     const user = await redis.repo(User).firstWhere({ email: json.email })
     // TODO return error for form
-    if (!user) return undefined
+    if (!user) throw new Error("User Not Found")
 
     const fiveMinutes = 5 * 60
     const model = await redis.repo(EmailLogin).createAndSave(json)
