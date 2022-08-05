@@ -1,9 +1,8 @@
-import { FunctionKeys } from "utility-types"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import express, { NextFunction, Request, Response } from "express"
-import { Writable } from "stream"
 import invariant from "tiny-invariant"
+import { FunctionKeys } from "utility-types"
 import { Controller, ControllerConstructor } from "./Controller"
 
 type Handler = (req: Request, res: Response, next: NextFunction) => void
@@ -106,9 +105,7 @@ export class Router {
         const t1 = Date.now()
         const elapse = t1 - t0
         console.log({ who, elapse, path: req.path })
-        if (result instanceof Writable) {
-          if (!res.headersSent) next()
-        } else if (result === undefined) {
+        if (result === undefined || !isPureObject(result)) {
           if (!res.headersSent) next()
         } else {
           res.json(result)
@@ -121,4 +118,10 @@ export class Router {
       }
     }
   }
+}
+
+function isPureObject(value: any): boolean {
+  return (
+    null !== value && typeof value === "object" && value.constructor === Object
+  )
 }
