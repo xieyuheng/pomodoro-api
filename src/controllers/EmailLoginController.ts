@@ -7,7 +7,7 @@ import { Controller } from "../framework/routing/Controller"
 import { AccessToken } from "../models/AccessToken"
 import { EmailLogin } from "../models/EmailLogin"
 import { User } from "../models/User"
-import { VerifyingJson } from "../types/VerifyingJson"
+import { VerifyingJson } from "../jsons/VerifyingJson"
 import { useApp } from "../useApp"
 
 export class EmailLoginController extends Controller {

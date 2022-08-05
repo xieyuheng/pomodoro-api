@@ -1,5 +1,5 @@
 import { Model } from "../framework/database/Model"
-import { UserJson, UserSchema } from "../types/UserJson"
+import { UserJson, UserSchema } from "../jsons/UserJson"
 
 export interface User extends UserJson {}
 
