@@ -1,6 +1,6 @@
 # Pomodoro API
 
-[ [API](https://api.pomodoro.readonly.link)
+[ [API](https://api-pomodoro-readonly-link.herokuapp.com)
 | [VISIT](https://pomodoro.readonly.link)
 | [DICTIONARY](https://en.wiktionary.org/wiki/pomodoro)
 | [WIKIPEDIA](https://en.wikipedia.org/wiki/Pomodoro_Technique) ]
