@@ -1,3 +1,7 @@
+- rename to `pomodoro-api`
+- setup vercel
+- remove frontend code
+
 - be able to save `settings`
 - be able to save `tasks`
 
