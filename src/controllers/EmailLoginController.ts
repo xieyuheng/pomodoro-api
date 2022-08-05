@@ -1,13 +1,13 @@
 import { ty } from "@xieyuheng/ty"
 import crypto from "crypto"
-import { config } from "../../config"
-import { Redis } from "../../framework/database/Redis"
-import { Mailer } from "../../framework/mail/Mailer"
-import { Controller } from "../../framework/routing/Controller"
-import { VerifyingJson } from "../../types/VerifyingJson"
+import { config } from "../config"
+import { Redis } from "../framework/database/Redis"
+import { Mailer } from "../framework/mail/Mailer"
+import { Controller } from "../framework/routing/Controller"
 import { AccessToken } from "../models/AccessToken"
 import { EmailLogin } from "../models/EmailLogin"
 import { User } from "../models/User"
+import { VerifyingJson } from "../types/VerifyingJson"
 import { useApp } from "../useApp"
 
 export class EmailLoginController extends Controller {

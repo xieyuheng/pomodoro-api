@@ -1,4 +1,4 @@
-import { Controller } from "../../framework/routing/Controller"
+import { Controller } from "../framework/routing/Controller"
 import { User } from "../models/User"
 
 export class UserController extends Controller {

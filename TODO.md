@@ -1,5 +1,3 @@
-- move code from `src/server/` to `src/
-
 - be able to save `settings`
 - be able to save `tasks`
 

@@ -1,5 +1,5 @@
 import { Obtain, ty } from "@xieyuheng/ty"
-import { Model } from "../../framework/database/Model"
+import { Model } from "../framework/database/Model"
 
 export const EmailLoginSchema = ty.object({
   email: ty.string(),

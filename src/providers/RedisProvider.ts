@@ -1,10 +1,10 @@
 import { Coupler, Provider } from "@xieyuheng/coupler"
-import { config } from "../../config"
-import { Redis } from "../../framework/database/Redis"
-import { AccessToken } from "../../server/models/AccessToken"
-import { EmailLogin } from "../../server/models/EmailLogin"
-import { EmailRegister } from "../../server/models/EmailRegister"
-import { User } from "../../server/models/User"
+import { config } from "../config"
+import { Redis } from "../framework/database/Redis"
+import { AccessToken } from "../models/AccessToken"
+import { EmailLogin } from "../models/EmailLogin"
+import { EmailRegister } from "../models/EmailRegister"
+import { User } from "../models/User"
 
 export class RedisProvider extends Provider {
   async register(app: Coupler) {
