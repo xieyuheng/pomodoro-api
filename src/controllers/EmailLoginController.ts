@@ -4,10 +4,10 @@ import { config } from "../config"
 import { Redis } from "../framework/database/Redis"
 import { Mailer } from "../framework/mail/Mailer"
 import { Controller } from "../framework/routing/Controller"
+import { VerifyingJson } from "../jsons/VerifyingJson"
 import { AccessToken } from "../models/AccessToken"
 import { EmailLogin } from "../models/EmailLogin"
 import { User } from "../models/User"
-import { VerifyingJson } from "../jsons/VerifyingJson"
 import { useApp } from "../useApp"
 
 export class EmailLoginController extends Controller {

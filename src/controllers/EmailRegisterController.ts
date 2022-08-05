@@ -5,10 +5,10 @@ import { config } from "../config"
 import { Redis } from "../framework/database/Redis"
 import { Mailer } from "../framework/mail/Mailer"
 import { Controller } from "../framework/routing/Controller"
+import { VerifyingJson } from "../jsons/VerifyingJson"
 import { AccessToken } from "../models/AccessToken"
 import { EmailRegister } from "../models/EmailRegister"
 import { User } from "../models/User"
-import { VerifyingJson } from "../jsons/VerifyingJson"
 import { useApp } from "../useApp"
 
 export class EmailRegisterController extends Controller {

@@ -1,5 +1,5 @@
-import { Server } from "./server"
 import { Router } from "express"
+import { Server } from "./server"
 
 export async function run(): Promise<void> {
   const router = Router()

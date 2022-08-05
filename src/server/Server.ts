@@ -1,5 +1,4 @@
-import { Router } from "express"
-import express, { Application } from "express"
+import express, { Application, Router } from "express"
 
 export class Server {
   router: Router
