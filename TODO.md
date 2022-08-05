@@ -1,3 +1,5 @@
+- [learn] express middleware
+- rename run to start & inline server to start
 - [learn] express session
 - [refactor] relation between `Server` and `App`
 

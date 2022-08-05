@@ -1,5 +1,4 @@
 import { config } from "./config"
-import { AccessTokenController } from "./controllers/AccessTokenController"
 import { EmailLoginController } from "./controllers/EmailLoginController"
 import { EmailRegisterController } from "./controllers/EmailRegisterController"
 import { UserController } from "./controllers/UserController"
@@ -13,10 +12,10 @@ export const router = new Router({
   },
 })
 
-router.use("*", AccessTokenController, "auth")
-
+// router.use("/", AccessTokenController, "auth")
 router.get("/", WelcomeController, "welcome")
 
+// router.use("/user", AccessTokenController, "auth")
 router.get("/user", UserController, "current")
 
 router.post("/register", EmailRegisterController, "create")

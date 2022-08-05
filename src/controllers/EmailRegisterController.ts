@@ -87,11 +87,13 @@ export class EmailRegisterController extends Controller {
       verification_token: token,
     })
 
-    if (!model) return this.res.status(404).end()
-    if (model.revoked_at) return this.res.status(404).end()
-    if (model.verified_at) return this.res.status(404).end()
+    if (!model || model.revoked_at || model.verified_at) {
+      return this.res.status(404).end()
+    }
 
-    if (!model.confirmed_at) return false
+    if (!model.confirmed_at) {
+      return false
+    }
 
     model.verified_at = Date.now()
     await model.save()
@@ -124,10 +126,9 @@ export class EmailRegisterController extends Controller {
       confirmation_token: token,
     })
 
-    if (!model) return this.res.status(404).end()
-    if (model.revoked_at) return this.res.status(404).end()
-    if (model.verified_at) return this.res.status(404).end()
-    if (model.confirmed_at) return this.res.status(404).end()
+    if (!model || model.revoked_at || model.verified_at || model.confirmed_at) {
+      return this.res.status(404).end()
+    }
 
     model.confirmed_at = Date.now()
     await model.save()
@@ -145,10 +146,9 @@ export class EmailRegisterController extends Controller {
       verification_token: token,
     })
 
-    if (!model) return this.res.status(404).end()
-    if (model.revoked_at) return this.res.status(404).end()
-    if (model.verified_at) return this.res.status(404).end()
-    if (model.confirmed_at) return this.res.status(404).end()
+    if (!model || model.revoked_at || model.verified_at || model.confirmed_at) {
+      return this.res.status(404).end()
+    }
 
     model.revoked_at = Date.now()
     await model.save()

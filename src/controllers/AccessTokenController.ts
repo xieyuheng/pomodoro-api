@@ -5,7 +5,7 @@ import { User } from "../models/User"
 import { useApp } from "../useApp"
 
 export class AccessTokenController extends Controller {
-  async auth(): Promise<void> {
+  async auth() {
     const app = await useApp()
     const redis = app.create(Redis)
 

@@ -1,6 +1,8 @@
+import { FunctionKeys } from "utility-types"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import express, { NextFunction, Request, Response } from "express"
+import { Writable } from "stream"
 import invariant from "tiny-invariant"
 import { Controller, ControllerConstructor } from "./Controller"
 
@@ -22,7 +24,7 @@ export class Router {
   all<TController extends Controller>(
     path: string,
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ) {
     this.express.all(path, this.createHandler(clazz, name))
   }
@@ -30,7 +32,7 @@ export class Router {
   post<TController extends Controller>(
     path: string,
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ) {
     this.express.post(path, this.createHandler(clazz, name))
   }
@@ -38,7 +40,7 @@ export class Router {
   get<TController extends Controller>(
     path: string,
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ) {
     this.express.get(path, this.createHandler(clazz, name))
   }
@@ -46,7 +48,7 @@ export class Router {
   patch<TController extends Controller>(
     path: string,
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ) {
     this.express.patch(path, this.createHandler(clazz, name))
   }
@@ -54,7 +56,7 @@ export class Router {
   put<TController extends Controller>(
     path: string,
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ) {
     this.express.put(path, this.createHandler(clazz, name))
   }
@@ -62,7 +64,7 @@ export class Router {
   delete<TController extends Controller>(
     path: string,
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ) {
     this.express.delete(path, this.createHandler(clazz, name))
   }
@@ -70,7 +72,7 @@ export class Router {
   head<TController extends Controller>(
     path: string,
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ) {
     this.express.head(path, this.createHandler(clazz, name))
   }
@@ -78,14 +80,14 @@ export class Router {
   use<TController extends Controller>(
     path: string,
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ) {
     this.express.use(path, this.createHandler(clazz, name))
   }
 
   createHandler<TController extends Controller>(
     clazz: ControllerConstructor<TController>,
-    name: keyof TController
+    name: FunctionKeys<TController>
   ): Handler {
     return async (req, res, next) => {
       const controller = new clazz({ req, res, next, router: this })
@@ -103,18 +105,18 @@ export class Router {
         const result = await action.bind(controller)(...args)
         const t1 = Date.now()
         const elapse = t1 - t0
-        console.log({ who, elapse })
-        if (result === undefined) {
-          next()
-        } else if (typeof result === "string") {
-          res.send(result)
+        console.log({ who, elapse, path: req.path })
+        if (result instanceof Writable) {
+          if (!res.headersSent) next()
+        } else if (result === undefined) {
+          if (!res.headersSent) next()
         } else {
           res.json(result)
         }
       } catch (error) {
         const t1 = Date.now()
         const elapse = t1 - t0
-        console.error({ who, elapse })
+        console.error({ who, elapse, path: req.path })
         next(error)
       }
     }

@@ -28,7 +28,9 @@ export class EmailLoginController extends Controller {
 
     const user = await redis.repo(User).firstWhere({ email: json.email })
     // TODO return error for form
-    if (!user) return this.res.status(404).end()
+    if (!user) {
+      return this.res.status(404).end()
+    }
 
     const fiveMinutes = 5 * 60
     const model = await redis.repo(EmailLogin).createAndSave(json)
@@ -59,17 +61,21 @@ export class EmailLoginController extends Controller {
       verification_token: token,
     })
 
-    if (!model) return this.res.status(404).end()
-    if (model.revoked_at) return this.res.status(404).end()
-    if (model.verified_at) return this.res.status(404).end()
+    if (!model || model.revoked_at || model.verified_at) {
+      return this.res.status(404).end()
+    }
 
-    if (!model.confirmed_at) return false
+    if (!model.confirmed_at) {
+      return false
+    }
 
     model.verified_at = Date.now()
     await model.save()
 
     const user = await redis.repo(User).firstWhere({ email: model.email })
-    if (!user) return this.res.status(404).end()
+    if (!user) {
+      return this.res.status(404).end()
+    }
 
     const oneWeek = 60 * 60 * 24 * 7
     const access = await redis.repo(AccessToken).createAndSave({
@@ -93,10 +99,9 @@ export class EmailLoginController extends Controller {
       confirmation_token: token,
     })
 
-    if (!model) return this.res.status(404).end()
-    if (model.revoked_at) return this.res.status(404).end()
-    if (model.verified_at) return this.res.status(404).end()
-    if (model.confirmed_at) return this.res.status(404).end()
+    if (!model || model.revoked_at || model.verified_at || model.confirmed_at) {
+      return this.res.status(404).end()
+    }
 
     model.confirmed_at = Date.now()
     await model.save()
@@ -114,10 +119,9 @@ export class EmailLoginController extends Controller {
       verification_token: token,
     })
 
-    if (!model) return this.res.status(404).end()
-    if (model.revoked_at) return this.res.status(404).end()
-    if (model.verified_at) return this.res.status(404).end()
-    if (model.confirmed_at) return this.res.status(404).end()
+    if (!model || model.revoked_at || model.verified_at || model.confirmed_at) {
+      return this.res.status(404).end()
+    }
 
     model.revoked_at = Date.now()
     await model.save()
