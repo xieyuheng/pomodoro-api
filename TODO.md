@@ -1,10 +1,10 @@
 - setup routes
 - parse and pass route params to controller action
-- fix the use of `router._router.use`
 - [maybe] inject `server` and `router` to `Controller`
-
+- fix the use of `router._router.use`
 - fix `AccessTokenController.auth` -- set `auth` object
 - fix `UserController.current` get `user` from `auth` object
+- learn express session
 
 # features
 
