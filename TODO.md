@@ -1,3 +1,8 @@
+- setup `routes/`
+- `mountRoutes`
+
+# features
+
 - be able to save `settings`
 - be able to save `tasks`
 
