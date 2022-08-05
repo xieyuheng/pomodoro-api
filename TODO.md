@@ -1,6 +1,5 @@
+- [learn] express session
 - [refactor] relation between `Server` and `App`
-
-- frontend and backend know each other by url
 
 # features
 

@@ -38,7 +38,7 @@ export class EmailLoginController extends Controller {
     const model = await redis.repo(EmailLogin).createAndSave(json)
     await model.expire(fiveMinutes)
 
-    const confirmation_link = `${config.base_url}/api/login/${model.confirmation_token}/confirm`
+    const confirmation_link = `${config.app_url}/api/login/${model.confirmation_token}/confirm`
 
     await mailer.send({
       to: model.email,

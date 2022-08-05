@@ -63,7 +63,7 @@ export class EmailRegisterController extends Controller {
     const model = await redis.repo(EmailRegister).createAndSave(json)
     await model.expire(fiveMinutes)
 
-    const confirmation_link = `${config.base_url}/api/register/${model.confirmation_token}/confirm`
+    const confirmation_link = `${config.app_url}/api/register/${model.confirmation_token}/confirm`
 
     await mailer.send({
       to: model.email,

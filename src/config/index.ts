@@ -2,7 +2,7 @@ import { env } from "../framework/config/env"
 
 export const config = {
   mode: process.env.NODE_ENV,
-  base_url: env("BASE_URL"),
+  app_url: env("APP_URL"),
   redis: {
     url: env("REDIS_URL"),
   },
