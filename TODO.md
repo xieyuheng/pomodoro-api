@@ -1,6 +1,6 @@
-- setup routes
 - parse and pass route params to controller action
 - [maybe] inject `server` and `router` to `Controller`
+- frontend and backend know each other by url
 - fix the use of `router._router.use`
 - fix `AccessTokenController.auth` -- set `auth` object
 - fix `UserController.current` get `user` from `auth` object
