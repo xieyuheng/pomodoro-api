@@ -4,7 +4,8 @@
 - fix the use of `router._router.use`
 - fix `AccessTokenController.auth` -- set `auth` object
 - fix `UserController.current` get `user` from `auth` object
-- learn express session
+- [learn] express session
+- [refactor] relation between `Server` and `App`
 
 # features
 
