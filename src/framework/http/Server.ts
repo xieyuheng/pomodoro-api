@@ -1,18 +1,20 @@
-import express, { Application, Router } from "express"
+import express, { Router } from "express"
+import cors from "cors"
 
 export class Server {
-  router: Router
-  expressApp: Application
+  router = Router()
+  express = express()
 
-  constructor(opts: { router: Router }) {
-    this.router = opts.router
-    this.expressApp = express()
+  constructor() {
+
+    this.router.use(cors())
+    this.router.use(express.json())
   }
 
   async run(opts: { port: number; host: string }): Promise<void> {
     const { port, host } = opts
 
-    this.expressApp
+    this.express
       .use(this.router)
       .disable("x-powered-by")
       .listen({ port, host })
