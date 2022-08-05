@@ -3,6 +3,7 @@ import { User } from "../models/User"
 
 export class UserController extends Controller {
   async current(): Promise<User | undefined> {
-    return this.event.context.auth?.user
+    return undefined
+    // return this.event.context.auth?.user
   }
 }
