@@ -3,12 +3,16 @@ import cors from "cors"
 import express, { NextFunction, Request, Response } from "express"
 import { Controller, ControllerConstructor } from "./Controller"
 
-export type Handler = (req: Request, res: Response, next: NextFunction) => void
+type Handler = (req: Request, res: Response, next: NextFunction) => void
+
+export interface RouterOptions {
+  // cors: 
+}
 
 export class Router {
   express = express()
 
-  constructor() {
+  constructor(options: RouterOptions) {
     this.express.use(express.json())
     this.express.use(cookieParser())
     this.express.use(cors())

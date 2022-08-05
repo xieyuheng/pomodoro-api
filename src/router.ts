@@ -3,9 +3,9 @@ import { EmailLoginController } from "./controllers/EmailLoginController"
 import { EmailRegisterController } from "./controllers/EmailRegisterController"
 import { UserController } from "./controllers/UserController"
 import { WelcomeController } from "./controllers/WelcomeController"
-import { Router } from "./framework/routing/Router"
+import { server } from "./server"
 
-export const router = new Router()
+export const { router } = server
 
 router.use("*", AccessTokenController, "auth")
 
