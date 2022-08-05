@@ -97,7 +97,9 @@ export class Router {
         const t1 = Date.now()
         const elapse = t1 - t0
         console.log({ who, elapse, path: req.path })
-        if (result === undefined || !isPureObject(result)) {
+        if (result instanceof Function) {
+          result()
+        } else if (result === undefined || !isPureObject(result)) {
           if (!res.headersSent) next()
         } else {
           res.json(result)

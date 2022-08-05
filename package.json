@@ -1,8 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "dev": "PORT=3000 nodemon lib/run.js",
-    "start": "NODE_ENV='production' node lib/run.js",
+    "dev": "PORT=3000 nodemon lib/start.js",
+    "start": "NODE_ENV='production' node lib/start.js",
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "vitest --run --dir src",

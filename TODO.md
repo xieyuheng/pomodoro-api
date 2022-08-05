@@ -1,7 +1,12 @@
 - [learn] express middleware
+
+  https://expressjs.com/en/guide/using-middleware.html
+  https://expressjs.com/en/guide/writing-middleware.html
+  https://expressjs.com/en/guide/error-handling.html
+
 - [refactor] `Router` http methods
 - [refactor] `Router` support alist as args -- for middleware
-- rename run to start & inline server to start
+
 - [learn] express session
 - [refactor] relation between `Server` and `App`
 
