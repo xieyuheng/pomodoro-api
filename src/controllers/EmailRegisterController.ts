@@ -111,7 +111,7 @@ export class EmailRegisterController extends Controller {
     })
     await access.expire(oneWeek)
     this.res.cookie("token", access.token, {
-      sameSite: "none",
+      sameSite: "None",
       maxAge: oneWeek,
     })
 
