@@ -1,6 +1,9 @@
 import { Server } from "./framework/http/Server"
+import { WelcomeController } from "./controllers/WelcomeController"
 
 export const server = new Server()
+
+// server.route("GET /", WelcomeController, "welcome")
 
 server.router.get("/", (req, res) => {
   res.json({
