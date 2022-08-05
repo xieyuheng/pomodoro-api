@@ -6,9 +6,6 @@
 - fix `AccessTokenController.auth` -- set `auth` object
 - fix `UserController.current` get `user` from `auth` object
 
-- setup `env`
-- vercel `api/` use server
-
 # features
 
 - be able to save `settings`
