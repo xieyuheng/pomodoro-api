@@ -1,5 +1,7 @@
 import { Redis } from "../framework/database/Redis"
 import { Controller } from "../framework/routing/Controller"
+import { AccessToken } from "../models/AccessToken"
+import { User } from "../models/User"
 import { useApp } from "../useApp"
 
 export class AccessTokenController extends Controller {
@@ -7,16 +9,14 @@ export class AccessTokenController extends Controller {
     const app = await useApp()
     const redis = app.create(Redis)
 
-    // TODO
+    const token = this.req.cookies.token
+    if (!token) return
 
-    // const token = this.cookie("token")
-    // if (!token) return
+    const access = await redis.repo(AccessToken).firstWhere({ token })
+    if (!access) return
 
-    // const access = await redis.repo(AccessToken).firstWhere({ token })
-    // if (!access) return
-
-    // const user = await redis.repo(User).find(access.user_id)
-    // if (!user) return
+    const user = await redis.repo(User).find(access.user_id)
+    if (!user) return
 
     // TODO
     // this.event.context.auth = { user }

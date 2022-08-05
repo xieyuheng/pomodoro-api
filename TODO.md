@@ -1,4 +1,11 @@
-- fix `Controller`
+- setup routes
+- parse and pass route params to controller action
+
+- [maybe] inject `server` and `router` to `Controller`
+
+- fix `AccessTokenController.auth` -- set `auth` object
+- fix `UserController.current` get `user` from `auth` object
+
 - setup `env`
 - vercel `api/` use server
 

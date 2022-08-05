@@ -11,7 +11,7 @@ import { User } from "../models/User"
 import { useApp } from "../useApp"
 
 export class EmailLoginController extends Controller {
-  async create(): Promise<VerifyingJson> {
+  async create(): Promise<VerifyingJson | undefined> {
     const app = await useApp()
     const redis = app.create(Redis)
     const mailer = app.create(Mailer)
@@ -21,7 +21,7 @@ export class EmailLoginController extends Controller {
     })
 
     const json = {
-      ...scheme.validate(await this.body()),
+      ...scheme.validate(this.req.body),
       verification_token: crypto.randomBytes(32).toString("hex"),
       confirmation_token: crypto.randomBytes(32).toString("hex"),
       confirmation_code: crypto.randomBytes(3).toString("hex"),
@@ -29,7 +29,10 @@ export class EmailLoginController extends Controller {
 
     const user = await redis.repo(User).firstWhere({ email: json.email })
     // TODO return error for form
-    if (!user) throw new Error("User Not Found")
+    if (!user) {
+      this.res.status(404).end()
+      return
+    }
 
     const fiveMinutes = 5 * 60
     const model = await redis.repo(EmailLogin).createAndSave(json)
@@ -78,7 +81,7 @@ export class EmailLoginController extends Controller {
       token: crypto.randomBytes(32).toString("hex"),
     })
     await access.expire(oneWeek)
-    this.setCookie("token", access.token, {
+    this.res.cookie("token", access.token, {
       sameSite: "none",
       maxAge: oneWeek,
     })
@@ -102,7 +105,7 @@ export class EmailLoginController extends Controller {
     model.confirmed_at = Date.now()
     await model.save()
 
-    await this.redirect("/notifications/login-email-confirmation-success")
+    await this.res.redirect("/notifications/login-email-confirmation-success")
   }
 
   async revoke(token: string): Promise<undefined> {

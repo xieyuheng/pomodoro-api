@@ -23,7 +23,7 @@ export class EmailRegisterController extends Controller {
       email: ty.string(),
     })
 
-    const body = scheme.validate(await this.body())
+    const body = scheme.validate(this.req.body)
 
     const invalid: {
       email?: { en: string; zh: string }
@@ -109,7 +109,7 @@ export class EmailRegisterController extends Controller {
       token: crypto.randomBytes(32).toString("hex"),
     })
     await access.expire(oneWeek)
-    this.setCookie("token", access.token, {
+    this.res.cookie("token", access.token, {
       sameSite: "none",
       maxAge: oneWeek,
     })
@@ -133,7 +133,9 @@ export class EmailRegisterController extends Controller {
     model.confirmed_at = Date.now()
     await model.save()
 
-    await this.redirect("/notifications/register-email-confirmation-success")
+    await this.res.redirect(
+      "/notifications/register-email-confirmation-success"
+    )
   }
 
   async revoke(token: string): Promise<undefined> {
