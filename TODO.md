@@ -1,6 +1,6 @@
 - setup `routes/`
 - `mountRoutes`
-
+- setup `env`
 - `server` use `app`
 - vercel `api/` use server
 
