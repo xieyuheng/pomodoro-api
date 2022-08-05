@@ -1,5 +1,5 @@
-import { WelcomeController } from "./controllers/WelcomeController"
 import { AccessTokenController } from "./controllers/AccessTokenController"
+import { WelcomeController } from "./controllers/WelcomeController"
 import { Router } from "./framework/routing/Router"
 
 export const router = new Router()

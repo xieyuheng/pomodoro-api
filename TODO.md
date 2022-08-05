@@ -1,6 +1,6 @@
 - setup routes
 - parse and pass route params to controller action
-
+- fix the use of `router._router.use`
 - [maybe] inject `server` and `router` to `Controller`
 
 - fix `AccessTokenController.auth` -- set `auth` object

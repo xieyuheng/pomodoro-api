@@ -1,3 +1,4 @@
+import cookieParser from "cookie-parser"
 import cors from "cors"
 import express, {
   NextFunction,
@@ -13,8 +14,9 @@ export class Router {
   _router = ExpressRouter()
 
   constructor() {
-    this._router.use(cors())
     this._router.use(express.json())
+    this._router.use(cookieParser())
+    this._router.use(cors())
   }
 
   post<TController extends Controller>(

@@ -1,10 +1,15 @@
 import { server } from "./server"
+import { useApp } from "./useApp"
 
-server
-  .run({
+async function run() {
+  const app = await useApp()
+
+  await server.run({
     port: Number(process.env.PORT),
     host: process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1",
   })
-  .catch((error) => {
-    console.error(error)
-  })
+}
+
+run().catch((error) => {
+  console.error(error)
+})

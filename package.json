@@ -5,10 +5,11 @@
     "start": "NODE_ENV='production' node lib/run.js",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "vitest --run",
+    "test": "vitest --run --dir src",
     "format": "prettier src --write"
   },
   "devDependencies": {
+    "@types/cookie-parser": "^1.4.3",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/nodemailer": "^6.4.5",
@@ -20,7 +21,9 @@
   "dependencies": {
     "@xieyuheng/coupler": "^0.0.3",
     "@xieyuheng/ty": "^0.1.17",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "h3": "^0.7.13",
     "lodash": "^4.17.21",

@@ -10,14 +10,15 @@ export class AccessTokenController extends Controller {
     const redis = app.create(Redis)
 
     const token = this.req.cookies.token
-    if (!token) return
+    if (!token) return this.next()
 
     const access = await redis.repo(AccessToken).firstWhere({ token })
-    if (!access) return
+    if (!access) return this.next()
 
     const user = await redis.repo(User).find(access.user_id)
-    if (!user) return
+    if (!user) return this.next()
 
+    return this.next()
     // TODO
     // this.event.context.auth = { user }
   }
