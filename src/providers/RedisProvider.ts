@@ -5,6 +5,7 @@ import { AccessToken } from "../models/AccessToken"
 import { EmailLogin } from "../models/EmailLogin"
 import { EmailRegister } from "../models/EmailRegister"
 import { User } from "../models/User"
+import { Pomodoro } from "../models/Pomodoro"
 
 export class RedisProvider extends Provider {
   async register(app: Coupler) {
@@ -36,10 +37,8 @@ export class RedisProvider extends Provider {
       token: "tag casesensitive",
     })
 
-    await redis.repo(User).createIndex({
+    await redis.repo(Pomodoro).createIndex({
       username: "tag casesensitive",
-      name: "tag casesensitive",
-      email: "tag casesensitive",
     })
   }
 }

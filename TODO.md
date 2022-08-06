@@ -1,5 +1,6 @@
 # features
 
+- `PomodoroController`
 - `/pomodoros/:username` -- put
 - `/pomodoros/:username` -- get
 
