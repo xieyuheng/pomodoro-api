@@ -1,7 +1,12 @@
 # features
 
-- be able to save `tasks`
-- `/settings` be able to config `settings.modes` -- simple CRUD
+- `/pomodoros/:username` -- put
+- `/pomodoros/:username` -- get
+
+- `settings` in `PomodoroJson`
+
+- `/settings/:username` -- put
+- `/settings/:username` -- get
 
 # deploy
 
