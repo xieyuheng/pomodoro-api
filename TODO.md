@@ -1,8 +1,5 @@
 # features
 
-- `PomodoroController` -- get
-- `PomodoroController` -- put
-
 - `settings` in `PomodoroJson`
 
 - `/settings/:username` -- put

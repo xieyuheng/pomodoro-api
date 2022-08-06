@@ -8,6 +8,6 @@ export class UserController extends BaseController {
       return
     }
 
-    return auth.user
+    return auth.user.json()
   }
 }
