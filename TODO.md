@@ -1,7 +1,5 @@
 # features
 
-- `BaseController` -- `auth` instead of `currentUser`
-
 - `PomodoroController` -- get
 - `PomodoroController` -- put
 

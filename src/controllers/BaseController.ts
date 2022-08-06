@@ -5,28 +5,19 @@ import { User } from "../models/User"
 import { useApp } from "../useApp"
 
 export class BaseController extends Controller {
-  async currentUser() {
+  async auth(): Promise<{ user?: User }> {
     const app = await useApp()
     const redis = app.create(Redis)
 
     const token = this.req.cookies.token
-    if (!token) {
-      this.res.status(404).end()
-      return
-    }
+    if (!token) return {}
 
     const access = await redis.repo(AccessToken).firstWhere({ token })
-    if (!access) {
-      this.res.status(404).end()
-      return
-    }
+    if (!access) return {}
 
     const user = await redis.repo(User).find(access.user_id)
-    if (!user) {
-      this.res.status(404).end()
-      return
-    }
+    if (!user) return {}
 
-    return user
+    return { user }
   }
 }
