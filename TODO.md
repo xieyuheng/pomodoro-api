@@ -1,6 +1,3 @@
-- rename EmailRegisterController to RegisterController
-- rename EmailLoginController to LoginController
-
 # features
 
 - `BaseController` -- `auth` instead of `currentUser`

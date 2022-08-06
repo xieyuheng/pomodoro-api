@@ -10,7 +10,7 @@ import { User } from "../models/User"
 import { useApp } from "../useApp"
 import { BaseController } from "./BaseController"
 
-export class EmailRegisterController extends BaseController {
+export class RegisterController extends BaseController {
   async create() {
     const app = await useApp()
     const redis = app.create(Redis)

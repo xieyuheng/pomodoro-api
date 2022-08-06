@@ -4,7 +4,6 @@ import { Redis } from "../framework/database/Redis"
 import { AccessToken } from "../models/AccessToken"
 import { EmailLogin } from "../models/EmailLogin"
 import { EmailRegister } from "../models/EmailRegister"
-import { User } from "../models/User"
 import { Pomodoro } from "../models/Pomodoro"
 
 export class RedisProvider extends Provider {
