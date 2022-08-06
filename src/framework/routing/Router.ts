@@ -15,9 +15,9 @@ export class Router {
   express = express()
 
   constructor(options: RouterOptions) {
+    this.express.use(express.json())
     this.express.use(cors(options.cors))
     this.express.use(cookieParser())
-    this.express.use(express.json())
   }
 
   all<TController extends Controller>(
