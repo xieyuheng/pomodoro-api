@@ -3,6 +3,7 @@ import { EmailLoginController } from "./controllers/EmailLoginController"
 import { EmailRegisterController } from "./controllers/EmailRegisterController"
 import { UserController } from "./controllers/UserController"
 import { WelcomeController } from "./controllers/WelcomeController"
+import { PomodoroController } from "./controllers/PomodoroController"
 import { Router } from "./framework/routing/Router"
 
 export const router = new Router({
@@ -25,6 +26,9 @@ router.post("/login", EmailLoginController, "create")
 router.get("/login/:token/verify", EmailLoginController, "verify")
 router.get("/login/:token/revoke", EmailLoginController, "revoke")
 router.get("/login/:token/confirm", EmailLoginController, "confirm")
+
+router.get("/pomodoro", PomodoroController, "get")
+router.put("/pomodoro", PomodoroController, "put")
 
 router.express.use((req, res) => {
   res.status(404).json({

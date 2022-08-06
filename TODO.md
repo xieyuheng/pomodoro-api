@@ -1,8 +1,12 @@
+- rename EmailRegisterController to RegisterController
+- rename EmailLoginController to LoginController
+
 # features
 
-- `PomodoroController`
-- `/pomodoros/:username` -- put
-- `/pomodoros/:username` -- get
+- `BaseController` -- `auth` instead of `currentUser`
+
+- `PomodoroController` -- get
+- `PomodoroController` -- put
 
 - `settings` in `PomodoroJson`
 
@@ -29,6 +33,8 @@
 - [refactor] relation between `Server` and `App`
 
 # refactor
+
+- [maybe] `Repo` -- rename `find` and `findOrFail` to `get` and `getOrFail`
 
 - `Repo` -- `createIndex` to side effect to `Model`
 - `Repo` -- query by schema
