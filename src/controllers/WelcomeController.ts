@@ -1,6 +1,6 @@
-import { Controller } from "../framework/routing/Controller"
+import { BaseController } from "./BaseController"
 
-export class WelcomeController extends Controller {
+export class WelcomeController extends BaseController {
   async welcome() {
     return {
       message: "Welcome to use Pomodoro API.",

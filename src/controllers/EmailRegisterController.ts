@@ -4,13 +4,13 @@ import { createError } from "h3"
 import { config } from "../config"
 import { Redis } from "../framework/database/Redis"
 import { Mailer } from "../framework/mail/Mailer"
-import { Controller } from "../framework/routing/Controller"
 import { AccessToken } from "../models/AccessToken"
 import { EmailRegister } from "../models/EmailRegister"
 import { User } from "../models/User"
 import { useApp } from "../useApp"
+import { BaseController } from "./BaseController"
 
-export class EmailRegisterController extends Controller {
+export class EmailRegisterController extends BaseController {
   async create() {
     const app = await useApp()
     const redis = app.create(Redis)

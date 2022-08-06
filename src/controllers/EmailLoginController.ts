@@ -3,13 +3,13 @@ import crypto from "crypto"
 import { config } from "../config"
 import { Redis } from "../framework/database/Redis"
 import { Mailer } from "../framework/mail/Mailer"
-import { Controller } from "../framework/routing/Controller"
 import { AccessToken } from "../models/AccessToken"
 import { EmailLogin } from "../models/EmailLogin"
 import { User } from "../models/User"
 import { useApp } from "../useApp"
+import { BaseController } from "./BaseController"
 
-export class EmailLoginController extends Controller {
+export class EmailLoginController extends BaseController {
   async create() {
     const app = await useApp()
     const redis = app.create(Redis)

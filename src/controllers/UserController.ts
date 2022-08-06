@@ -1,13 +1,7 @@
-import { Controller } from "../framework/routing/Controller"
+import { BaseController } from "./BaseController"
 
-export class UserController extends Controller {
+export class UserController extends BaseController {
   async current() {
-    const user = this.router.express.get("auth")?.user
-    if (!user) {
-      this.res.status(404).end()
-      return
-    }
-
-    return user
+    return this.currentUser()
   }
 }

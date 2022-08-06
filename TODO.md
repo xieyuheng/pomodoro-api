@@ -17,7 +17,6 @@
   https://expressjs.com/en/guide/writing-middleware.html
   https://expressjs.com/en/guide/error-handling.html
 
-- [refactor] `Router` http methods
 - [refactor] `Router` support alist as args -- for middleware
 
 - [learn] express session
