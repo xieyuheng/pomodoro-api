@@ -32,6 +32,8 @@ export class PomodoroController extends BaseController {
 
     pomodoro.tasks = json.tasks
     await pomodoro.save()
+
+    this.res.status(204).end()
   }
 
   async get() {
