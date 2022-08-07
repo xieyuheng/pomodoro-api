@@ -80,7 +80,7 @@ export class LoginController extends BaseController {
       return
     }
 
-    const oneWeek = 60 * 60 * 24 * 7
+    const oneWeek = 1000 * 60 * 60 * 24 * 7
     const access = await redis.repo(AccessToken).createAndSave({
       user_id: user.id,
       token: crypto.randomBytes(32).toString("hex"),
